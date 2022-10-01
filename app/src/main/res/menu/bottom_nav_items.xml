@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Este item es temporal, solo para el acceso al fragmento de información la empresa-->
+    <item
+        android:title="Tec Fit"
+        android:id="@+id/item_tec_fit"
+        android:icon="@drawable/ic_baseline_home_24"
+        />
+
+</menu>

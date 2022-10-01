@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/activity_main.xml" value="0.2015625" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragment_info_page.xml" value="0.33" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragments_info_page/fragment_info_page.xml" value="0.2015625" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/menu/bottom_navv_items.xml" value="0.3859375" />
       </map>
     </option>
   </component>
