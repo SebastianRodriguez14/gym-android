@@ -7,4 +7,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="green">#31CE5D</color>
+
+
+    <color name="red_variant">#FFE10A0A</color>
+    <color name="nero">#FF1F1F1F</color>
+    <color name="humo">#FFE7E6E6</color>
+    <color name="background">#FFF4F4F4</color>
 </resources>

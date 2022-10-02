@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.fragments.InfoPageFragment
+import com.tecfit.gym_android.fragments.ProductFragment
 
 class MainActivity : AppCompatActivity() {
     // Fragmentos principales
     private val infoPageFragment = InfoPageFragment()
+    private val productFragment = ProductFragment()
 
     //BottomNavigation
     private lateinit var bottomNavigation:BottomNavigationView
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.item_tec_fit -> replaceFragment(infoPageFragment)
+                R.id.item_productos -> replaceFragment(productFragment)
             }
             true
         }

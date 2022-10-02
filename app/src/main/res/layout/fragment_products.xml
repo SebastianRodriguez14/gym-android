@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ProductActivity"
+    tools:context=".fragments.ProductFragment"
     android:paddingVertical="25dp"
     android:paddingHorizontal="28dp"
     android:background="@color/background"
+    android:theme="@style/ProductsPage"
     >
 
     <LinearLayout

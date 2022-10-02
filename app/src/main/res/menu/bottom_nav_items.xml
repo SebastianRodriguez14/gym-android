@@ -6,5 +6,9 @@
         android:id="@+id/item_tec_fit"
         android:icon="@drawable/ic_baseline_home_24"
         />
+    <item
+        android:title="Productos"
+        android:id="@+id/item_productos"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"/>
 
 </menu>
