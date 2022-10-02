@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     //BottomNavigation
     private lateinit var bottomNavigation:BottomNavigationView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,11 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment:Fragment){
         val fragmentManager = supportFragmentManager
-
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_container, fragment)
         fragmentTransaction.commit()
     }
-
 
 }
