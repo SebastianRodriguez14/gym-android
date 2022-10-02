@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener {
-            println("asdas")
             when(it.itemId){
                 R.id.item_tec_fit -> replaceFragment(infoPageFragment)
             }

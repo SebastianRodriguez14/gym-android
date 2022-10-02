@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">gym-android</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="info_page_description">Entrenamiento 100% personalizado para personas dispuestas a cumplir sus objetivos y lograr resultado</string>
+    <string name="info_page_location">Ubicación</string>
+    <string name="info_page_whatsapp">WhatsApp</string>
+    <string name="info_page_facebook">Facebook</string>
+    <string name="info_page_yape">Yape</string>
+
+    <string name="info_page_data_location">Av.Tupac Amaru 1204 Comas 51 Lima, Perú</string>
+    <string name="info_page_data_whatsapp">+51 993 426 151</string>
+    <string name="info_page_data_facebook">TecFitPersonalTrainingCenter</string>
+    <string name="info_page_data_yape">+51 993 426 151</string>
+    <string name="info_page_costos_title">Costos</string>
+    <string name="info_page_mensualidad_title">Mensualidad</string>
+    <string name="info_page_promocion_title">Promoción</string>
+    <string name="info_page_mensualidad_costo">S/. 80.00</string>
+    <string name="info_page_promocion_costo">S/. 150.00 x 3 meses</string>
+    <string name="info_page_entrenadores_title">Entrenadores</string>
+
 </resources>
