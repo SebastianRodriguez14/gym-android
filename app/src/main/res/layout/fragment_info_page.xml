@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.InfoPageFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="25dp"
+        android:paddingHorizontal="28dp"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/info_page_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="220dp"
+                android:layout_height="110dp"
+                android:src="@drawable/info_page_logo" />
+            <ImageView
+                android:layout_gravity="right"
+                android:layout_height="90dp"
+                android:layout_width="150dp"
+                android:rotationY="180"
+                android:src="@drawable/info_page_cuerda"/>
+
+        </FrameLayout>
+        <LinearLayout
+            android:id="@+id/info_page_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_page_description"
+                android:textSize="14dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="?colorOnSecondary"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_location"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="3dp"
+                    android:textAlignment="center"
+                    android:layout_marginHorizontal="4dp"
+                    android:paddingHorizontal="6dp"
+                    android:textSize="12dp"
+                    android:background="@drawable/shape_info_page_option"
+                    android:textColor="?colorOnSecondary"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/info_page_location"/>
+                <TextView
+                    android:id="@+id/text_whatsapp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.1"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="3dp"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:paddingHorizontal="6dp"
+                    android:background="@drawable/shape_info_page_option"
+                    android:textColor="?colorOnSecondary"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/info_page_whatsapp"/>
+                <TextView
+                    android:id="@+id/text_facebook"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="3dp"
+                    android:textSize="12dp"
+                    android:textAlignment="center"
+                    android:layout_marginHorizontal="4dp"
+                    android:paddingHorizontal="6dp"
+                    android:background="@drawable/shape_info_page_option"
+                    android:textColor="?colorOnSecondary"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/info_page_facebook"/>
+                <TextView
+                    android:id="@+id/text_yape"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="3dp"
+                    android:textAlignment="center"
+                    android:layout_marginHorizontal="4dp"
+                    android:paddingHorizontal="6dp"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@drawable/shape_info_page_option"
+                    android:textColor="?colorOnSecondary"
+                    android:text="@string/info_page_yape"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="4dp"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/shape_info_page_data_frame"
+                >
+
+                <FrameLayout
+                    android:id="@+id/info_page_frame_data_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="10dp">
+                    <ImageView
+                        android:id="@+id/info_page_data_image"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/info_page_data_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?colorOnSecondary"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_page_costos_title"
+                android:fontFamily="@font/michroma_regular"
+                android:textSize="20dp"
+                android:textColor="?colorOnSecondary"
+                />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="8dp"
+                        android:elevation="3dp"
+                        android:background="@drawable/gradient_mensualidad"
+                        android:padding="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="?colorOnSecondary"
+                            android:text="@string/info_page_mensualidad_title"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/michroma_regular"
+                            android:textColor="?colorPrimary"
+                            android:textSize="20dp"
+                            android:text="@string/info_page_mensualidad_costo"
+                            android:layout_marginHorizontal="35dp"/>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="@drawable/gradient_promocion"
+                        android:elevation="3dp"
+                        android:padding="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="?colorOnSecondary"
+                            android:text="@string/info_page_promocion_title"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/michroma_regular"
+                            android:textColor="?colorPrimary"
+                            android:textSize="20dp"
+                            android:text="@string/info_page_promocion_costo"
+                            android:layout_marginHorizontal="35dp"/>
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_page_entrenadores_title"
+                android:fontFamily="@font/michroma_regular"
+                android:textSize="20dp"
+                android:textColor="?colorOnSecondary"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_entrenadores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_entrenador"/>
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</ScrollView>
