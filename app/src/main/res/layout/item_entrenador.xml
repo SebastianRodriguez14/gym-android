@@ -17,6 +17,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/shape_info_page_trainner_background"/>
         <ImageView
+            android:id="@+id/item_trainer_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:src="@drawable/info_page_trainner_test"/>
