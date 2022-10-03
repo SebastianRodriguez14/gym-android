@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitClient {
 
     companion object {
-        private val BASE_URL = "http://localhost:8090/tec_fit/"
+        private val BASE_URL = "https://api-tecfit.herokuapp.com/tec_fit/"
 
         fun getRetrofit(): Retrofit {
             return Retrofit.Builder()

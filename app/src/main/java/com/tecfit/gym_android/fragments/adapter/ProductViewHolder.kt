@@ -31,7 +31,8 @@ class ProductViewHolder(val view:View) :RecyclerView.ViewHolder(view){
 
     fun render(product:Product) {
 
-        Glide.with(view.context).load(product.image).into(pr_image)
+        //Acá se realizará la modificación cuando se use el cloudinary correctamente
+        Glide.with(view.context).load(product.image.url).into(pr_image)
         pr_description.text = product.name
         pr_price.text = "S/. %.2f".format(product.price)
 
