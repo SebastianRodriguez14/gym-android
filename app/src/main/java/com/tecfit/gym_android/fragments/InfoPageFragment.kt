@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForFragments
 
 class InfoPageFragment : Fragment() {
 
@@ -17,11 +21,17 @@ class InfoPageFragment : Fragment() {
     private lateinit var text_facebook:TextView
     private lateinit var text_yape:TextView
     // Por defecto tiene el id de la opción de ubicación
-    private var id_text_selected: Int? = 2131296748
+    private lateinit var text_selected: TextView
 
     //Elementos de la información de la empresa
     private lateinit var text_data:TextView
     private lateinit var image_data:ImageView
+
+    //Frame contenedor para los bg del yape, ubicación, facebook y whatsapp
+    private lateinit var frame_container_data_bg:FrameLayout
+
+    //Fragmentos de yape, ubicación, facebook y whatsapp
+    private val infoPageYapeFragment = InfoPageYapeFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +51,12 @@ class InfoPageFragment : Fragment() {
         text_whatsapp = root.findViewById(R.id.text_whatsapp)
         text_yape = root.findViewById(R.id.text_yape)
 
+        text_selected = text_ubication
+
         text_data = root.findViewById(R.id.info_page_data_text)
         image_data = root.findViewById(R.id.info_page_data_image)
+
+        frame_container_data_bg = root.findViewById(R.id.frame_data_container_info_page)
 
         val arrayOptions = arrayOf<TextView>(text_ubication, text_facebook, text_whatsapp, text_yape)
 
@@ -60,26 +74,28 @@ class InfoPageFragment : Fragment() {
     private fun setBackgroundSelected (arrayTextViews: Array<TextView>, text: TextView) {
 
         for(textview in arrayTextViews){
-            if (textview.id == text.id){
+            if (textview == text){
                 textview.setBackgroundResource(R.drawable.shape_info_page_option_selected)
-                id_text_selected = text.id
+                text_selected = text
 
-                when(text.id){
-                    2131296748 -> {
+                when(text){
+                    text_ubication -> {
                         text_data.setText(R.string.info_page_data_location)
                         image_data.setImageResource(R.drawable.info_page_data_location)
+
                     }
-                    2131296747 -> {
+                    text_facebook -> {
                         text_data.setText(R.string.info_page_data_facebook)
                         image_data.setImageResource(R.drawable.info_page_data_facebook)
                     }
-                    2131296749 -> {
+                    text_whatsapp -> {
                         text_data.setText(R.string.info_page_data_whatsapp)
                         image_data.setImageResource(R.drawable.info_page_data_whatsapp)
                     }
-                    2131296750 -> {
+                    text_yape -> {
                         text_data.setText(R.string.info_page_data_yape)
                         image_data.setImageResource(R.drawable.info_page_data_yape)
+                        ForFragments.replaceFragment(childFragmentManager,frame_container_data_bg.id, infoPageYapeFragment)
                     }
                 }
             } else{
@@ -89,5 +105,6 @@ class InfoPageFragment : Fragment() {
         }
 
     }
+
 
 }

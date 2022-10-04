@@ -3,8 +3,10 @@ package com.tecfit.gym_android.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.fragments.InfoPageFragment
 import com.tecfit.gym_android.fragments.ProductFragment
 
@@ -24,19 +26,14 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.item_tec_fit -> replaceFragment(infoPageFragment)
-                R.id.item_productos -> replaceFragment(productFragment)
+                R.id.item_tec_fit -> ForFragments.replaceFragment(supportFragmentManager,R.id.frame_container, infoPageFragment)
+                R.id.item_productos -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container,productFragment)
             }
             true
         }
 
     }
 
-    private fun replaceFragment(fragment:Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_container, fragment)
-        fragmentTransaction.commit()
-    }
+
 
 }
