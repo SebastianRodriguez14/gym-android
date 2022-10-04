@@ -16,7 +16,17 @@
     <string name="info_page_mensualidad_costo">S/. 80.00</string>
     <string name="info_page_promocion_costo">S/. 150.00 x 3 meses</string>
     <string name="info_page_entrenadores_title">Entrenadores</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="start_page_button">Comencemos</string>
+
+    <string name="login_title">Inicio de Sesión</string>
+    <string name="login_email_hint">Ingrese su correo electrónico</string>
+    <string name="login_password_hint">Ingrese su contraseña</string>
+    <string name="login_email_error_message">El correo es incorrecto, vuelva a intentarlo.</string>
+    <string name="login_password_error_message">La contraseña es incorrecta, vuelva a intentarlo.</string>
+    <string name="login_forgot_password"><u>¿Olvidó su contraseña?</u></string>
+    <string name="login_enter">Ingresar</string>
+    <string name="login_enter_google">Continuar con Google</string>
+    <string name="login_register">¿Eres nuevo? \nPara registrarte presiona <u>aquí</u></string>
 
 </resources>

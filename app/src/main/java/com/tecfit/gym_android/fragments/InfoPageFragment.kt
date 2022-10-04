@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 
 import androidx.recyclerview.widget.DiffUtil
