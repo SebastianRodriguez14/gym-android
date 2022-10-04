@@ -28,4 +28,21 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
 
     </style>
+
+    <style name="Theme.Login" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryVariant">@color/red</item>
+        <item name="colorOnPrimary">@color/semi_white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/semi_black</item>
+        <item name="colorSecondaryVariant">@color/semi_black</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
+
+        <!-- Customize your theme here. -->
+    </style>
+
+
 </resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.StartActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/start_page_bg"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_start_page"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_page_button"
+            android:layout_gravity="bottom|center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/michroma_regular"
+            android:textSize="22dp"
+            android:paddingHorizontal="50dp"
+            android:paddingBottom="10dp"
+            android:textAlignment="center"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/shape_start_page_button_outline"
+            />
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="160dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="180dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/start_page_logo"
+            />
+
+
+    </FrameLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
