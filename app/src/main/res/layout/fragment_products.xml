@@ -55,7 +55,6 @@
             android:textSize="12dp"
             android:hint="Buscar"
             android:background="@drawable/search_bg"
-
             tools:ignore="TouchTargetSizeCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +79,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:checked="true"
-            android:rotation="180"
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
@@ -95,6 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_gravity="center"
             tools:listitem="@layout/item_product" />
 
 
