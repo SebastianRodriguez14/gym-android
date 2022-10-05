@@ -14,6 +14,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
         text_enter = findViewById(R.id.login_enter)
 
         text_enter.setOnClickListener {
