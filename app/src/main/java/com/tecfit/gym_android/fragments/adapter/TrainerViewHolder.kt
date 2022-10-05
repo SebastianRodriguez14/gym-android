@@ -14,9 +14,8 @@ class TrainerViewHolder(val view: View):RecyclerView.ViewHolder(view) {
     val tr_description = view.findViewById<TextView>(R.id.text_description_trainner)
 
     fun render(trainer: Trainer){
-        Glide.with(view.context).load(trainer.file).into(tr_image)
-        tr_name.text=trainer.name
-        tr_name.text=trainer.lastname
+        Glide.with(view.context).load(trainer.file.url).into(tr_image)
+        tr_name.text=trainer.name + " " + trainer.lastname
         tr_description.text=trainer.description
 
     }

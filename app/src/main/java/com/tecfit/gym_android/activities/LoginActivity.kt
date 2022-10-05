@@ -8,16 +8,18 @@ import com.tecfit.gym_android.R
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var fl: TextView
+    private lateinit var text_enter:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        fl = findViewById(R.id.login_forgot_password)
 
-        fl.setOnClickListener{
+        text_enter = findViewById(R.id.login_enter)
+
+        text_enter.setOnClickListener {
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
+
     }
 }
