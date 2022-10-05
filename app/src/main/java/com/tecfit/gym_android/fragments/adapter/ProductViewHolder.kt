@@ -1,6 +1,5 @@
 package com.tecfit.gym_android.fragments.adapter
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.models.Product
-import org.w3c.dom.Text
 
 class ProductViewHolder(val view:View) :RecyclerView.ViewHolder(view){
 

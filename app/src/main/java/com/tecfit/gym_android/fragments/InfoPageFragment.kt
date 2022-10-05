@@ -1,18 +1,17 @@
 package com.tecfit.gym_android.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.tecfit.gym_android.activities.utilities.ForFragments
-
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.fragments.adapter.TrainerAdapter
 import com.tecfit.gym_android.models.Trainer
 import com.tecfit.gym_android.retrofit.ApiService

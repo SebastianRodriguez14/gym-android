@@ -1,9 +1,9 @@
 package com.tecfit.gym_android.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import androidx.appcompat.app.AppCompatActivity
 import com.tecfit.gym_android.R
 
 class SplashScreenActivity : AppCompatActivity() {
