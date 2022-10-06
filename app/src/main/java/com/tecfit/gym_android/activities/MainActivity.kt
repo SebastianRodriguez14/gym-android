@@ -1,9 +1,7 @@
 package com.tecfit.gym_android.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments

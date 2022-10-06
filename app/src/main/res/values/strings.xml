@@ -29,4 +29,14 @@
     <string name="login_enter_google">Continuar con Google</string>
     <string name="login_register">¿Eres nuevo? \nPara registrarte presiona <u>aquí</u></string>
 
+    <string name="register_title">Regístrate</string>
+    <string name="register_name_hint">Ingrese su nombre</string>
+    <string name="register_lastname_hint">Ingrese sus apellidos</string>
+    <string name="register_phone_hint">Ingrese su teléfono</string>
+    <string name="register_email_hint">Ingrese su correo electrónico</string>
+    <string name="register_password_hint">Ingrese su contraseña</string>
+    <string name="register_error_message">Debe completar el campo</string>
+    <string name="register_enter">Registrarse</string>
+    <string name="register_enter_google">Continuar con Google</string>
+    <string name="register_login">¿Ya tienes una cuenta? \nPara iniciar presione <u>aquí</u></string>
 </resources>
