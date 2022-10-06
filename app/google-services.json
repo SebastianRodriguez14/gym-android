@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "362863500522",
+    "firebase_url": "https://gym-android-8f6cb-default-rtdb.firebaseio.com",
     "project_id": "gym-android-8f6cb",
     "storage_bucket": "gym-android-8f6cb.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "362863500522-q774o04fk81v2lcb06tfch2j86k5f82e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecfit.gym_android",
+            "certificate_hash": "5c6f0e5590c964f692c38014ced92ccb09ecf943"
+          }
+        },
         {
           "client_id": "362863500522-85m8t5jgppql96rcugemo73qde8bmjj6.apps.googleusercontent.com",
           "client_type": 3
