@@ -6,16 +6,20 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.login
 import com.tecfit.gym_android.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var txt_login: TextView
-    private lateinit var txt_register:TextView
     private lateinit var auth: FirebaseAuth
+    private val Google_SIGN_IN = 100
     private lateinit var binding: ActivityLoginBinding;
 
 
@@ -26,10 +30,11 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        auth = Firebase.auth
-        txt_login = findViewById(R.id.login_enter)
+        auth = FirebaseAuth.getInstance()
 
-        txt_login.setOnClickListener{
+        googleLogIn()
+
+        binding.loginEnter.setOnClickListener{
             val email = binding.loginInputEmail.text.toString()
             val password = binding.loginInputPassword.text.toString()
             Log.i("uwu",email + " " + password )
@@ -42,10 +47,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-
-        txt_register = findViewById(R.id.login_enter_register)
-
-        txt_register.setOnClickListener {
+        binding.loginEnterRegister.setOnClickListener {
             startActivity(Intent(applicationContext,RegisterActivity::class.java))
         }
 
@@ -67,5 +69,51 @@ class LoginActivity : AppCompatActivity() {
     private fun reload(){
         val intent = Intent(this, MainActivity::class.java)
         this.startActivity(intent)
+    }
+
+    private fun googleLogIn(){
+        binding.loginEnterGoogle.setOnClickListener{
+            val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            val googleClient = GoogleSignIn.getClient(this,googleConf)
+            val signInIntent = googleClient.signInIntent
+            startActivityForResult(signInIntent, Google_SIGN_IN)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == Google_SIGN_IN){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)!!
+                if(account != null){
+                    Log.d("Tag", "firebasegoogleid $account.id" )
+                    firebaseAuthWithGoogle(account.idToken!!)
+                }else{
+                    Toast.makeText(this, "Email does not exist", Toast.LENGTH_LONG).show()
+                }
+            }
+            catch (e:ApiException){
+                Log.w("Tag", "Google sign in failed $e")
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential).addOnCompleteListener(this){ task ->
+            if(task.isSuccessful){
+                Log.d("Tag", "signInWithCredential:success")
+                val user = auth.currentUser?.email.toString()
+                login(user)
+            }else{
+                Log.w("Tag", "signInWithCredential:failure", task.exception)
+                Toast.makeText(this, "Email does not exist", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
