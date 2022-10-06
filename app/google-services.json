@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "362863500522",
+    "project_id": "gym-android-8f6cb",
+    "storage_bucket": "gym-android-8f6cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362863500522:android:a8fe377c3de869a78b8b93",
+        "android_client_info": {
+          "package_name": "com.tecfit.gym_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362863500522-85m8t5jgppql96rcugemo73qde8bmjj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaL1smgfyhZd3IA6jrJpzHPxsCEBtrbc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362863500522-85m8t5jgppql96rcugemo73qde8bmjj6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
