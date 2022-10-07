@@ -3,9 +3,11 @@ package com.tecfit.gym_android.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -38,13 +40,16 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.loginInputEmail.text.toString()
             val password = binding.loginInputPassword.text.toString()
             Log.i("uwu",email + " " + password )
-            when{
-                email.isEmpty() || password.isEmpty() -> {
-                    Toast.makeText(this, "Debes rellenar los campos de correo y contraseña", Toast.LENGTH_SHORT).show()
-                }else -> {
-                LogIn(email, password)
-                }
+
+            if(email.isEmpty() || password.isEmpty()){
+                binding.errorMessageEmail.visibility = if(email.isEmpty()) View.VISIBLE else View.INVISIBLE
+                binding.errorMessagePassword.visibility = if(password.isEmpty()) View.VISIBLE else View.INVISIBLE
+                Toast.makeText(this, "Debes rellenar los campos de correo y contraseña", Toast.LENGTH_SHORT).show()
             }
+            else {
+                LogIn(email, password)
+            }
+
         }
 
         binding.loginEnterRegister.setOnClickListener {
