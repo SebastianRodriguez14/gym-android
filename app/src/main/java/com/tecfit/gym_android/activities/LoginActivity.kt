@@ -44,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
             if(email.isEmpty() || password.isEmpty()){
                 binding.errorMessageEmail.visibility = if(email.isEmpty()) View.VISIBLE else View.INVISIBLE
                 binding.errorMessagePassword.visibility = if(password.isEmpty()) View.VISIBLE else View.INVISIBLE
-                Toast.makeText(this, "Debes rellenar los campos de correo y contraseña", Toast.LENGTH_SHORT).show()
             }
             else {
                 LogIn(email, password)
