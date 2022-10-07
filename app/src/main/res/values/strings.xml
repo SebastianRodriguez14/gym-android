@@ -35,8 +35,14 @@
     <string name="register_phone_hint">Ingrese su teléfono</string>
     <string name="register_email_hint">Ingrese su correo electrónico</string>
     <string name="register_password_hint">Ingrese su contraseña</string>
-    <string name="register_error_message">Debe completar el campo</string>
     <string name="register_enter">Registrarse</string>
     <string name="register_enter_google">Continuar con Google</string>
     <string name="register_login">¿Ya tienes una cuenta? \nPara iniciar presione <u>aquí</u></string>
+    <string name="register_error_message">Debe completar el campo</string>
+
+    <string name="verify_email_title">Verificación de\ncorreo</string>
+    <string name="verify_email_description">Se te ha enviado un link de verificación\na tu correo electrónico.</string>
+    <string name="verify_email_description_spam">Si no lo encuentras en tu bandeja de entrada revisa en spam.</string>
+    <string name="verify_email_access_login">Presione <u>aquí</u> para regresar al login</string>
+
 </resources>

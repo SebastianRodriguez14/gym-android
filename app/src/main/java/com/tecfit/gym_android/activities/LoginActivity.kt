@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
             if(email.isEmpty() || password.isEmpty()){
                 binding.errorMessageEmail.visibility = if(email.isEmpty()) View.VISIBLE else View.INVISIBLE
                 binding.errorMessagePassword.visibility = if(password.isEmpty()) View.VISIBLE else View.INVISIBLE
+                Toast.makeText(this, "Debes rellenar los campos de correo y contraseña", Toast.LENGTH_SHORT).show()
             }
             else {
                 LogIn(email, password)
@@ -52,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginEnterRegister.setOnClickListener {
-            startActivity(Intent(applicationContext,RegisterActivity::class.java))
+            startActivity(Intent(this,RegisterActivity::class.java))
         }
 
     }
@@ -61,10 +62,18 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("TAG", "signInWithEmail:success")
-                    reload()
+
+                    if (auth.currentUser?.isEmailVerified != true){
+                        Toast.makeText(this, "Correo electrónico no verificado.",
+                            Toast.LENGTH_SHORT).show()
+                    } else {
+                        reload()
+                    }
+
                 } else {
+                    println("Error en el login")
                     Log.w("TAG", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Incorrect email address or password",
+                    Toast.makeText(this, "Correo o contraseña incorrectos",
                         Toast.LENGTH_SHORT).show()
                 }
             }
