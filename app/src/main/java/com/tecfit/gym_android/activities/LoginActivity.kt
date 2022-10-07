@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
             Log.i("uwu",email + " " + password )
             when{
                 email.isEmpty() || password.isEmpty() -> {
-                    Toast.makeText(baseContext, "Incorrect email address or password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Debes rellenar los campos de correo y contraseña", Toast.LENGTH_SHORT).show()
                 }else -> {
                 LogIn(email, password)
                 }
@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginEnterRegister.setOnClickListener {
-            startActivity(Intent(applicationContext,RegisterActivity::class.java))
+            startActivity(Intent(this,RegisterActivity::class.java))
         }
 
     }
@@ -57,10 +57,18 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("TAG", "signInWithEmail:success")
-                    reload()
+
+                    if (auth.currentUser?.isEmailVerified != true){
+                        Toast.makeText(this, "Correo electrónico no verificado.",
+                            Toast.LENGTH_SHORT).show()
+                    } else {
+                        reload()
+                    }
+
                 } else {
+                    println("Error en el login")
                     Log.w("TAG", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Incorrect email address or password",
+                    Toast.makeText(this, "Correo o contraseña incorrectos",
                         Toast.LENGTH_SHORT).show()
                 }
             }
