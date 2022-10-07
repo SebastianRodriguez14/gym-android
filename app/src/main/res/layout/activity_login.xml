@@ -63,7 +63,7 @@
                     android:textColorHighlight="?colorSecondaryVariant"
                     android:background="@drawable/shape_input_login"
                     android:paddingLeft="10dp"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:paddingTop="4dp"
                     android:textColorHint="@color/gray"
                     android:lines="1"
