@@ -12,7 +12,6 @@ fun Context.login(email: String){
     }
     startActivity(intent)
 }
-//probando mi git
 
 fun Context.logout(){
     FirebaseAuth.getInstance().signOut()
