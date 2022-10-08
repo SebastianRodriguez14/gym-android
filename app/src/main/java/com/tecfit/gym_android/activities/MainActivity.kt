@@ -12,11 +12,13 @@ import com.tecfit.gym_android.databinding.ActivityLoginBinding
 import com.tecfit.gym_android.databinding.ActivityStartBinding
 import com.tecfit.gym_android.fragments.InfoPageFragment
 import com.tecfit.gym_android.fragments.ProductFragment
+import com.tecfit.gym_android.fragments.ProfileUserFragment
 
 class MainActivity : AppCompatActivity() {
     // Fragmentos principales
     private val infoPageFragment = InfoPageFragment()
     private val productFragment = ProductFragment()
+    private val profileUserFragment = ProfileUserFragment()
     private lateinit var auth: FirebaseAuth
 
     //BottomNavigation
@@ -33,7 +35,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.item_tec_fit -> ForFragments.replaceFragment(supportFragmentManager,R.id.frame_container, infoPageFragment)
-                R.id.item_productos -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container,productFragment)
+                R.id.item_products -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container,productFragment)
+                R.id.item_profile -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container, profileUserFragment)
             }
             true
         }
