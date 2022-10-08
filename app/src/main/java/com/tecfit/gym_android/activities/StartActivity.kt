@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForValidations
 
 class StartActivity : AppCompatActivity() {
 
@@ -19,9 +20,6 @@ class StartActivity : AppCompatActivity() {
         text_start.setOnClickListener {
             startActivity(Intent(applicationContext, LoginActivity::class.java))
         }
-
-
-
-
     }
+
 }

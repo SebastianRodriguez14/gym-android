@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.tecfit.gym_android.activities.utilities.ForValidations
 import com.tecfit.gym_android.databinding.ActivityRegisterBinding
 import com.tecfit.gym_android.models.User
 import com.tecfit.gym_android.retrofit.ApiService
@@ -47,23 +48,17 @@ class RegisterActivity : AppCompatActivity() {
     private fun checkInputsCompleted():Boolean{
 
         val checks = arrayOf(
-            checkInput(binding.registerInputName, binding.errorMessageNameRegister),
-            checkInput(binding.registerInputLastname, binding.errorMessageLastnameRegister),
-            checkInput(binding.registerInputPhone, binding.errorMessagePhoneRegister),
-            checkInput(binding.registerInputEmail, binding.errorMessageEmailRegister),
-            checkInput(binding.registerInputPassword, binding.errorMessagePasswordRegister)
+            ForValidations.valInput(binding.registerInputName, binding.errorMessageNameRegister, ForValidations::valOnlyText),
+            ForValidations.valInput(binding.registerInputLastname, binding.errorMessageLastnameRegister, ForValidations::valOnlyText),
+            ForValidations.valInput(binding.registerInputPhone, binding.errorMessagePhoneRegister, ForValidations::valOnlyPhone),
+            ForValidations.valInput(binding.registerInputEmail, binding.errorMessageEmailRegister, ForValidations::valOnlyEmail),
+            ForValidations.valInput(binding.registerInputPassword, binding.errorMessagePasswordRegister, ForValidations::valOnlyPassword)
         )
 
         return !checks.contains(true)
 
     }
 
-    private fun checkInput(input:EditText, errorMessage:TextView):Boolean {
-        val showError = input.text.toString().isEmpty()
-
-        errorMessage.visibility = if (showError) View.VISIBLE else View.INVISIBLE
-        return showError
-    }
 
 
 
