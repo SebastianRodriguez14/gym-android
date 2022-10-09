@@ -8,7 +8,11 @@
         />
     <item
         android:title="Productos"
-        android:id="@+id/item_productos"
+        android:id="@+id/item_products"
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
+    <item
+        android:title="Profile"
+        android:id="@+id/item_profile"
+        android:icon="@drawable/ic_baseline_person_24"/>
 
 </menu>

@@ -45,4 +45,11 @@
     <string name="verify_email_description_spam">Si no lo encuentras en tu bandeja de entrada revisa en spam.</string>
     <string name="verify_email_access_login">Presione <u>aquí</u> para regresar al login</string>
 
+    <string name="profile_user_title">Perfil</string>
+    <string name="profile_user_edit_link"><u>Editar</u></string>
+    <string name="profile_user_active_membership">Membresía Activa</string>
+    <string name="profile_user_phone_title">Teléfono</string>
+    <string name="profile_user_time_membership">Tiempo restante de membresía</string>
+    <string name="profile_user_notification">Notificación de membresía</string>
+    <string name="profile_user_log_out">Cerrar Sesión</string>
 </resources>
