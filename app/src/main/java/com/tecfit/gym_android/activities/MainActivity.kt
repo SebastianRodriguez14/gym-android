@@ -1,5 +1,6 @@
 package com.tecfit.gym_android.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,15 +20,12 @@ class MainActivity : AppCompatActivity() {
     private val infoPageFragment = InfoPageFragment()
     private val productFragment = ProductFragment()
     private val profileUserFragment = ProfileUserFragment()
-    private lateinit var auth: FirebaseAuth
-
     //BottomNavigation
     private lateinit var bottomNavigation:BottomNavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
 
         setContentView(R.layout.activity_main)
 
@@ -42,7 +40,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
-
 }

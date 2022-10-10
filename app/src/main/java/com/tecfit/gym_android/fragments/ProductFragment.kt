@@ -53,14 +53,10 @@ class ProductFragment : Fragment() {
                 val listProducts = response.body()
 
                 if (listProducts != null) {
-
                     productsList = listProducts
                     initRecyclerView()
-
-
                 }
             }
-
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 println("Error: getProducts() failure")
             }
