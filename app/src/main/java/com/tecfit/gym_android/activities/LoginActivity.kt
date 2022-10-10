@@ -18,6 +18,13 @@ import com.google.firebase.ktx.Firebase
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.login
 import com.tecfit.gym_android.databinding.ActivityLoginBinding
+import com.tecfit.gym_android.models.User
+import com.tecfit.gym_android.models.UserData
+import com.tecfit.gym_android.retrofit.ApiService
+import com.tecfit.gym_android.retrofit.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -27,11 +34,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("uwu", "tmr")
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-
         auth = FirebaseAuth.getInstance()
 
         googleLogIn()
@@ -39,7 +43,6 @@ class LoginActivity : AppCompatActivity() {
         binding.loginEnter.setOnClickListener{
             val email = binding.loginInputEmail.text.toString()
             val password = binding.loginInputPassword.text.toString()
-            Log.i("uwu",email + " " + password )
 
             if(email.isEmpty() || password.isEmpty()){
                 binding.errorMessageEmail.visibility = if(email.isEmpty()) View.VISIBLE else View.INVISIBLE
@@ -66,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Correo electrónico no verificado.",
                             Toast.LENGTH_SHORT).show()
                     } else {
+                        fetchUser(email)
                         reload()
                     }
 
@@ -120,12 +124,34 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener(this){ task ->
             if(task.isSuccessful){
                 Log.d("Tag", "signInWithCredential:success")
-                val user = auth.currentUser?.email.toString()
-                login(user)
+                val name = auth.currentUser?.displayName.toString()
+                val email = auth.currentUser?.email.toString()
+                val phone = auth.currentUser?.phoneNumber.toString()
+                val photo = auth.currentUser?.photoUrl.toString()
+                login(email)
             }else{
                 Log.w("Tag", "signInWithCredential:failure", task.exception)
                 Toast.makeText(this, "Email does not exist", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+
+    fun fetchUser(email: String){
+        val apiService: ApiService = RetrofitClient.getRetrofit().create(ApiService::class.java)
+        val resultUser: Call<User> = apiService.getUSer(email)
+
+        resultUser.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                println("-----------------------------------------")
+                println(response.body())
+                UserData.user = response.body()!!
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                println("-----------------------------------------")
+                println("Error: postUser() failure.")
+            }
+        })
     }
 }
