@@ -4,27 +4,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.login
 import com.tecfit.gym_android.databinding.ActivityLoginBinding
+import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
+import com.tecfit.gym_android.fragments.ProfileUserFragment
+import com.tecfit.gym_android.models.Membership
 import com.tecfit.gym_android.models.User
-import com.tecfit.gym_android.models.UserData
+import com.tecfit.gym_android.models.custom.UserInAppCustom
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -110,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("Tag", "firebasegoogleid $account.id" )
                     firebaseAuthWithGoogle(account.idToken!!)
                 }else{
-                    Toast.makeText(this, "Email does not exist", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Este correo no existe.", Toast.LENGTH_LONG).show()
                 }
             }
             catch (e:ApiException){
@@ -145,8 +147,10 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 println("-----------------------------------------")
                 println(response.body())
-                UserData.user = response.body()!!
-            }
+                UserInAppCustom.user = response.body()!!
+                fetchMembershipByUser(UserInAppCustom.user!!.id_user)
+
+           }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
                 println("-----------------------------------------")
@@ -154,4 +158,29 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
+
+    fun fetchMembershipByUser(id_user:Int){
+        val apiService: ApiService = RetrofitClient.getRetrofit().create(ApiService::class.java)
+        val resultMembership: Call<Membership> = apiService.getActiveMembershipByUser(id_user)
+
+        resultMembership.enqueue(object : Callback<Membership> {
+            override fun onResponse(call: Call<Membership>, response: Response<Membership>) {
+                UserInAppCustom.membership = response.body()
+                if (UserInAppCustom.membership != null) {
+                    UserInAppCustom.membership!!.start_date = Date(UserInAppCustom.membership!!.start_date.time + (1000 * 60 * 60 * 24))
+                    UserInAppCustom.membership!!.expiration_date = Date(UserInAppCustom.membership!!.expiration_date.time + (1000 * 60 * 60 * 24))
+                }
+//                println(UserInAppCustom.membership)
+            }
+
+            override fun onFailure(call: Call<Membership>, t: Throwable) {
+                println("Error: getActiveMembershipByUser() failure.")
+            }
+        })
+
+
+
+
+    }
+
 }

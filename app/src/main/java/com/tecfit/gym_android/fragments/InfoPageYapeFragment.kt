@@ -22,8 +22,6 @@ class InfoPageYapeFragment : Fragment() {
         root = inflater.inflate(R.layout.fragment_info_page_yape, container, false)
 
 
-
-
         return root
     }
 
