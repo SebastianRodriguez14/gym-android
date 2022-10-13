@@ -48,7 +48,7 @@
             android:id="@+id/profile_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
+            android:text="cargando..."
             android:textSize="20sp"
             android:layout_gravity="center"
             android:textColor="?colorSecondaryVariant"
@@ -137,7 +137,7 @@
                     android:paddingStart="10dp"
                     android:paddingHorizontal="3dp"
                     android:textSize="18sp"
-                    android:text="-"
+                    android:text="cargando..."
                     android:textColor="@color/black"
                     android:background="@drawable/shape_profile_user_input"/>
             </LinearLayout>
@@ -162,7 +162,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:paddingStart="10dp"
                     android:paddingHorizontal="3dp"
-                    android:text="1 mes"
+                    android:text="cargando..."
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     android:background="@drawable/shape_profile_user_input"/>

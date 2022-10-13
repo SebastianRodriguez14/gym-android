@@ -75,24 +75,35 @@ class ProfileUserFragment : Fragment() {
     fun setInformationMembership(){
 
 //        println(UserInAppCustom.membership)
+        val existMembership:Boolean
+        if (UserInAppCustom.membership!!.id_membership == 0){
+            inputMembership.setText("Sin membresía")
+            existMembership = false
+        } else {
 
-        val currentDate = Date()
+            val currentDate = Date()
 //
 //            println("Start date -> ${UserInAppCustom.membership!!.start_date}" )
 //            println("Expiration date -> ${UserInAppCustom.membership!!.expiration_date}" )
 //            println("Expiration date -> $currentDate" )
 
-        val time_elapsed:Long = UserInAppCustom.membership!!.expiration_date.time - currentDate.time
+            val time_elapsed:Long = UserInAppCustom.membership!!.expiration_date.time - currentDate.time
 
-        val unit = TimeUnit.DAYS
+            val unit = TimeUnit.DAYS
 
-        val days = unit.convert(time_elapsed, TimeUnit.MILLISECONDS) //Días restantes
+            val days = unit.convert(time_elapsed, TimeUnit.MILLISECONDS) //Días restantes
 
 
-        val remainingDays = formatRemainingDays(days)
+            val remainingDays = formatRemainingDays(days)
 
-        inputMembership.setText(remainingDays)
-        switch.isEnabled = true
+            inputMembership.setText(remainingDays)
+            switch.isEnabled = true
+            existMembership = true
+        }
+
+        UserInAppCustom.user!!.membership = existMembership
+
+
 
     }
 
@@ -127,6 +138,7 @@ class ProfileUserFragment : Fragment() {
         val timerForCheckMembership = GlobalScope.launch(Dispatchers.Main){
             do {
                 if (UserInAppCustom.membership != null) {
+
                     setInformationMembership()
 
                     cancel()
