@@ -17,6 +17,7 @@ import com.tecfit.gym_android.activities.utilities.logout
 import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
 import com.tecfit.gym_android.models.Membership
 import com.tecfit.gym_android.models.custom.UserInAppCustom
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -44,40 +45,34 @@ class ProfileUserFragment : Fragment() {
 
         name = root.findViewById(R.id.profile_user_name)
         membership = root.findViewById(R.id.profile_user_active_membership)
+        membership.isVisible = false
         phone = root.findViewById(R.id.profile_user_input_phone)
         photo = root.findViewById(R.id.photo_profile)
         switch = root.findViewById(R.id.profile_user_switch_notification)
         inputMembership = root.findViewById(R.id.profile_user_input_membership)
-
         logOut = root.findViewById(R.id.profile_user_logout_link)
         logOut.setOnClickListener{
             context?.logout()
             UserInAppCustom.user = null
         }
 
-        setInformation()
-
+        checkUser()
         return root
 
     }
 
-    fun setInformation(){
+    fun setInformationUser(){
 
         name.text = UserInAppCustom.user!!.name + ' ' + UserInAppCustom.user!!.lastname
         phone.setText(UserInAppCustom.user!!.phone)
         membership.isVisible = UserInAppCustom.user!!.membership
 
         Glide.with(root.context).load(UserInAppCustom.user!!.image?.url).into(photo)
-        if (UserInAppCustom.membership != null) {
-            inputMembership.setText(getRemainingDays())
-        } else {
-            inputMembership.setText("-")
-            switch.isEnabled = false
-        }
+
 
     }
 
-    fun getRemainingDays():String{
+    fun setInformationMembership(){
 
 //        println(UserInAppCustom.membership)
 
@@ -94,8 +89,10 @@ class ProfileUserFragment : Fragment() {
         val days = unit.convert(time_elapsed, TimeUnit.MILLISECONDS) //Días restantes
 
 
-        return formatRemainingDays(days)
+        val remainingDays = formatRemainingDays(days)
 
+        inputMembership.setText(remainingDays)
+        switch.isEnabled = true
 
     }
 
@@ -110,6 +107,33 @@ class ProfileUserFragment : Fragment() {
         remainingDays += "${days%30} días"
 
         return remainingDays
+
+    }
+
+    fun checkUser(){
+
+        val timerForCheckUser = GlobalScope.launch(Dispatchers.Main) {
+
+            do {
+                if (UserInAppCustom.user != null) {
+                    setInformationUser()
+
+                    cancel()
+                }
+                delay(3000)
+            } while (true)
+        }
+
+        val timerForCheckMembership = GlobalScope.launch(Dispatchers.Main){
+            do {
+                if (UserInAppCustom.membership != null) {
+                    setInformationMembership()
+
+                    cancel()
+                }
+                delay(3000)
+            } while (true)
+        }
 
     }
 

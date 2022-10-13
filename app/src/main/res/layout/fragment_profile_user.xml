@@ -48,7 +48,7 @@
             android:id="@+id/profile_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pinguinito"
+            android:text="-"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:textColor="?colorSecondaryVariant"
@@ -137,7 +137,7 @@
                     android:paddingStart="10dp"
                     android:paddingHorizontal="3dp"
                     android:textSize="18sp"
-                    android:text="+51 930 821 741"
+                    android:text="-"
                     android:textColor="@color/black"
                     android:background="@drawable/shape_profile_user_input"/>
             </LinearLayout>
@@ -185,6 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:checked="true"
+                    android:enabled="false"
                     tools:ignore="TouchTargetSizeCheck"
                     android:layout_gravity="right"/>
             </FrameLayout>
