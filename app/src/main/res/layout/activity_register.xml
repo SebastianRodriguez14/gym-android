@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:theme="@style/StartApplicationTheme"
     tools:context=".activities.RegisterActivity">
 
     <ImageView
@@ -56,9 +57,9 @@
                     android:lines="1"
                     android:textSize="16sp"
                     android:inputType="text"
-                    android:textColor="?colorSecondaryVariant"
+                    android:textColor="@color/black_paragraph"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColorHighlight="?colorSecondaryVariant"
+                    android:textColorHighlight="@color/gray_clear"
                     android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_name_hint"
                     android:background="@drawable/shape_input_login"/>
@@ -68,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/register_error_message"
-                    android:textColor="?colorPrimary"
+                    android:textColor="@color/red"
                     android:fontFamily="@font/poppins_regular"/>
             </LinearLayout>
             <LinearLayout
@@ -85,9 +86,9 @@
                     android:lines="1"
                     android:textSize="16sp"
                     android:inputType="text"
-                    android:textColor="?colorSecondaryVariant"
+                    android:textColor="@color/black_paragraph"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColorHighlight="?colorSecondaryVariant"
+                    android:textColorHighlight="@color/gray_clear"
                     android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_lastname_hint"
                     android:background="@drawable/shape_input_login"/>
@@ -97,7 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/register_error_message"
-                    android:textColor="?colorPrimary"
+                    android:textColor="@color/red"
                     android:fontFamily="@font/poppins_regular"/>
             </LinearLayout>
             <LinearLayout
@@ -115,9 +116,9 @@
                     android:maxLength="9"
                     android:textSize="16sp"
                     android:inputType="number"
-                    android:textColor="?colorSecondaryVariant"
+                    android:textColor="@color/black_paragraph"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColorHighlight="?colorSecondaryVariant"
+                    android:textColorHighlight="@color/gray_clear"
                     android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_phone_hint"
                     android:background="@drawable/shape_input_login"/>
@@ -127,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/register_error_message"
-                    android:textColor="?colorPrimary"
+                    android:textColor="@color/red"
                     android:fontFamily="@font/poppins_regular"/>
             </LinearLayout>
             <LinearLayout
@@ -144,9 +145,9 @@
                     android:lines="1"
                     android:textSize="16sp"
                     android:inputType="text"
-                    android:textColor="?colorSecondaryVariant"
+                    android:textColor="@color/black_paragraph"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColorHighlight="?colorSecondaryVariant"
+                    android:textColorHighlight="@color/gray_clear"
                     android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_email_hint"
                     android:background="@drawable/shape_input_login"/>
@@ -156,7 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/register_error_message"
-                    android:textColor="?colorPrimary"
+                    android:textColor="@color/red"
                     android:fontFamily="@font/poppins_regular"/>
             </LinearLayout>
             <LinearLayout
@@ -173,9 +174,9 @@
                     android:lines="1"
                     android:textSize="16sp"
                     android:inputType="textPassword"
-                    android:textColor="?colorSecondaryVariant"
+                    android:textColor="@color/black_paragraph"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColorHighlight="?colorSecondaryVariant"
+                    android:textColorHighlight="@color/gray_clear"
                     android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_password_hint"
                     android:background="@drawable/shape_input_login"/>
@@ -185,7 +186,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/register_error_message"
-                    android:textColor="?colorPrimary"
+                    android:textColor="@color/red"
                     android:fontFamily="@font/poppins_regular"/>
             </LinearLayout>
         </LinearLayout>
@@ -214,7 +215,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp">
+                    android:visibility="invisible">
 
                     <ImageView
                         android:layout_width="30dp"
@@ -250,7 +251,7 @@
                     android:textAlignment="center"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColor="?colorOnPrimary"/>
+                    android:textColor="@color/semi_white"/>
 
         </LinearLayout>
 

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:theme="@style/StartApplicationTheme"
     tools:context=".activities.LoginActivity">
 
 
@@ -57,10 +58,10 @@
                     android:id="@+id/login_input_email"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="?colorSecondaryVariant"
+                    android:textColor="@color/black_paragraph"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/login_email_hint"
-                    android:textColorHighlight="?colorSecondaryVariant"
+                    android:textColorHighlight="@color/gray_clear"
                     android:background="@drawable/shape_input_login"
                     android:paddingLeft="10dp"
                     android:inputType="textEmailAddress"
@@ -74,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/login_email_error_message"
-                    android:textColor="?colorPrimary"
+                    android:textColor="@color/red"
                     android:fontFamily="@font/poppins_regular"
                     />
 
@@ -89,12 +90,12 @@
                     android:id="@+id/login_input_password"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="?colorSecondaryVariant"
+                    android:textColor="@color/black_paragraph"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/login_password_hint"
                     android:background="@drawable/shape_input_login"
                     android:paddingTop="4dp"
-                    android:textColorHighlight="?colorSecondaryVariant"
+                    android:textColorHighlight="@color/gray_clear"
                     android:lines="1"
                     android:inputType="textPassword"
                     android:paddingLeft="10dp"
@@ -106,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/login_password_error_message"
-                    android:textColor="?colorPrimary"
+                    android:textColor="@color/red"
                     android:fontFamily="@font/poppins_regular"
                     />
 
@@ -116,7 +117,7 @@
                 android:id="@+id/login_forgot_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?colorOnPrimary"
+                android:textColor="@color/white"
                 android:text="@string/login_forgot_password"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="17sp"
@@ -185,7 +186,7 @@
                 android:id="@+id/login_enter_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?colorOnPrimary"
+                android:textColor="@color/semi_white"
                 android:text="@string/login_register"
                 android:textAlignment="center"
                 android:fontFamily="@font/poppins_regular"

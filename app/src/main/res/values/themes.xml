@@ -42,4 +42,13 @@
 
     </style>
 
+    <!-- For startActivity, loginActivity and registerActivity -->
+    <style name="StartApplicationTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/background_dark</item> <!-- For statusBar color -->
+
+        <item name="colorSecondary">@color/black_paragraph</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+    </style>
+
 </resources>
