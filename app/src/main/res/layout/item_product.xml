@@ -5,10 +5,10 @@
     android:layout_height="170dp"
     app:cardCornerRadius="13dp"
     app:cardElevation="4dp"
+    android:backgroundTint="?colorSecondaryVariant"
     android:layout_marginHorizontal="12dp"
-    android:layout_marginVertical="10dp"
-    android:theme="@style/ProductsPage">
-    <LinearLayout
+    android:layout_marginVertical="10dp">
+    <FrameLayout
         android:id="@+id/item_product_status_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,10 +16,10 @@
         >
 
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingStart="20dp"
+            android:orientation="vertical"
             >
             <ImageView
                 android:id="@+id/item_product_image"
@@ -31,20 +31,24 @@
         <LinearLayout
             android:id="@+id/item_product_status"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
             android:layout_marginTop="4dp"
             android:visibility="visible"
+            android:theme="@style/ProductsPageTheme"
+            android:layout_gravity="right"
             >
-            <TextView
+            <View
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:background="@drawable/ic_baseline_circle_24"
                 android:clickable="false"
+                android:elevation="2dp"
                 />
         </LinearLayout>
 
 
-    </LinearLayout>
+    </FrameLayout>
 
         <TextView
             android:id="@+id/item_product_discount"
@@ -67,7 +71,7 @@
         android:layout_marginTop="110dp"
         android:fontFamily="@font/poppins"
         android:layout_marginStart="5dp"
-        android:textColor="@color/black"
+        android:textColor="?colorOnSecondary"
         android:paddingHorizontal="4dp"
         android:textSize="13dp"
         android:ellipsize="end"
@@ -87,7 +91,7 @@
             android:layout_marginTop="150dp"
             android:fontFamily="@font/poppins"
             android:layout_marginStart="5dp"
-            android:textColor="@color/black"
+            android:textColor="?colorTertiary"
             android:paddingHorizontal="4dp"
             android:textSize="10dp"
             android:text="S/. 90.00"

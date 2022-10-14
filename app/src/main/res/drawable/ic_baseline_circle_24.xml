@@ -1,16 +1,6 @@
 
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-<item >
-    <shape android:shape="oval">
-        <gradient android:angle="180" android:startColor="#c7f9cc" android:endColor="#edede9"  />
-        <corners android:radius="100dp"/>
-    </shape>
-</item>
-<item android:right="2dp" android:bottom="2dp" >
-    <shape android:shape="oval">
-        <solid android:color="#31CE5D"/>
-        <corners android:radius="50dp"/>
-    </shape>
-</item>
-</layer-list>
+<shape android:shape="oval" xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="?colorSecondary"/>
+    <corners android:radius="50dp"/>
+</shape>

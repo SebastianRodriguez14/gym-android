@@ -7,13 +7,16 @@
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/discount_bg.xml" value="0.2455" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/gradient_mensualidad.xml" value="0.224" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/gradient_promocion.xml" value="0.224" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2225" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.224" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2225" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.224" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/search_bg.xml" value="0.2455" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_info_page_data.xml" value="0.224" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_info_page_data_frame.xml" value="0.224" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_info_page_data_frame_container.xml" value="0.2455" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_info_page_data_selected.xml" value="0.224" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_info_page_option.xml" value="0.209" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_info_page_option_selected.xml" value="0.2455" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_info_page_trainner_background.xml" value="0.224" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_input_login.xml" value="0.2455" />
@@ -21,7 +24,9 @@
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_profile_user_circle.xml" value="0.2155" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_profile_user_image.xml" value="0.2155" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_profile_user_input.xml" value="0.2155" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_rectangles_info_page.xml" value="0.2155" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_start_page_button.xml" value="0.2455" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_start_page_button_outline.xml" value="0.2225" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_start_page_buttona.xml" value="0.2455" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/drawable/shape_start_page_gradient.xml" value="0.2455" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/activity_login.xml" value="0.33" />
@@ -31,7 +36,7 @@
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/activity_start.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/activity_verify_email.xml" value="0.33" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragment_blank.xml" value="0.2838541666666667" />
-        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragment_info_page.xml" value="0.3527803099361896" />
+        <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragment_info_page.xml" value="0.33" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragment_info_page_yape.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragment_products.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/Usuario/Desktop/SCRUM - GIMNASIO TEC FIT/Proyectos/gym-android/app/src/main/res/layout/fragment_profile_user.xml" value="0.33" />

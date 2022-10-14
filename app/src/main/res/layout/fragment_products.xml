@@ -7,8 +7,7 @@
     tools:context=".fragments.ProductFragment"
     android:paddingVertical="25dp"
     android:paddingHorizontal="28dp"
-    android:background="@color/background"
-    android:theme="@style/ProductsPage"
+    android:background="?colorPrimaryVariant"
     >
 
     <LinearLayout
@@ -31,17 +30,18 @@
             android:paddingRight="25dp"
             android:paddingBottom="10dp"
             android:text="Productos"
-            android:textColor="@color/nero"
+            android:textColor="?colorOnSecondary"
             android:textSize="28dp" />
 
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:hint=" "
+        android:hint=""
+        android:theme="@style/ProductsPageTheme"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_marginTop="80dp"
-        app:startIconTint="#CBCBCB"
-        app:hintTextColor="#CBCBCB"
+        app:startIconTint="?colorTertiary"
+        app:hintTextColor="?colorTertiary"
         app:startIconDrawable="@drawable/ic_baseline_search_24"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
@@ -51,6 +51,7 @@
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:paddingVertical="1dp"
+            android:theme="@style/Theme.Gymandroid"
             android:fontFamily="@font/poppins"
             android:textSize="12dp"
             android:hint="Buscar"
@@ -79,6 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:checked="true"
+            android:theme="@style/ProductsPageTheme"
+            app:background="@null"
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 

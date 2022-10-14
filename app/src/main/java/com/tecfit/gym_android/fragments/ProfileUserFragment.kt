@@ -80,7 +80,6 @@ class ProfileUserFragment : Fragment() {
             inputMembership.setText("Sin membresía")
             existMembership = false
         } else {
-
             val currentDate = Date()
 //
 //            println("Start date -> ${UserInAppCustom.membership!!.start_date}" )

@@ -2,6 +2,7 @@ package com.tecfit.gym_android.fragments.adapter
 
 import android.graphics.Color
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -19,7 +20,7 @@ class ProductViewHolder(val view:View) :RecyclerView.ViewHolder(view){
 
 
     //El fondo rojo para productos no disponibles -> cambiar background a #34E10A0A en caso de no estar disponible
-    val pr_status_background = view.findViewById<LinearLayout>(R.id.item_product_status_background)
+    val pr_status_background = view.findViewById<FrameLayout>(R.id.item_product_status_background)
 
     //El círculo verde para productos disponibles -> cambiar visibility a false en caso de no estar disponible
     val pr_status = view.findViewById<LinearLayout>(R.id.item_product_status)

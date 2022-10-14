@@ -3,58 +3,52 @@
     <style name="Theme.Gymandroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryVariant">@color/red</item>
+        <item name="colorPrimaryVariant">@color/background</item> <!-- background and statusBarColor -->
         <item name="colorOnPrimary">@color/semi_white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/semi_black</item>
-        <item name="colorSecondaryVariant">@color/semi_black</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/semi_black</item> <!-- Without use -->
+        <item name="colorSecondaryVariant">@color/white</item> <!-- For background in some items  -->
+        <item name="colorOnSecondary">@color/black</item> <!-- For texts in titles and subtitles -->
+        <!-- Tertiary brand color. -->
+        <item name="colorTertiary">@color/black_paragraph</item> <!-- For texts in paragraphs -->
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
-
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="ProductsPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryVariant">@color/red_variant</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/green</item>
-        <item name="colorSecondaryVariant">@color/nero</item>
-        <item name="colorOnSecondary">@color/humo</item>
-        <item name="colorTertiary">@color/background</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
+    <style name="InfoPageTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item> <!-- background in card -->
+        <item name="colorPrimaryVariant">@color/pink</item> <!-- background in item selected-->
+        <item name="colorOnPrimary">@color/white</item> <!-- For background in item -->
+
+        <item name="colorSecondary">@color/pink_variant</item> <!-- For second color in monthly payment-->
+        <item name="colorOnSecondary">@color/gray_clear</item> <!-- For second color in monthly payment-->
+
+        <item name="colorTertiary">@color/black_paragraph</item> <!-- For text in items -->
 
     </style>
 
-    <style name="Theme.Login" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryVariant">@color/red</item>
-        <item name="colorOnPrimary">@color/semi_white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/semi_black</item>
-        <item name="colorSecondaryVariant">@color/semi_black</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
+    <style name="ProductsPageTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <!-- Customize your theme here. -->
+        <item name="colorSecondary">@color/green</item> <!-- For color in circle of available and switch-->
+
+        <item name="colorTertiary">@color/gray_dark_variant</item> <!-- For color in search icon -->
+
     </style>
 
-    <style name="Theme.ProfileUser" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryVariant">@color/red</item>
-        <item name="colorOnPrimary">@color/semi_white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/green</item>
-        <item name="colorSecondaryVariant">@color/nero</item>
-        <item name="colorOnSecondary">@color/red</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+    <style name="ProfileUserPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorSecondary">@color/green</item> <!-- For switch -->
+
     </style>
 
+    <!-- For startActivity, loginActivity and registerActivity -->
+    <style name="StartApplicationTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/background_dark</item> <!-- For statusBar color -->
+
+        <item name="colorSecondary">@color/black_paragraph</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+    </style>
 
 </resources>

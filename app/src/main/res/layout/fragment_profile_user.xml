@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
+    android:background="?colorPrimaryVariant"
     android:orientation="vertical"
-    android:theme="@style/Theme.ProfileUser"
     tools:context=".fragments.ProfileUserFragment">
     <FrameLayout
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
-                android:background="@color/humo"
+                android:background="?colorOnPrimary"
                 />
             <View
                 android:layout_width="match_parent"
@@ -51,7 +50,7 @@
             android:text="cargando..."
             android:textSize="20sp"
             android:layout_gravity="center"
-            android:textColor="?colorSecondaryVariant"
+            android:textColor="?colorOnSecondary"
             android:fontFamily="@font/poppins_medium"
             android:layout_marginTop="120dp"/>
         <TextView
@@ -60,7 +59,7 @@
             android:text="@string/profile_user_title"
             android:textSize="28sp"
             android:layout_gravity="center"
-            android:textColor="?colorSecondaryVariant"
+            android:textColor="?colorOnSecondary"
             android:fontFamily="@font/michroma_regular"
             android:layout_marginBottom="130dp"/>
 
@@ -69,7 +68,7 @@
             android:layout_height="wrap_content"
             android:text="@string/profile_user_edit_link"
             android:textSize="18sp"
-            android:textColor="?colorSecondaryVariant"
+            android:textColor="?colorOnSecondary"
             android:layout_gravity="center_vertical|right"
             android:fontFamily="@font/poppins_regular"
             android:layout_marginRight="20dp"
@@ -84,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
+        android:background="?colorPrimaryVariant"
         android:orientation="vertical">
 
         <LinearLayout
@@ -126,7 +126,7 @@
                     android:textSize="17sp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/profile_user_phone_title"
-                    android:textColor="@color/nero"
+                    android:textColor="?colorTertiary"
                     android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/profile_user_input_phone"
@@ -138,7 +138,7 @@
                     android:paddingHorizontal="3dp"
                     android:textSize="18sp"
                     android:text="cargando..."
-                    android:textColor="@color/black"
+                    android:textColor="?colorOnSecondary"
                     android:background="@drawable/shape_profile_user_input"/>
             </LinearLayout>
             <LinearLayout
@@ -152,7 +152,7 @@
                     android:textSize="17sp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/profile_user_time_membership"
-                    android:textColor="@color/nero"
+                    android:textColor="?colorTertiary"
                     android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/profile_user_input_membership"
@@ -164,7 +164,7 @@
                     android:paddingHorizontal="3dp"
                     android:text="cargando..."
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textColor="?colorOnSecondary"
                     android:background="@drawable/shape_profile_user_input"/>
             </LinearLayout>
             <FrameLayout
@@ -178,7 +178,7 @@
                     android:text="@string/profile_user_notification"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/black"
+                    android:textColor="?colorOnSecondary"
                     android:gravity="center"/>
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/profile_user_switch_notification"
@@ -186,6 +186,7 @@
                     android:layout_height="match_parent"
                     android:checked="true"
                     android:enabled="false"
+                    android:theme="@style/ProfileUserPage"
                     tools:ignore="TouchTargetSizeCheck"
                     android:layout_gravity="right"/>
             </FrameLayout>
@@ -195,7 +196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/profile_user_log_out"
-                android:textColor="?colorOnSecondary"
+                android:textColor="@color/red"
                 android:fontFamily="@font/poppins_regular"
                 />
 
