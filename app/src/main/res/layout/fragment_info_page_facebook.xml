@@ -3,15 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InfoPageYapeFragment"
-    >
+    tools:context=".fragments.InfoPageFacebookFragment">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/info_page_data_facebook_bg"
-
-        />
-
+        android:src="@drawable/info_page_data_facebook_bg" />
 
 </FrameLayout>

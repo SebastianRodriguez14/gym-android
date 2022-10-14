@@ -113,7 +113,6 @@ class InfoPageFragment : Fragment() {
                             openFace.data=Uri.parse("https://www.facebook.com/TecFitPersonalTrainingCenter")
                             startActivity(openFace)
                         }
-
                     }
                     text_whatsapp -> {
                         text_data.setText(R.string.info_page_data_whatsapp)
