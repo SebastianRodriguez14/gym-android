@@ -59,7 +59,7 @@
                     android:textColor="?colorSecondaryVariant"
                     android:fontFamily="@font/poppins_regular"
                     android:textColorHighlight="?colorSecondaryVariant"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_name_hint"
                     android:background="@drawable/shape_input_login"/>
                 <TextView
@@ -88,7 +88,7 @@
                     android:textColor="?colorSecondaryVariant"
                     android:fontFamily="@font/poppins_regular"
                     android:textColorHighlight="?colorSecondaryVariant"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_lastname_hint"
                     android:background="@drawable/shape_input_login"/>
                 <TextView
@@ -118,7 +118,7 @@
                     android:textColor="?colorSecondaryVariant"
                     android:fontFamily="@font/poppins_regular"
                     android:textColorHighlight="?colorSecondaryVariant"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_phone_hint"
                     android:background="@drawable/shape_input_login"/>
                 <TextView
@@ -147,7 +147,7 @@
                     android:textColor="?colorSecondaryVariant"
                     android:fontFamily="@font/poppins_regular"
                     android:textColorHighlight="?colorSecondaryVariant"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_email_hint"
                     android:background="@drawable/shape_input_login"/>
                 <TextView
@@ -176,7 +176,7 @@
                     android:textColor="?colorSecondaryVariant"
                     android:fontFamily="@font/poppins_regular"
                     android:textColorHighlight="?colorSecondaryVariant"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="@color/gray_dark"
                     android:hint="@string/register_password_hint"
                     android:background="@drawable/shape_input_login"/>
                 <TextView

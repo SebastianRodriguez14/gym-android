@@ -7,8 +7,7 @@
     tools:context=".fragments.ProductFragment"
     android:paddingVertical="25dp"
     android:paddingHorizontal="28dp"
-    android:background="@color/background"
-    android:theme="@style/ProductsPage"
+    android:background="?colorPrimaryVariant"
     >
 
     <LinearLayout
@@ -31,7 +30,7 @@
             android:paddingRight="25dp"
             android:paddingBottom="10dp"
             android:text="Productos"
-            android:textColor="@color/nero"
+            android:textColor="@color/black_paragraph"
             android:textSize="28dp" />
 
     </LinearLayout>

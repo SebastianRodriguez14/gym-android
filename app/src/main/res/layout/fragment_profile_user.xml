@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
+    android:background="?colorPrimaryVariant"
     android:orientation="vertical"
-    android:theme="@style/Theme.ProfileUser"
     tools:context=".fragments.ProfileUserFragment">
     <FrameLayout
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
-                android:background="@color/humo"
+                android:background="@color/white_paragraph"
                 />
             <View
                 android:layout_width="match_parent"
@@ -126,7 +125,7 @@
                     android:textSize="17sp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/profile_user_phone_title"
-                    android:textColor="@color/nero"
+                    android:textColor="@color/black_paragraph"
                     android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/profile_user_input_phone"
@@ -152,7 +151,7 @@
                     android:textSize="17sp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/profile_user_time_membership"
-                    android:textColor="@color/nero"
+                    android:textColor="@color/black_paragraph"
                     android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/profile_user_input_membership"
