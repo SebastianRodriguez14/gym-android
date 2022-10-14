@@ -6,9 +6,10 @@
         <item name="colorPrimaryVariant">@color/background_dark</item> <!-- background and statusBarColor -->
         <item name="colorOnPrimary">@color/semi_black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/semi_black</item>
-        <item name="colorSecondaryVariant">@color/semi_black</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondary">@color/semi_black</item> <!-- Without use -->
+        <item name="colorSecondaryVariant">@color/semi_black</item> <!-- For background in some items -->
+        <item name="colorOnSecondary">@color/white</item> <!-- For texts in titles and subtitles -->
+        <!-- Tertiary brand color. -->
         <item name="colorTertiary">@color/white_paragraph</item> <!-- For texts in paragraphs -->
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -21,14 +22,20 @@
         <item name="colorPrimaryVariant">@color/red_dark</item> <!-- background in item selected-->
         <item name="colorOnPrimary">@color/semi_black</item> <!-- For background in item -->
 
-        <item name="colorSecondary">@color/red_variant</item> <!-- For second color in monthly payment-->
+        <item name="colorSecondary">@color/red</item> <!-- For second color in monthly payment-->
         <item name="colorOnSecondary">@color/gray_dark</item> <!-- For second color in monthly payment-->
 
         <item name="colorTertiary">@color/white_paragraph</item> <!-- For text in items -->
 
     </style>
 
+    <style name="ProductsPageTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
+        <item name="colorSecondary">@color/green_dark</item> <!-- For color in circle of available -->
+
+        <item name="colorTertiary">@color/gray_clear_variant</item> <!-- For color in search icon -->
+
+    </style>
 
 
 </resources>

@@ -15,11 +15,13 @@
     <color name="pink">#FAB7B7</color>
     <color name="pink_variant">#FDCCCC</color>
     <color name="gray_clear">#D9D9D9</color>
-
+    <color name="gray_clear_variant">#E7E6E6</color>
     <color name="gray_dark">#747474</color>
+    <color name="gray_dark_variant">#CBCBCB</color>
+
     <color name="green">#31CE5D</color>
+    <color name="green_dark">#09B138</color>
     <color name="green_variant">#20A946</color>
-    <color name="red_variant">#FFE10A0A</color>
 
 
 </resources>
