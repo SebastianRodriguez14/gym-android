@@ -30,9 +30,15 @@
 
     <style name="ProductsPageTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="colorSecondary">@color/green</item> <!-- For color in circle of available -->
+        <item name="colorSecondary">@color/green</item> <!-- For color in circle of available and switch-->
 
         <item name="colorTertiary">@color/gray_dark_variant</item> <!-- For color in search icon -->
+
+    </style>
+
+    <style name="ProfileUserPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorSecondary">@color/green</item> <!-- For switch -->
 
     </style>
 

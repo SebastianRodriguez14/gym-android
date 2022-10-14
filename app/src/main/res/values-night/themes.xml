@@ -13,7 +13,6 @@
         <item name="colorTertiary">@color/white_paragraph</item> <!-- For texts in paragraphs -->
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-
         <!-- Customize your theme here. -->
     </style>
 
@@ -31,9 +30,15 @@
 
     <style name="ProductsPageTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="colorSecondary">@color/green_dark</item> <!-- For color in circle of available -->
+        <item name="colorSecondary">@color/green_dark</item> <!-- For color in circle of available and switch -->
 
         <item name="colorTertiary">@color/gray_clear_variant</item> <!-- For color in search icon -->
+
+    </style>
+
+    <style name="ProfileUserPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorSecondary">@color/green</item> <!-- For switch -->
 
     </style>
 
