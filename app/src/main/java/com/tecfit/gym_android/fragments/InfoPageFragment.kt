@@ -1,5 +1,7 @@
 package com.tecfit.gym_android.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +43,7 @@ class InfoPageFragment : Fragment() {
 
     //Fragmentos de yape, ubicación, facebook y whatsapp
     private val infoPageYapeFragment = InfoPageYapeFragment()
+    private val infoPageFacebookFragment=InfoPageFacebookFragment()
 
     private lateinit var trainersList:List<Trainer>
 
@@ -103,6 +106,13 @@ class InfoPageFragment : Fragment() {
                     text_facebook -> {
                         text_data.setText(R.string.info_page_data_facebook)
                         image_data.setImageResource(R.drawable.info_page_data_facebook)
+                        ForFragments.replaceFragment(childFragmentManager, frame_container_data_bg.id,infoPageFacebookFragment)
+
+                        text_data.setOnClickListener{
+                            val openFace=Intent(android.content.Intent.ACTION_VIEW)
+                            openFace.data=Uri.parse("https://www.facebook.com/TecFitPersonalTrainingCenter")
+                            startActivity(openFace)
+                        }
                     }
                     text_whatsapp -> {
                         text_data.setText(R.string.info_page_data_whatsapp)
