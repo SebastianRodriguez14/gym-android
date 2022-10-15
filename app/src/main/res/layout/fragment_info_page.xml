@@ -205,11 +205,19 @@
                 android:backgroundTint="?colorPrimary"
                 >
 
-                <FrameLayout
-                    android:id="@+id/frame_data_container_info_page"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="190dp"
-                />
+                    android:background="@drawable/shape_info_page_data_frame_container"
+                    >
+                    <FrameLayout
+                        android:id="@+id/frame_data_container_info_page"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -52,4 +52,6 @@
     <string name="profile_user_time_membership">Tiempo restante de membresía</string>
     <string name="profile_user_notification">Notificación de membresía</string>
     <string name="profile_user_log_out">Cerrar Sesión</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

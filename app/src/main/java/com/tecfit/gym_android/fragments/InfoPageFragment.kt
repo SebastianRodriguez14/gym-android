@@ -43,6 +43,7 @@ class InfoPageFragment : Fragment() {
 
     //Fragmentos de yape, ubicación, facebook y whatsapp
     private val infoPageYapeFragment = InfoPageYapeFragment()
+    private val infoPageGoogleMapsFragment = InfoPageGoogleMapsFragment()
     private val infoPageFacebookFragment=InfoPageFacebookFragment()
 
     private lateinit var trainersList:List<Trainer>
@@ -101,7 +102,7 @@ class InfoPageFragment : Fragment() {
                     text_ubication -> {
                         text_data.setText(R.string.info_page_data_location)
                         image_data.setImageResource(R.drawable.info_page_data_location)
-
+                        ForFragments.replaceFragment(childFragmentManager, frame_container_data_bg.id, infoPageGoogleMapsFragment)
                     }
                     text_facebook -> {
                         text_data.setText(R.string.info_page_data_facebook)
