@@ -113,9 +113,7 @@ class InfoPageFragment : Fragment() {
                         ForFragments.replaceFragment(childFragmentManager, frame_container_data_bg.id,infoPageFacebookFragment)
 
                         text_data.setOnClickListener{
-                            val openFace=Intent(android.content.Intent.ACTION_VIEW)
-                            openFace.data=Uri.parse("https://www.facebook.com/TecFitPersonalTrainingCenter")
-                            startActivity(openFace)
+                            linkFb()
                         }
                     }
                     text_whatsapp -> {
@@ -167,6 +165,20 @@ class InfoPageFragment : Fragment() {
             }
         })
 
+    }
+
+    fun linkFb(){
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/100046369850191"))
+            startActivity(intent)
+        } catch (e: Exception) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://www.facebook.com/TecFitPersonalTrainingCenter")
+                )
+            )
+        }
     }
 
     fun sendMessage(msg:String){
