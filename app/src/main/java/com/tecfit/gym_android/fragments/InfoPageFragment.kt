@@ -1,5 +1,6 @@
 package com.tecfit.gym_android.fragments
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.fragments.adapter.TrainerAdapter
@@ -45,6 +47,7 @@ class InfoPageFragment : Fragment() {
     private val infoPageYapeFragment = InfoPageYapeFragment()
     private val infoPageGoogleMapsFragment = InfoPageGoogleMapsFragment()
     private val infoPageFacebookFragment=InfoPageFacebookFragment()
+    private val infoPageWhatsAppFragment= InfoPageWhatsAppFragment()
 
     private lateinit var trainersList:List<Trainer>
 
@@ -110,14 +113,17 @@ class InfoPageFragment : Fragment() {
                         ForFragments.replaceFragment(childFragmentManager, frame_container_data_bg.id,infoPageFacebookFragment)
 
                         text_data.setOnClickListener{
-                            val openFace=Intent(android.content.Intent.ACTION_VIEW)
-                            openFace.data=Uri.parse("https://www.facebook.com/TecFitPersonalTrainingCenter")
-                            startActivity(openFace)
+                            linkFb()
                         }
                     }
                     text_whatsapp -> {
                         text_data.setText(R.string.info_page_data_whatsapp)
                         image_data.setImageResource(R.drawable.info_page_data_whatsapp)
+                        ForFragments.replaceFragment(childFragmentManager, frame_container_data_bg.id,infoPageWhatsAppFragment)
+
+                        text_data.setOnClickListener{
+                            sendMessage("Uwu")
+                        }
                     }
                     text_yape -> {
                         text_data.setText(R.string.info_page_data_yape)
@@ -160,4 +166,45 @@ class InfoPageFragment : Fragment() {
         })
 
     }
+
+    fun linkFb(){
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/100046369850191"))
+            startActivity(intent)
+        } catch (e: Exception) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://www.facebook.com/TecFitPersonalTrainingCenter")
+                )
+            )
+        }
+    }
+
+    fun sendMessage(msg:String){
+        val int = Intent(Intent.ACTION_SEND)
+        int.type = "text/plain"
+        int.setPackage("com.whatsapp")
+
+
+        try {
+            requireActivity().startActivity(int)
+            val numeroTel = "+51993426151"
+            val intent = Intent(Intent.ACTION_VIEW)
+            val uri = "whatsapp://send?phone=$numeroTel&text=$msg"
+            intent.data = Uri.parse(uri)
+            startActivity(intent)
+        } catch (ex: ActivityNotFoundException) {
+            ex.printStackTrace()
+            Snackbar.make(
+                requireView(),
+                "El dispositivo no tiene instalado WhatsApp",
+                Snackbar.LENGTH_LONG
+            )
+                .show()
+        }
+
+
+    }
+
 }
