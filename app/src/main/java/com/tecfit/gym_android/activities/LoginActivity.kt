@@ -4,10 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -16,8 +14,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.login
 import com.tecfit.gym_android.databinding.ActivityLoginBinding
-import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
-import com.tecfit.gym_android.fragments.ProfileUserFragment
 import com.tecfit.gym_android.models.Membership
 import com.tecfit.gym_android.models.User
 import com.tecfit.gym_android.models.custom.UserInAppCustom
@@ -58,6 +54,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginEnterRegister.setOnClickListener {
             startActivity(Intent(this,RegisterActivity::class.java))
+        }
+
+        binding.loginForgotPassword.setOnClickListener {
+            startActivity(Intent(this, RecoverPasswordActivity::class.java))
         }
 
     }
