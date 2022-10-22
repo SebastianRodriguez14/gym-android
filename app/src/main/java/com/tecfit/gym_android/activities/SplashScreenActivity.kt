@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.tecfit.gym_android.R
+import kotlinx.coroutines.*
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,18 +16,11 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
-        object : CountDownTimer(3000, 1000){
-            override fun onTick(millisUntilFinished: Long) {
-
-            }
-
-            override fun onFinish() {
-                val intent = Intent(applicationContext, StartActivity::class.java).apply {  }
-
-                startActivity(intent)
-
-            }
-        }.start()
+        val timer = GlobalScope.launch(Dispatchers.Main) {
+            delay(3000)
+            startActivity(Intent(applicationContext, StartActivity::class.java))
+            finish()
+        }
     }
 
 }

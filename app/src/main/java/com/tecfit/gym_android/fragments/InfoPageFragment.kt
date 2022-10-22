@@ -122,7 +122,7 @@ class InfoPageFragment : Fragment() {
                         ForFragments.replaceFragment(childFragmentManager, frame_container_data_bg.id,infoPageWhatsAppFragment)
 
                         text_data.setOnClickListener{
-                            sendMessage("Uwu")
+                            sendMessage("Hola! Me interesaría adquirir una membresía en su gimnasio.")
                         }
                     }
                     text_yape -> {
@@ -189,7 +189,7 @@ class InfoPageFragment : Fragment() {
 
         try {
             requireActivity().startActivity(int)
-            val numeroTel = "+51993426151"
+            val numeroTel = "+51943559867"
             val intent = Intent(Intent.ACTION_VIEW)
             val uri = "whatsapp://send?phone=$numeroTel&text=$msg"
             intent.data = Uri.parse(uri)
