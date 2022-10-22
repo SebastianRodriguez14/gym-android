@@ -52,6 +52,21 @@
     <string name="profile_user_time_membership">Tiempo restante de membresía</string>
     <string name="profile_user_notification">Notificación de membresía</string>
     <string name="profile_user_log_out">Cerrar Sesión</string>
+
+    <string name="recover_password_mail_title">Recuperar Contraseña</string>
+    <string name="recover_password_email_hint">Ingrese su correo electronico</string>
+    <string name="recover_password_email_enter">Continuar</string>
+    <string name="recover_password_email_error_message">El correo es incorrecto, vuelva a intentarlo.</string>
+    <string name="recover_password_code_info">Ingrese el código que se le envió a su correo electrónico.</string>
+    <string name="recover_password_code_enter">Continuar</string>
+    <string name="recover_password_code_error_message">El código es incorrecto, vuelva a intentarlo.</string>
+    <string name="recover_password_new_password_hint">Ingrese su nueva contraseña</string>
+    <string name="recover_password_new_password_error">Debe ingresar una contraseña</string>
+    <string name="recover_password_new_password_two_hint">Nuevamente ingrese su contraseña</string>
+    <string name="recover_password_new_password_two_error">Ambas contraseñas deben ser iguales.</string>
+    <string name="recover_password_new_enter">Guardar</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
