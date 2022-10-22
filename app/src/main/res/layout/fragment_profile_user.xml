@@ -40,7 +40,7 @@
                 android:id="@+id/photo_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/profile_image"
+                android:src="@drawable/profile_user_image_default"
                 android:scaleType="centerCrop"/>
         </com.google.android.material.card.MaterialCardView>
         <TextView
