@@ -16,6 +16,7 @@ import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.logout
 import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
 import com.tecfit.gym_android.models.Membership
+import com.tecfit.gym_android.models.User
 import com.tecfit.gym_android.models.custom.UserInAppCustom
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
@@ -66,8 +67,13 @@ class ProfileUserFragment : Fragment() {
         name.text = UserInAppCustom.user!!.name + ' ' + UserInAppCustom.user!!.lastname
         phone.setText(UserInAppCustom.user!!.phone)
         membership.isVisible = UserInAppCustom.user!!.membership
+        println(UserInAppCustom.user!!.image?.url)
+        if (UserInAppCustom.user!!.image?.url != null) {
+            Glide.with(root.context).load(UserInAppCustom.user!!.image?.url).into(photo)
+        } else {
+            photo.setBackgroundResource(R.drawable.profile_user_image_default)
+        }
 
-        Glide.with(root.context).load(UserInAppCustom.user!!.image?.url).into(photo)
 
 
     }

@@ -20,8 +20,6 @@ class InfoPageGoogleMapsFragment : Fragment(), OnMapReadyCallback{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(
@@ -37,15 +35,12 @@ class InfoPageGoogleMapsFragment : Fragment(), OnMapReadyCallback{
 
     private fun createFragment(root:View){
         val mapFragment = childFragmentManager.findFragmentById(R.id.fragment_google_maps) as SupportMapFragment
-
         mapFragment.getMapAsync(this)
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         createMarker()
-
     }
 
     private fun createMarker() {
