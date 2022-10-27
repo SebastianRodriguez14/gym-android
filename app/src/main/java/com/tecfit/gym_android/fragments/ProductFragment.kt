@@ -28,7 +28,7 @@ class FilterProducts {
         var nameProduct:String = ""
         var availableProduct:Boolean = false
 
-        fun applyFilters(products: List<Product>, listProductsLinearLayout: LinearLayout, listProductsVoidLinearLayout: LinearLayout): List<Product> {
+        fun applyFilters(products: List<Product>): List<Product> {
 
             val filteredProducts = products.filter { product ->
                 val checkName = if(nameProduct == "") true else product.name.lowercase().startsWith(nameProduct.lowercase())
@@ -101,9 +101,7 @@ class ProductFragment : Fragment() {
 
     private fun setArrayForRecycler(filter:Boolean = false) {
         val products = if (!filter) ArraysForClass.arrayProducts!! else FilterProducts.applyFilters(
-            ArraysForClass.arrayProducts!!,
-            listProductsLinearLayout,
-            listProductsVoidLinearLayout
+            ArraysForClass.arrayProducts!!
         )
         recyclerView.adapter = ProductAdapter(products)
 
