@@ -15,13 +15,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+
+
+<!--    <meow.bottomnavigation.MeowBottomNavigation-->
+<!--        android:id="@+id/bottom_navigation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:menu="@menu/bottom_nav_items"/>-->
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottom_navigation"
+        android:theme="@style/BottomNavigationTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:mbn_circleColor="?colorSecondary"
+        app:mbn_backgroundBottomColor="?colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_items">
+        app:mbn_defaultIconColor="?colorPrimaryVariant"
+        app:mbn_selectedIconColor="?colorPrimary"
+        app:mbn_shadowColor="#1f212121"
+        android:background="?colorSecondaryVariant"
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

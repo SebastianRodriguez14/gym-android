@@ -132,7 +132,7 @@
                     android:id="@+id/profile_user_input_phone"
                     android:layout_width="match_parent"
                     android:layout_height="45sp"
-                    android:enabled="true"
+                    android:enabled="false"
                     android:fontFamily="@font/poppins_regular"
                     android:paddingStart="10dp"
                     android:paddingHorizontal="3dp"
