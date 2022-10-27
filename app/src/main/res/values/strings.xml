@@ -66,6 +66,8 @@
     <string name="recover_password_new_password_two_error">Ambas contraseñas deben ser iguales.</string>
     <string name="recover_password_new_enter">Guardar</string>
 
+    <string name="product_list_void_message">Lo sentimos\nNo contamos con este producto</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

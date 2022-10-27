@@ -47,6 +47,7 @@
         >
 
         <EditText
+            android:id="@+id/product_input_name"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
@@ -87,9 +88,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/products_list_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="150dp"
+        android:visibility="visible"
         android:gravity="center"
         >
         <androidx.recyclerview.widget.RecyclerView
@@ -99,6 +102,23 @@
             android:orientation="horizontal"
             android:layout_gravity="center"
             tools:listitem="@layout/item_product" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/products_list_void_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/product_list_void_message"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            />
 
 
     </LinearLayout>
