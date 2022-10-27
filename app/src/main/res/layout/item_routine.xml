@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    app:cardCornerRadius="15dp"
+    android:layout_marginTop="25dp"
+    app:cardElevation="0dp"
+    android:backgroundTint="?colorSecondaryVariant"
+    >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/myImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/brazo3" />
+
+        <io.alterac.blurkit.BlurLayout
+            android:id="@+id/blurLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignLeft="@+id/myImageView"
+            android:layout_alignRight="@+id/myImageView"
+            android:layout_alignBottom="@+id/myImageView"
+            android:paddingHorizontal="10dp"
+            app:blk_fps="0"
+            >
+
+            <TextView
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="Dos superseries en las que vamos a combinar el trabajo de bíceps y tríceps"
+                android:textColor="@color/white"
+                android:textSize="13dp"
+                android:layout_gravity="center|start"
+                android:fontFamily="@font/poppins"
+                />
+        </io.alterac.blurkit.BlurLayout>
+
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
