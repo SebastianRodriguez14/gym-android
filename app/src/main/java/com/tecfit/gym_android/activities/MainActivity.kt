@@ -3,6 +3,7 @@ package com.tecfit.gym_android.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,8 +21,12 @@ class MainActivity : AppCompatActivity() {
     private val infoPageFragment = InfoPageFragment()
     private val productFragment = ProductFragment()
     private val profileUserFragment = ProfileUserFragment()
-    //BottomNavigation
-    private lateinit var bottomNavigation:BottomNavigationView
+
+    private lateinit var meowBottomNavigation:MeowBottomNavigation
+
+    private val ID_INFORMATION = 1;
+    private val ID_PRODUCTS = 2;
+    private val ID_PROFILE = 3;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +34,18 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        bottomNavigation = findViewById(R.id.bottom_navigation)
-        bottomNavigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.item_tec_fit -> ForFragments.replaceFragment(supportFragmentManager,R.id.frame_container, infoPageFragment)
-                R.id.item_products -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container,productFragment)
-                R.id.item_profile -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container, profileUserFragment)
-            }
-            true
-        }
+        meowBottomNavigation = findViewById(R.id.bottom_navigation)
 
+        meowBottomNavigation.add(MeowBottomNavigation.Model(ID_INFORMATION, R.drawable.ic_baseline_home_24))
+        meowBottomNavigation.add(MeowBottomNavigation.Model(ID_PRODUCTS, R.drawable.ic_baseline_shopping_cart_24))
+        meowBottomNavigation.add(MeowBottomNavigation.Model(ID_PROFILE, R.drawable.ic_baseline_person_24))
+
+        meowBottomNavigation.setOnClickMenuListener {
+            when(it.id){
+                ID_INFORMATION -> ForFragments.replaceFragment(supportFragmentManager,R.id.frame_container, infoPageFragment)
+                ID_PRODUCTS -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container,productFragment)
+                ID_PROFILE -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container, profileUserFragment)
+            }
+        }
     }
 }

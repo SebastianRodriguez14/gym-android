@@ -6,7 +6,7 @@
         <item name="colorPrimaryVariant">@color/background_dark</item> <!-- background and statusBarColor -->
         <item name="colorOnPrimary">@color/semi_black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/semi_black</item> <!-- Without use -->
+        <item name="colorSecondary">@color/semi_white</item> <!-- Without use -->
         <item name="colorSecondaryVariant">@color/semi_black</item> <!-- For background in some items -->
         <item name="colorOnSecondary">@color/white</item> <!-- For texts in titles and subtitles -->
         <!-- Tertiary brand color. -->
@@ -14,6 +14,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/semi_white</item> <!-- For color in icon selected -->
+        <item name="colorPrimaryVariant">@color/semi_white</item> <!-- For color in icon default -->
+        <item name="colorOnPrimary">@color/semi_black</item> <!-- For color of bottom navigation -->
+
+
+        <item name="colorSecondary">@color/semi_black</item> <!-- For color in circle -->
+        <item name="colorSecondaryVariant">@color/background_dark</item> <!-- For background color in bottom navigation -->
     </style>
 
     <style name="InfoPageTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">

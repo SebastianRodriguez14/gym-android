@@ -13,8 +13,8 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -33,6 +33,7 @@ android {
     buildFeatures{
         viewBinding true
     }
+
 }
 
 dependencies {
@@ -63,5 +64,7 @@ dependencies {
     //Google maps
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
+    //MeowBottomNavigation
+    implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
 
 }
