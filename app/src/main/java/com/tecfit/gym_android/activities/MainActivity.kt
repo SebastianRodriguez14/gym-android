@@ -33,9 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
+        ForFragments.replaceFragment(supportFragmentManager,R.id.frame_container, infoPageFragment)
         meowBottomNavigation = findViewById(R.id.bottom_navigation)
-
         meowBottomNavigation.add(MeowBottomNavigation.Model(ID_INFORMATION, R.drawable.ic_baseline_home_24))
         meowBottomNavigation.add(MeowBottomNavigation.Model(ID_PRODUCTS, R.drawable.ic_baseline_shopping_cart_24))
         meowBottomNavigation.add(MeowBottomNavigation.Model(ID_PROFILE, R.drawable.ic_baseline_person_24))
@@ -47,5 +46,7 @@ class MainActivity : AppCompatActivity() {
                 ID_PROFILE -> ForFragments.replaceFragment(supportFragmentManager, R.id.frame_container, profileUserFragment)
             }
         }
+        meowBottomNavigation.show(ID_INFORMATION)
+
     }
 }
