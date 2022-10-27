@@ -70,16 +70,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Disponibles"
+            android:text="Solo disponibles"
             android:layout_marginEnd="5dp"
             android:textSize="13dp"
 
             />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/products_switch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:checked="true"
+            android:checked="false"
             android:theme="@style/ProductsPageTheme"
             app:background="@null"
             tools:ignore="TouchTargetSizeCheck" />
