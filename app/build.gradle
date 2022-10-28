@@ -67,4 +67,7 @@ dependencies {
     //MeowBottomNavigation
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
 
+    //BlurKit
+    implementation 'io.alterac.blurkit:blurkit:1.1.0'
+
 }
