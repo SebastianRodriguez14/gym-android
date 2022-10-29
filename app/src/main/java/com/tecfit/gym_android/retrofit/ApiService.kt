@@ -1,10 +1,7 @@
 package com.tecfit.gym_android.retrofit
 
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Param
-import com.tecfit.gym_android.models.Membership
-import com.tecfit.gym_android.models.Product
-import com.tecfit.gym_android.models.Trainer
-import com.tecfit.gym_android.models.User
+import com.tecfit.gym_android.models.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -28,5 +25,8 @@ interface ApiService {
 
     @GET("membership/check/{id_user}")
     fun getActiveMembershipByUser(@Path("id_user") id_user: Int): Call<Membership>
+
+    @GET("routine/search/{id_body_part}")
+    fun getRoutinesForBodyPart(@Path("id_body_part") id_body_part:Int): Call<List<Routine>>
 
 }
