@@ -1,27 +1,20 @@
 package com.tecfit.gym_android.activities
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
-import com.tecfit.gym_android.databinding.ActivityLoginBinding
-import com.tecfit.gym_android.databinding.ActivityStartBinding
 import com.tecfit.gym_android.fragments.InfoPageFragment
 import com.tecfit.gym_android.fragments.ProductFragment
 import com.tecfit.gym_android.fragments.ProfileUserFragment
-import com.tecfit.gym_android.fragments.RoutinesFragment
+import com.tecfit.gym_android.fragments.RoutineFragment
 
 class MainActivity : AppCompatActivity() {
     // Fragmentos principales
     private val infoPageFragment = InfoPageFragment()
     private val productFragment = ProductFragment()
-    private val routinesFragment = RoutinesFragment()
+    private val routinesFragment = RoutineFragment()
     private val profileUserFragment = ProfileUserFragment()
 
     private lateinit var meowBottomNavigation:MeowBottomNavigation
@@ -54,4 +47,6 @@ class MainActivity : AppCompatActivity() {
         meowBottomNavigation.show(ID_INFORMATION)
 
     }
+
+
 }

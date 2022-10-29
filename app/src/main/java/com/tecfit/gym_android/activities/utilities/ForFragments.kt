@@ -3,7 +3,6 @@ package com.tecfit.gym_android.activities.utilities
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.tecfit.gym_android.R
-import com.tecfit.gym_android.fragments.RoutinesListFragment
 
 class ForFragments {
 

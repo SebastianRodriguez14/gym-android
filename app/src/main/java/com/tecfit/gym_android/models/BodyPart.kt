@@ -1,4 +1,4 @@
 package com.tecfit.gym_android.models
 
-data class BodyPart (val id_part:Int, val name:String) {
+data class BodyPart(var id_part:Int, var name:String, var routines: Collection<Routine>?) {
 }
