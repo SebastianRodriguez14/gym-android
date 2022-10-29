@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="?colorPrimaryVariant"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.RoutinesListFragment"
     >
 
     <LinearLayout
@@ -13,15 +14,26 @@
         android:paddingVertical="30dp"
         android:paddingHorizontal="30dp"
         android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/routine_body_part_back"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+            <TextView
+                android:id="@+id/title_routines_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/michroma"
+                android:text="Rutinas para Brazos"
+                android:layout_gravity="center_horizontal|top"
+                android:textColor="?colorOnSecondary"
+                android:textSize="20dp" />
+        </FrameLayout>
 
-        <TextView
-            android:id="@+id/title_routines_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/michroma"
-            android:text="Rutinas para Brazos"
-            android:textColor="?colorOnSecondary"
-            android:textSize="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_products"

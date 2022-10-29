@@ -38,10 +38,6 @@ class FilterProducts {
             return filteredProducts
         }
 
-        fun validateLayouts(){
-
-        }
-
     }
 }
 

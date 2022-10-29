@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="?colorPrimaryVariant"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.RoutinesFragment"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -131,7 +132,7 @@
                     >
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/btn_cuerpo"
+                        android:id="@+id/routine_menu_fullbody"
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         app:cardCornerRadius="15dp"
@@ -167,6 +168,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/routine_menu_arms"
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         android:layout_gravity="right"
@@ -202,6 +204,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/routine_menu_legs"
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         android:layout_marginTop="25dp"
@@ -238,6 +241,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/routine_menu_chess"
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         android:layout_gravity="right"
@@ -256,8 +260,6 @@
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/pecho"
                                 android:tint="#60000000"
-
-
                                 tools:ignore="UseAppTint" />
                             <TextView
                                 android:layout_width="wrap_content"
@@ -276,6 +278,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/routine_menu_back"
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         android:layout_marginTop="25dp"
@@ -312,6 +315,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/routine_menu_abdomen"
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         android:layout_gravity="right"
@@ -330,8 +334,6 @@
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/abdomen"
                                 android:tint="#60000000"
-
-
                                 tools:ignore="UseAppTint" />
                             <TextView
                                 android:layout_width="wrap_content"
