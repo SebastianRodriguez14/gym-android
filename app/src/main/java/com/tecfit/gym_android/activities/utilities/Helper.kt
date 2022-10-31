@@ -2,7 +2,6 @@ package com.tecfit.gym_android.activities.utilities
 
 import android.content.Context
 import android.content.Intent
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.tecfit.gym_android.activities.LoginActivity
 import com.tecfit.gym_android.activities.MainActivity

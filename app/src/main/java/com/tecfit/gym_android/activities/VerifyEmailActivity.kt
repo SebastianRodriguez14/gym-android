@@ -1,10 +1,8 @@
 package com.tecfit.gym_android.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.tecfit.gym_android.R
-import com.tecfit.gym_android.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.tecfit.gym_android.databinding.ActivityVerifyEmailBinding
 
 class VerifyEmailActivity : AppCompatActivity() {

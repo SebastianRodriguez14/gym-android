@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?colorPrimaryVariant"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.RoutineListFragment"
-    >
+    tools:context=".fragments.RoutineListFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

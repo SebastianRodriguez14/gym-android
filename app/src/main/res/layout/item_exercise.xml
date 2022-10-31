@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:layout_marginVertical="10dp"
+    android:radius="50dp"
+    android:background="@drawable/shape_exercise_background">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="7dp"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="240dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    tools:text="Extensión de tríceps con mancuerna"
+                    android:textColor="?colorOnSecondary"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/poppins"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    tools:text="Series: 5"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="?colorOnSecondary"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    tools:text="Tiempo: 20min"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="?colorOnSecondary"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@drawable/icon_check_exercise" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

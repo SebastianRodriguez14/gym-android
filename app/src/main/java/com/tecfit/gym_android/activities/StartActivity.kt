@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.tecfit.gym_android.R
-import com.tecfit.gym_android.activities.utilities.ForValidations
 
 class StartActivity : AppCompatActivity() {
 

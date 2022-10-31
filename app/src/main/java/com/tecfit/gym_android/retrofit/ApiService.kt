@@ -1,6 +1,5 @@
 package com.tecfit.gym_android.retrofit
 
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Param
 import com.tecfit.gym_android.models.*
 import retrofit2.Call
 import retrofit2.http.Body
