@@ -22,6 +22,7 @@
                 android:layout_width="240dp"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/text_name_exercise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="15dp"
@@ -66,7 +67,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
-                android:background="@drawable/icon_check_exercise" />
+                android:background="@drawable/icon_check_falta_exercise" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
