@@ -84,6 +84,7 @@ class RoutineListFragment : Fragment() {
                     if (listRoutines.isEmpty()){
                         setArrayForRecycler(mutableListOf())
                     } else{
+                        bodyPart.routines = listRoutines
                         ArraysForClass.arrayBodyParts.add(bodyPart)
                         setArrayForRecycler(listRoutines)
                     }
@@ -99,7 +100,10 @@ class RoutineListFragment : Fragment() {
 
     // Función para verificar si hay rutinas para la parte de un cuerpo ya guardados
     private fun searchListRoutine()
-    :Collection<Routine>? = ArraysForClass.arrayBodyParts.find { bp -> bp.id_part == SelectedClasses.bodyPart.id_part }?.routines
+    :Collection<Routine>? {
+        println(ArraysForClass.arrayBodyParts)
+        return ArraysForClass.arrayBodyParts.find { bp -> bp.id_part == SelectedClasses.bodyPart.id_part }?.routines
+    }
 
 
 

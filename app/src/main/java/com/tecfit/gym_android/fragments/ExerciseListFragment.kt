@@ -52,19 +52,16 @@ class ExerciseListFragment : Fragment() {
 
         Glide.with(root.context).load(SelectedClasses.routine.image.url).into(imageRoutine)
         imageBackToRoutine.setOnClickListener { ForFragments.replaceInFragment(routineListFragment, fragmentManager)}
-        println("Partes del cuerpo")
-        println(ArraysForClass.arrayBodyParts)
-        println("Parte del cuerpo seleccionada")
-        println(SelectedClasses.bodyPart)
-//        val exercises:List<Exercise>? = searchExercisesForRoutine()
-//
-//        if (exercises == null) {
-//            println("Saco info de la bd")
-//            apiGetExerciseByRoutine()
-//        } else{
-//            println("Saco info de los arreglos locales")
-//            setArrayForRecycler(exercises)
-//        }
+
+        val exercises:List<Exercise>? = searchExercisesForRoutine()
+
+        if (exercises == null) {
+            println("Saco info de la bd")
+        apiGetExerciseByRoutine()
+        } else{
+            println("Saco info de los arreglos locales")
+            setArrayForRecycler(exercises)
+        }
 
 
 
@@ -83,13 +80,13 @@ class ExerciseListFragment : Fragment() {
 
     private fun searchExercisesForRoutine(): List<Exercise>? {
         val bodyPart = ArraysForClass.arrayBodyParts.find { bd -> SelectedClasses.bodyPart.id_part == bd.id_part }
-        println("Parte del cuerpo seleccionada")
-        println(bodyPart)
+//        println("Parte del cuerpo seleccionada")
+//        println(bodyPart)
         val routines = bodyPart?.routines?.find { r -> r.id_routine == SelectedClasses.routine.id_routine }
-        println("Rutina seleccionada")
-        println(SelectedClasses.routine)
-        println("Rutina extraída")
-        println(routines)
+//        println("Rutina seleccionada")
+//        println(SelectedClasses.routine)
+//        println("Rutina extraída")
+//        println(routines)
         return routines?.exercise?.toList()
     }
 
