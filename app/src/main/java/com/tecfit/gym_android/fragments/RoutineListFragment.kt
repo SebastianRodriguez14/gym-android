@@ -46,9 +46,6 @@ class RoutineListFragment : Fragment() {
         recyclerViewRoutine = root.findViewById(R.id.recyclerview_routines)
         recyclerViewRoutine.layoutManager = LinearLayoutManager(root.context)
 
-
-
-
         val routineFragment = RoutineFragment()
         btnBackInterface.setOnClickListener{
             ForFragments.replaceInFragment(routineFragment, fragmentManager)
@@ -58,13 +55,11 @@ class RoutineListFragment : Fragment() {
 
         val listRoutinesInLocal = searchListRoutine()
         if (listRoutinesInLocal == null) {
-            println("Saco info de la bd")
             apiGetRoutinesForBodyPart()
         } else{
-            println("Saco info de los arreglos locales")
             setArrayForRecycler(listRoutinesInLocal as List<Routine>)
         }
-        println("Arreglo de partes del cuerpo ${ArraysForClass.arrayBodyParts}")
+//        println("Arreglo de partes del cuerpo ${ArraysForClass.arrayBodyParts}")
 
 
         return root
@@ -72,7 +67,7 @@ class RoutineListFragment : Fragment() {
     }
 
     private fun setArrayForRecycler(routines:List<Routine>) {
-        recyclerViewRoutine.adapter = RoutineAdapter(routines)
+        recyclerViewRoutine.adapter = RoutineAdapter(routines, fragmentManager)
     }
 
     private fun apiGetRoutinesForBodyPart() {
@@ -84,12 +79,11 @@ class RoutineListFragment : Fragment() {
         resultRoutines.enqueue(object : Callback<List<Routine>> {
             override fun onResponse(call: Call<List<Routine>>, response: Response<List<Routine>>) {
                 val listRoutines = response.body()
-                println(listRoutines)
+//                println(listRoutines)
                 if (listRoutines != null) {
                     if (listRoutines.isEmpty()){
                         setArrayForRecycler(mutableListOf())
                     } else{
-                        bodyPart.routines = listRoutines
                         ArraysForClass.arrayBodyParts.add(bodyPart)
                         setArrayForRecycler(listRoutines)
                     }
@@ -105,7 +99,7 @@ class RoutineListFragment : Fragment() {
 
     // Función para verificar si hay rutinas para la parte de un cuerpo ya guardados
     private fun searchListRoutine()
-    :Collection<Routine>? = ArraysForClass.arrayBodyParts.find { bp -> bp.id_part == SelectedClasses.bodyPart.id_part }?. routines
+    :Collection<Routine>? = ArraysForClass.arrayBodyParts.find { bp -> bp.id_part == SelectedClasses.bodyPart.id_part }?.routines
 
 
 

@@ -28,4 +28,7 @@ interface ApiService {
     @GET("routine/search/{id_body_part}")
     fun getRoutinesForBodyPart(@Path("id_body_part") id_body_part:Int): Call<List<Routine>>
 
+    @GET("routine/exercises/{id_routine}")
+    fun getExercisesByRoutine(@Path("id_routine") id_routine:Int): Call<List<Exercise>>
+
 }
