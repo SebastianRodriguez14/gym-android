@@ -1,7 +1,6 @@
 package com.tecfit.gym_android.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.logout
 import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
-import com.tecfit.gym_android.models.Membership
-import com.tecfit.gym_android.models.User
 import com.tecfit.gym_android.models.custom.UserInAppCustom
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 

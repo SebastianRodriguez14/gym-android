@@ -2,10 +2,12 @@ package com.tecfit.gym_android.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.tecfit.gym_android.R
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

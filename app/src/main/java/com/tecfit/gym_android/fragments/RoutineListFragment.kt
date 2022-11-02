@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
-import com.tecfit.gym_android.fragments.adapter.ProductAdapter
 import com.tecfit.gym_android.fragments.adapter.RoutineAdapter
 import com.tecfit.gym_android.models.BodyPart
 import com.tecfit.gym_android.models.Routine

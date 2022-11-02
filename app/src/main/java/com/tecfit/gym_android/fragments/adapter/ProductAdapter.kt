@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.models.Product
-import com.tecfit.gym_android.models.Routine
 
 class ProductAdapter(private val productList: List<Product>) : RecyclerView.Adapter<ProductViewHolder>() {
 
