@@ -68,6 +68,10 @@
 
     <string name="product_list_void_message">Lo sentimos\nNo contamos con este producto</string>
 
+    <string name="exercise_button_process">En Proceso</string>
+    <string name="exercise_button_filled">Completado</string>
+    <string name="exercise_break_to_repetitions">Continuar</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

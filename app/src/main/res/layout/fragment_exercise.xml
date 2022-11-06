@@ -235,7 +235,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
                                 <TextView
-                                    android:id="@+id/text_setsFilled_exercise"
+                                    android:id="@+id/text_setsDoing_exercise"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/michroma"
@@ -281,7 +281,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
                                 <TextView
-                                    android:id="@+id/text_sets_done"
+                                    android:id="@+id/text_sets_done_rep"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/michroma"
@@ -322,7 +322,7 @@
                         android:backgroundTint="@color/red"
                         >
                         <TextView
-                            android:id="@+id/text_name_exercise_rep"
+                            android:id="@+id/btn_name_exercise_rep"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Siguiente Serie"
@@ -339,6 +339,7 @@
             </FrameLayout>
             <LinearLayout
                 android:id="@+id/btn_exercise"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
