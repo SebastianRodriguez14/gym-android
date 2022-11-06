@@ -42,10 +42,17 @@ class ExerciseFragment : Fragment(){
     private lateinit var amountRep:TextView
     private lateinit var btnRep:LinearLayout
     private lateinit var nameExercis:TextView
+    private lateinit var breakLinear:LinearLayout
+    private lateinit var crono_break:TextView
+    private lateinit var btnbreak:LinearLayout
+    private lateinit var namebtnbreak:TextView
+    private lateinit var linearTime:LinearLayout
+    private lateinit var linearRep:LinearLayout
 
     var m=0
     var s=0
     var ser=0
+    var b=0
     var crontime=""
     var seg=""
     var min=""
@@ -53,8 +60,10 @@ class ExerciseFragment : Fragment(){
     var serie=0
     var filled=0
     var seri=0
-
+    var break_t=0
+    var op=0
     var c1=GlobalScope.launch {  }
+    var brk=GlobalScope.launch {  }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +81,7 @@ class ExerciseFragment : Fragment(){
         breakexercise=root.findViewById(R.id.text_break_exercise)
         videoexercise=root.findViewById(R.id.video_exercise)
         amountexercise=root.findViewById(R.id.text_amount_exercise)
-        cronometer=root.findViewById(R.id.cronometer)
+        cronometer=root.findViewById(R.id.text_cronometer)
         btnExercise=root.findViewById(R.id.btn_exercise)
         setsFilled=root.findViewById(R.id.text_setsFilled_exercise)
         namebutton=root.findViewById(R.id.text_btn_exercise)
@@ -80,6 +89,12 @@ class ExerciseFragment : Fragment(){
         amountRep=root.findViewById(R.id.text_amount_rep)
         btnRep=root.findViewById(R.id.text_btn_exercise_rep)
         nameExercis=root.findViewById(R.id.text_name_exercise_rep)
+        breakLinear=root.findViewById(R.id.linearBreak)
+        crono_break=root.findViewById(R.id.text_cronodescanso)
+        btnbreak=root.findViewById(R.id.btn_break)
+        namebtnbreak=root.findViewById(R.id.text_btn_break)
+        linearTime = root.findViewById(R.id.linearTime)
+        linearRep = root.findViewById(R.id.linearRep)
 
         val exerciseListFragment = ExerciseListFragment()
 
@@ -93,11 +108,13 @@ class ExerciseFragment : Fragment(){
         amountRep.text="${exercise.amount} repeticiones"
         time = exercise.amount
         serie=exercise.sets
+        break_t=exercise.break_time
 
         val optionsd = exercise.type.id_type
-        var linearTime:LinearLayout = root.findViewById(R.id.linearTime)
-        var linearRep:LinearLayout = root.findViewById(R.id.linearRep)
 
+        op=optionsd
+
+        //verificando que interfaz se mostrará (cronometro o repeticiones)
         if(optionsd == 1){
             linearTime.isInvisible = true
             linearRep.isVisible= true
@@ -106,76 +123,131 @@ class ExerciseFragment : Fragment(){
             linearRep.isInvisible= true
         }
 
+        //iniciando ejercicio
         btnExercise.setOnClickListener(){
             btnRep.isInvisible=true
+            breakLinear.isInvisible = true
+
             var namebtn = "En Proceso"
             namebutton.setText(namebtn)
             btnExercise.setBackgroundResource(R.drawable.shape_info_page_trainner_background)
+
+            //ejecuando cronometro
             if (optionsd==2){
                 c1=GlobalScope.launch(Dispatchers.Main){
                     while(true){
                         delay(1000)
-                        s = s +1
-                        if(s == time){
-                            ser = ser + 1
-                            s = 0
-                        }
-                        min="00"
-                        seg="00"+s
-                        seg = seg.substring(seg.length - 2, seg.length)
-                        crontime = min+":"+seg
-                        cronometer.setText(crontime)
+                        aumentarSerieCronometro()
 
-                        filled = ser
-                        setsFilled.setText(filled.toString())
-
-                        if(ser == serie ){
+                        //finalizando cronometro
+                        if(ser == serie ) {
                             c1.cancel()
                             cronometer.setText(crontime)
+                            // ejericio finalizado
                             namebtn = "Completado"
                             namebutton.setText(namebtn)
                             btnExercise.setBackgroundResource(R.drawable.shape_button_reiniciar)
-                            btnExercise.setOnClickListener {
-                                ForFragments.replaceInFragment(exerciseListFragment, fragmentManager)
-                            }
 
+                            //volver a la lista de Ejercicios
+                            btnExercise.setOnClickListener {
+                                ForFragments.replaceInFragment(
+                                    exerciseListFragment,
+                                    fragmentManager
+                                )
+                            }
                         }
                     }
                 }
+
+            //ejecutando con repeteciciones
             }else{
-                btnRep.isVisible=true
                 seri=1
                 var setsrep=1
                 sestDone.setText(seri.toString())
-
-
+                    //cada que da clic en el botones de siguiente serie, aumenta la serie
                     btnRep.setOnClickListener() {
                         seri = seri + 1
                         setsrep = seri
                         sestDone.setText(setsrep.toString())
+                        breakLinear.isVisible = true
+                        //finalizo repeticion
                         if(seri == serie) {
                             var namebtn = "Completado"
                             nameExercis.setText(namebtn)
+                            //cambiando datos de botones
                             btnExercise.setBackgroundResource(R.drawable.shape_button_reiniciar)
                             btnRep.isInvisible = true
                             namebtn = "Completado"
                             namebutton.setText(namebtn)
+
+                            //volver a la lista ejercicios
                             btnExercise.setOnClickListener {
                                 ForFragments.replaceInFragment(exerciseListFragment, fragmentManager)
                             }
                         }
                     }
+                    //numero de la serie donde finalizo
                     sestDone.setText(setsrep.toString())
 
-
-
             }
+
 
         }
 
         return root
     }
+    fun aumentarSerieCronometro(){
+        btnExercise.isVisible=true
+        ser=0
+        s = s +1
+        //aumentando la serie terminada
+        if(s == time) {
+            ser = ser + 1
+            s = 0
+            //descanso por serie
+            linearTime.isInvisible = true
+            breakLinear.isVisible = true
+            breakSets()
+        }
+        min="00"
+        seg="00"+s
+        seg = seg.substring(seg.length - 2, seg.length)
+        crontime = min+":"+seg
+        cronometer.setText(crontime)
 
+        filled = ser
+        setsFilled.setText(filled.toString())
+    }
 
+    fun breakSets(){
+        btnExercise.isInvisible=true
+        btnbreak.setOnClickListener{
+            brk= GlobalScope.launch(Dispatchers.Main) {
+                while(true){
+                    delay(1000)
+                    b=b+1
+                    min="00"
+                    seg="00"+b
+                    seg = seg.substring(seg.length - 2, seg.length)
+                    crontime = min+":"+seg
+                    crono_break.setText(crontime)
+                    btnbreak.isInvisible=true
 
-}
+                    if(b == break_t){
+                        brk.cancel()
+                        btnbreak.isVisible=true
+                        var name= "Continuar"
+                        namebtnbreak.setText(name)
+                            if(op==2){
+                                btnbreak.setOnClickListener {
+                                    linearTime.isVisible = true
+                                    breakLinear.isInvisible = true
+                                }
+                            }
+                        }
+                    crono_break.setText(b.toString())
+                    }
+                }
+            }
+        }
+    }
