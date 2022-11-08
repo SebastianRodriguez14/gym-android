@@ -101,8 +101,8 @@ class ExerciseListFragment : Fragment() {
         val reInternalStorage =  ForInternalStorage.loadRoutinesAndExercises(context).find{re -> re.id_routine == SelectedClasses.routine.id_routine}
         // true -> Completado
         // false -> faltaron algunos
-        println("Internal storage -> $reInternalStorage")
-        println("Ejercicios -> ${exercises}")
+//        println("Internal storage -> $reInternalStorage")
+//        println("Ejercicios -> ${exercises}")
         var complete = true
         for (exercise in exercises){
             val tempExercise = reInternalStorage?.id_exercises?.find { id -> id == exercise.id_exercise }
@@ -118,11 +118,6 @@ class ExerciseListFragment : Fragment() {
 
 
     }
-
-
-
-
-
 
 
 
@@ -147,7 +142,7 @@ class ExerciseListFragment : Fragment() {
 //        println("Rutina extraída")
 //        println(routines)
 //        tempExercises = routines?.exercise?.toList()!!
-        println("Ejercicios -> $tempExercises")
+//        println("Ejercicios -> $tempExercises")
         return routines?.exercise?.toList()
     }
 

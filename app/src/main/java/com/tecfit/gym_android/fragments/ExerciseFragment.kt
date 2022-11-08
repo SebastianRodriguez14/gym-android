@@ -291,20 +291,23 @@ class ExerciseFragment : Fragment(){
 
     private fun saveInLocalStorage(){
 
-        var resInternalStorage:MutableList<RoutinesExercisesInternalStorage> =  ForInternalStorage.loadRoutinesAndExercises(context)
+        val resInternalStorage:MutableList<RoutinesExercisesInternalStorage> =  ForInternalStorage.loadRoutinesAndExercises(context)
         val id_routine = SelectedClasses.routine.id_routine
         val id_exercise = SelectedClasses.exercise.id_exercise
         // true -> ya existe la rutina y hay que añadir el ejercicio
         if (checkRoutineInInternalStorage(id_routine, resInternalStorage)){
+//            println("[A] Esta rutina ya está avanzada")
             resInternalStorage.find { re -> re.id_routine == id_routine }?.id_exercises?.add(id_exercise)
             ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
         } else {
-            val reInternalStorage = RoutinesExercisesInternalStorage(id_routine, mutableListOf(id_exercise))
+//            println("[B] Primer ejercicio de la rutina")
+            val reInternalStorage = RoutinesExercisesInternalStorage(id_routine, SelectedClasses.routine.exercise!!.size, mutableListOf(id_exercise))
             resInternalStorage.add(reInternalStorage)
             ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
         }
-
-        println("Escrito en el texto pe ${ForInternalStorage.loadRoutinesAndExercises(context)}")
+//        println("Arreglo formateado -> ${resInternalStorage}")
+//        println("Escrito en el texto -> ${ForInternalStorage.formatRoutinesExercisesToText(resInternalStorage)}")
+//        println("Texto del fichero -> ${ForInternalStorage.loadRoutinesAndExercises(context)}")
 //
 //        println("Rutina seleccionada -> ${SelectedClasses.routine.id_routine}")
 //        println("Ejercicio seleccionado -> ${SelectedClasses.exercise.id_exercise}")

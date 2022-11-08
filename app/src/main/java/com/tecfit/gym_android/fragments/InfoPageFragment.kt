@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
+import com.tecfit.gym_android.activities.utilities.ForInternalStorage
 import com.tecfit.gym_android.fragments.adapter.TrainerAdapter
 import com.tecfit.gym_android.models.Trainer
+import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
 import retrofit2.Call
@@ -88,7 +90,6 @@ class InfoPageFragment : Fragment() {
         text_facebook.setOnClickListener { setBackgroundSelected(arrayOptions, text_facebook) }
         text_whatsapp.setOnClickListener { setBackgroundSelected(arrayOptions, text_whatsapp) }
         text_yape.setOnClickListener { setBackgroundSelected(arrayOptions, text_yape) }
-
 
         apiGetTrainers()
         return root
