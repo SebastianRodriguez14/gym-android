@@ -67,6 +67,7 @@
             android:orientation="vertical"
             android:layout_gravity="center">
             <ImageView
+                android:id="@+id/item_exercise_image_complete"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"

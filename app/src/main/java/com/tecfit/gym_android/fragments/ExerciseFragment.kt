@@ -1,6 +1,5 @@
 package com.tecfit.gym_android.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +13,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
+import com.tecfit.gym_android.activities.utilities.ForInternalStorage
 import com.tecfit.gym_android.models.Exercise
+import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.models.custom.SelectedClasses
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class ExerciseFragment : Fragment(){
 
@@ -66,8 +64,8 @@ class ExerciseFragment : Fragment(){
     var minutes=""
 
     var optionTypeExercise=0
-    var coroutineExercises=GlobalScope.launch {  }
-    var coroutinesBreak=GlobalScope.launch {  }
+    var coroutineExercises: Job =GlobalScope.launch {  }
+    var coroutinesBreak:Job=GlobalScope.launch {  }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +76,9 @@ class ExerciseFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.fragment_exercise, container, false)
+
+         coroutineExercises = GlobalScope.launch {  }
+         coroutinesBreak = GlobalScope.launch {  }
 
         nameexercise= root.findViewById(R.id.text_name_exercise)
         imageBackToList = root.findViewById(R.id.exercise_list_body_part_back)
@@ -264,6 +265,8 @@ class ExerciseFragment : Fragment(){
         btnExercise.isEnabled=true
         namebtnExercise.setText(R.string.exercise_button_filled)
 
+        // Acá guardamos pipipi
+        saveInLocalStorage()
         if(optionTypeExercise == 1) {
             buttonsFinalityRep()
         }else{
@@ -285,6 +288,34 @@ class ExerciseFragment : Fragment(){
             linearCronometer.isInvisible=true
         }
     }
+
+    private fun saveInLocalStorage(){
+
+        var resInternalStorage:MutableList<RoutinesExercisesInternalStorage> =  ForInternalStorage.loadRoutinesAndExercises(context)
+        val id_routine = SelectedClasses.routine.id_routine
+        val id_exercise = SelectedClasses.exercise.id_exercise
+        // true -> ya existe la rutina y hay que añadir el ejercicio
+        if (checkRoutineInInternalStorage(id_routine, resInternalStorage)){
+            resInternalStorage.find { re -> re.id_routine == id_routine }?.id_exercises?.add(id_exercise)
+            ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
+        } else {
+            val reInternalStorage = RoutinesExercisesInternalStorage(id_routine, mutableListOf(id_exercise))
+            resInternalStorage.add(reInternalStorage)
+            ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
+        }
+
+        println("Escrito en el texto pe ${ForInternalStorage.loadRoutinesAndExercises(context)}")
+//
+//        println("Rutina seleccionada -> ${SelectedClasses.routine.id_routine}")
+//        println("Ejercicio seleccionado -> ${SelectedClasses.exercise.id_exercise}")
+    }
+
+    private fun checkRoutineInInternalStorage(id_routine:Int, resInternalStorage:MutableList<RoutinesExercisesInternalStorage>):Boolean{
+
+        return resInternalStorage.find { re -> re.id_routine == id_routine } != null
+
+    }
+
 }
 
 

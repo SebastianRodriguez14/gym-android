@@ -336,6 +336,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
+
             </FrameLayout>
             <LinearLayout
                 android:id="@+id/btn_exercise"
