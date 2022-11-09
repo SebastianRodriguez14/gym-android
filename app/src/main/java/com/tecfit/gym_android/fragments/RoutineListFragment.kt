@@ -50,6 +50,7 @@ class RoutineListFragment : Fragment() {
         btnBackInterface.setOnClickListener{
             ForFragments.replaceInFragment(routineFragment, fragmentManager)
         }
+
         bodyPart = BodyPart(SelectedClasses.bodyPart.id_part, SelectedClasses.bodyPart.name, null)
         text_title.text = "Rutinas para ${bodyPart.name}"
 
