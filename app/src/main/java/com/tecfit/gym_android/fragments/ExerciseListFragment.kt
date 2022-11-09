@@ -8,17 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
+import com.tecfit.gym_android.activities.utilities.ForInternalStorage
 import com.tecfit.gym_android.fragments.adapter.ExerciseAdapter
 import com.tecfit.gym_android.fragments.adapter.RoutineAdapter
 import com.tecfit.gym_android.models.BodyPart
 import com.tecfit.gym_android.models.Exercise
 import com.tecfit.gym_android.models.Routine
 import com.tecfit.gym_android.models.custom.ArraysForClass
+import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.models.custom.ByRandom
 import com.tecfit.gym_android.models.custom.SelectedClasses
 import com.tecfit.gym_android.retrofit.ApiService
@@ -31,8 +34,11 @@ class ExerciseListFragment : Fragment() {
 
     private lateinit var imageRoutine:ImageView
     private lateinit var imageBackToRoutine:ImageView
+    private lateinit var buttonRestartExercises:LinearLayout
+    private lateinit var buttonCompleteExercise:LinearLayout
     private lateinit var recyclerViewExercise:RecyclerView
     private lateinit var root:View
+    private var tempExercises= listOf<Exercise>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +50,14 @@ class ExerciseListFragment : Fragment() {
     ): View? {
         root = inflater.inflate(R.layout.fragment_exercise_list, container, false)
 
-
+        buttonRestartExercises = root.findViewById(R.id.exercise_list_restart)
+        buttonCompleteExercise = root.findViewById(R.id.exercise_list_button_complete)
         imageRoutine = root.findViewById(R.id.exercise_list_image_routine)
         imageBackToRoutine = root.findViewById(R.id.exercise_list_body_part_back)
         val routineListFragment = RoutineListFragment()
         recyclerViewExercise = root.findViewById(R.id.recyclerview_exercises)
         recyclerViewExercise.layoutManager = LinearLayoutManager(root.context)
+
 
         Glide.with(root.context).load(SelectedClasses.routine.image.url).into(imageRoutine)
         imageBackToRoutine.setOnClickListener {
@@ -64,24 +72,70 @@ class ExerciseListFragment : Fragment() {
             }
         }
 
-        val exercises:List<Exercise>? = searchExercisesForRoutine()
-
-        if (exercises == null) {
-            println("Saco info de la bd")
-        apiGetExerciseByRoutine()
-        } else{
-            println("Saco info de los arreglos locales")
-            setArrayForRecycler(exercises)
+        buttonRestartExercises.setOnClickListener {
+            deleteRoutine()
+        }
+        buttonCompleteExercise.setOnClickListener {
+            deleteRoutine()
+            buttonCompleteExercise.isVisible = false
         }
 
 
+        val exercises:List<Exercise>? = searchExercisesForRoutine()
 
-
+        if (exercises == null) {
+//            println("Saco info de la bd")
+            apiGetExerciseByRoutine()
+        } else{
+//            println("Saco info de los arreglos locales")
+            tempExercises = exercises
+            checkCompleteExercises(exercises)
+            setArrayForRecycler(exercises)
+        }
         return root
     }
 
+    private fun deleteRoutine(){
+        val resInternalStorage = ForInternalStorage.loadRoutinesAndExercises(context)
+
+        for(i in 0 until resInternalStorage.size){
+            if (resInternalStorage.get(i).id_routine == SelectedClasses.routine.id_routine){
+                resInternalStorage.removeAt(i)
+                break
+            }
+        }
+        ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
+        setArrayForRecycler(tempExercises)
+    }
+
+    private fun checkCompleteExercises(exercises: List<Exercise>){
+        val reInternalStorage =  ForInternalStorage.loadRoutinesAndExercises(context).find{re -> re.id_routine == SelectedClasses.routine.id_routine}
+        // true -> Completado
+        // false -> faltaron algunos
+//        println("Internal storage -> $reInternalStorage")
+//        println("Ejercicios -> ${exercises}")
+        var complete = true
+        for (exercise in exercises){
+            val tempExercise = reInternalStorage?.id_exercises?.find { id -> id == exercise.id_exercise }
+            if (tempExercise == null) {
+                complete = false
+                break
+            }
+        }
+
+        buttonRestartExercises.isVisible = !complete
+        buttonCompleteExercise.isVisible = complete
+
+
+
+    }
+
+
+
+
     private fun setArrayForRecycler(exercises:List<Exercise>) {
-        recyclerViewExercise.adapter = ExerciseAdapter(exercises, fragmentManager)
+        val resInternalStorage: MutableList<RoutinesExercisesInternalStorage> = ForInternalStorage.loadRoutinesAndExercises(context)
+        recyclerViewExercise.adapter = ExerciseAdapter(exercises, fragmentManager, context,resInternalStorage)
     }
 
     private fun updateExercisesForRoutine(exercises: List<Exercise>){
@@ -98,6 +152,8 @@ class ExerciseListFragment : Fragment() {
 //        println(SelectedClasses.routine)
 //        println("Rutina extraída")
 //        println(routines)
+//        tempExercises = routines?.exercise?.toList()!!
+//        println("Ejercicios -> $tempExercises")
         return routines?.exercise?.toList()
     }
 
@@ -111,9 +167,11 @@ class ExerciseListFragment : Fragment() {
         resultExercise.enqueue(object : Callback<List<Exercise>> {
             override fun onResponse(call: Call<List<Exercise>>, response: Response<List<Exercise>>) {
                 val listExercise = response.body()
-                println(listExercise)
+//                println(listExercise)
                 if (listExercise != null) {
+                    tempExercises = listExercise
                     setArrayForRecycler(listExercise)
+                    checkCompleteExercises(listExercise)
                     updateExercisesForRoutine(listExercise)
                 }
             }
