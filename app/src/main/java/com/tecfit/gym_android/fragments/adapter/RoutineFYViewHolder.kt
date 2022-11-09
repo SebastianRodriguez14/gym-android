@@ -14,17 +14,17 @@ import com.tecfit.gym_android.models.Routine
 import com.tecfit.gym_android.models.custom.ByRandom
 import com.tecfit.gym_android.models.custom.SelectedClasses
 
-class RoutineViewHolder(val view:View, val manager: FragmentManager?):RecyclerView.ViewHolder(view) {
-    val rt_linear = view.findViewById<FrameLayout>(R.id.layout_item_routine)
-    val rt_image = view.findViewById<ImageView>(R.id.item_routine_image)
-    val rt_name = view.findViewById<TextView>(R.id.item_routine_name)
+class RoutineFYViewHolder(val view:View, val manager: FragmentManager?):RecyclerView.ViewHolder(view) {
+    val rt_linear = view.findViewById<FrameLayout>(R.id.layout_item_routine_fy)
+    val rt_image = view.findViewById<ImageView>(R.id.item_routine_image_fy)
+    val rt_name = view.findViewById<TextView>(R.id.item_routine_name_fy)
 
     fun render(routine: Routine) {
         Glide.with(view.context).load(routine.image.url).into(rt_image)
         rt_name.text = routine.name
         val fragmentExercise = ExerciseListFragment()
         rt_linear.setOnClickListener {
-            ByRandom.byBodyPart = true
+            ByRandom.byBodyPart = false
             SelectedClasses.routine = routine
             ForFragments.replaceInFragment(fragmentExercise, manager)
         }

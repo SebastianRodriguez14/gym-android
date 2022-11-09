@@ -22,6 +22,7 @@ import com.tecfit.gym_android.models.Exercise
 import com.tecfit.gym_android.models.Routine
 import com.tecfit.gym_android.models.custom.ArraysForClass
 import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
+import com.tecfit.gym_android.models.custom.ByRandom
 import com.tecfit.gym_android.models.custom.SelectedClasses
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
@@ -59,7 +60,17 @@ class ExerciseListFragment : Fragment() {
 
 
         Glide.with(root.context).load(SelectedClasses.routine.image.url).into(imageRoutine)
-        imageBackToRoutine.setOnClickListener { ForFragments.replaceInFragment(routineListFragment, fragmentManager)}
+        imageBackToRoutine.setOnClickListener {
+            println("----ACA ES----")
+            println(ByRandom.byBodyPart)
+            if(ByRandom.byBodyPart){
+                ForFragments.replaceInFragment(routineListFragment, fragmentManager)
+            }else{
+                val fragmentroutinelist = RoutineFragment()
+                val transaction = fragmentManager?.beginTransaction()
+                transaction?.replace(R.id.frame_container, fragmentroutinelist)?.commit()
+            }
+        }
 
         buttonRestartExercises.setOnClickListener {
             deleteRoutine()

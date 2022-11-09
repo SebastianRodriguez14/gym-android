@@ -31,4 +31,7 @@ interface ApiService {
     @GET("routine/exercises/{id_routine}")
     fun getExercisesByRoutine(@Path("id_routine") id_routine:Int): Call<List<Exercise>>
 
+    @GET("routine/list_random")
+    fun getRandomRoutines():Call<List<Routine>>
+
 }
