@@ -5,10 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
+import com.tecfit.gym_android.fragments.adapter.RoutineFYAdapter
 import com.tecfit.gym_android.models.BodyPart
+import com.tecfit.gym_android.models.Routine
+import com.tecfit.gym_android.models.custom.ByRandom
 import com.tecfit.gym_android.models.custom.SelectedClasses
+import com.tecfit.gym_android.retrofit.ApiService
+import com.tecfit.gym_android.retrofit.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RoutineFragment : Fragment() {
 
@@ -22,6 +32,8 @@ class RoutineFragment : Fragment() {
 
     private var routinesListFragment = RoutineListFragment()
 
+    private lateinit var routineFYList:List<Routine>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,6 +43,8 @@ class RoutineFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        ByRandom.byBodyPart = false
         root =  inflater.inflate(R.layout.fragment_routine, container, false)
         btnFullbody = root.findViewById(R.id.routine_menu_fullbody)
         btnArms = root.findViewById(R.id.routine_menu_arms)
@@ -45,7 +59,7 @@ class RoutineFragment : Fragment() {
         btnChess.setOnClickListener{toRoutine(5, "Pecho")}
         btnAbdomen.setOnClickListener{toRoutine(4, "Abdomen")}
         btnBack.setOnClickListener{toRoutine(3, "Espalda")}
-
+        apiGetRandomRoutine()
         return root
     }
 
@@ -53,6 +67,34 @@ class RoutineFragment : Fragment() {
     fun toRoutine(id_body_part:Int, name:String){
         SelectedClasses.bodyPart = BodyPart(id_body_part, name, null)
         ForFragments.replaceInFragment(routinesListFragment, fragmentManager)
+    }
+
+    private fun initRecyclerView(id:Int){
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val recyclerView=root.findViewById<RecyclerView>(id)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter= RoutineFYAdapter(routineFYList, fragmentManager)
+    }
+
+    private fun apiGetRandomRoutine() {
+
+        val apiService: ApiService = RetrofitClient.getRetrofit().create(ApiService::class.java)
+
+        val resultRoutines: Call<List<Routine>> = apiService.getRandomRoutines()
+
+        resultRoutines.enqueue(object : Callback<List<Routine>> {
+            override fun onResponse(call: Call<List<Routine>>, response: Response<List<Routine>>) {
+                val listRoutines = response.body()
+                if (listRoutines != null) {
+                    routineFYList = listRoutines
+                    initRecyclerView(R.id.recyclerview_routines_for_you)
+                }
+            }
+            override fun onFailure(call: Call<List<Routine>>, t: Throwable) {
+                println("Error: random routine failed")
+            }
+        })
+
     }
 
 }

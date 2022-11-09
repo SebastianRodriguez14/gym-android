@@ -92,13 +92,13 @@
                 android:textColor="?colorOnSecondary"
                 android:textSize="20dp" />
 
-            <androidx.cardview.widget.CardView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_routines_for_you"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/gray_clear"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="0dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_routine_for_you"
+                />
         </LinearLayout>
 
         <LinearLayout
