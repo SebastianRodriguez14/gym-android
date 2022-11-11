@@ -69,4 +69,7 @@ dependencies {
 
     //BlurKit
     implementation 'io.alterac.blurkit:blurkit:1.1.0'
+
+    //youtube
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 }

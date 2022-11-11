@@ -1,16 +1,18 @@
 package com.tecfit.gym_android.fragments
 
+//import com.google.android.youtube.player.YouTubePlayerView
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.VideoView
+import android.widget.*
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.activities.utilities.ForInternalStorage
@@ -19,7 +21,8 @@ import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.models.custom.SelectedClasses
 import kotlinx.coroutines.*
 
-class ExerciseFragment : Fragment(){
+
+class ExerciseFragment : Fragment() {
 
     private lateinit var root:View
     private lateinit var nameexercise:TextView
@@ -27,9 +30,9 @@ class ExerciseFragment : Fragment(){
     private lateinit var exercise:Exercise
     private lateinit var setsexercise:TextView
     private lateinit var breakexercise:TextView
-    private lateinit var videoexercise:VideoView
     private lateinit var amountexercise:TextView
     private lateinit var cronometer:TextView
+    private lateinit var youtubePlayerView: YouTubePlayerView
 
     private lateinit var btnExercise:LinearLayout
     private lateinit var btnRepetition:LinearLayout
@@ -50,6 +53,9 @@ class ExerciseFragment : Fragment(){
 
     private var exerciseListFragment=ExerciseListFragment()
 
+
+    var apiYoutube="AIzaSyA0t7ffs3QCcOhzQAPF-FQ0FlZ9x428uwM"
+    var youtubeId=""
     var time=0
     var setsExercise=0
     var break_tiempo=0
@@ -84,9 +90,9 @@ class ExerciseFragment : Fragment(){
         imageBackToList = root.findViewById(R.id.exercise_list_body_part_back)
         setsexercise = root.findViewById(R.id.text_sets_exercise)
         breakexercise=root.findViewById(R.id.text_break_exercise)
-        videoexercise=root.findViewById(R.id.video_exercise)
         amountexercise=root.findViewById(R.id.text_amount_exercise)
         cronometer=root.findViewById(R.id.text_cronometer)
+        youtubePlayerView =root.findViewById(R.id.video_exercise)
 
         linearCronometer = root.findViewById(R.id.linearTime)
         linearRep = root.findViewById(R.id.linearRep)
@@ -120,6 +126,7 @@ class ExerciseFragment : Fragment(){
         breakexercise.text= "Descanso: ${exercise.break_time} seg."
         amountexercise.text = "Tiempo: ${exercise.amount} seg."
         amountRepetitions.text="${exercise.amount} repeticiones"
+        youtubeId=exercise.file.url
         time = exercise.amount
         setsExercise=exercise.sets
         break_tiempo=exercise.break_time
@@ -128,6 +135,13 @@ class ExerciseFragment : Fragment(){
         optionTypeExercise=optionsd
 
         verifyingTypeExercise()
+
+        getLifecycle().addObserver(youtubePlayerView)
+        youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.loadVideo(youtubeId, 0F)
+            }
+        })
 
         //iniciando ejercicio
         btnExercise.setOnClickListener(){
@@ -182,7 +196,7 @@ class ExerciseFragment : Fragment(){
     }
 
     private fun initChronometer() {
-        s = 0
+        cronometer.setText(crontime)
         linearCronometer.isVisible = true
         setsCronometer_doing += 1
         setsDoing.setText(setsCronometer_doing.toString())
@@ -200,13 +214,15 @@ class ExerciseFragment : Fragment(){
     }
 
     private suspend fun running_Cronometro() {
+        crontime="00:00"
+        cronometer.setText(crontime)
+        s = 0
         while (true) {
             delay(1000)
             linearCronometer.isVisible = true
             btnExercise.isVisible = true
             s+=1
-            if (s == time) {
-                s = 0
+            if (s == time+1) {
                 linearCronometer.isInvisible = true
                 if(setsCronometer_doing != setsExercise-1){
                     breakSets()
@@ -227,13 +243,13 @@ class ExerciseFragment : Fragment(){
     private fun breakSets(){
         var segBreak=""
         var minBreak=""
+        var cronoBreak=""
+        var timebreakSeconds=0
         linearBreak.isVisible = true
         btnExercise.isInvisible=true
         visibilitylinearBreakExerciso()
 
         btnbreak.setOnClickListener{
-            var cronoBreak=""
-            var timebreakSeconds=0
             coroutinesBreak= GlobalScope.launch(Dispatchers.Main) {
                 while(true){
                     delay(1000)
@@ -320,5 +336,7 @@ class ExerciseFragment : Fragment(){
     }
 
 }
+
+
 
 
