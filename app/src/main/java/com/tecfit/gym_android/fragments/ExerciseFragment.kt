@@ -16,6 +16,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.activities.utilities.ForInternalStorage
+import com.tecfit.gym_android.databinding.FragmentExerciseBinding
+import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
 import com.tecfit.gym_android.models.Exercise
 import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.models.custom.SelectedClasses
@@ -25,6 +27,10 @@ import kotlinx.coroutines.*
 class ExerciseFragment : Fragment() {
 
     private lateinit var root:View
+
+    //TO-DO utilizar binding uwu
+    lateinit var binding: FragmentExerciseBinding
+
     private lateinit var nameexercise:TextView
     private lateinit var imageBackToList:ImageView
     private lateinit var exercise:Exercise
@@ -81,6 +87,7 @@ class ExerciseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         root = inflater.inflate(R.layout.fragment_exercise, container, false)
 
          coroutineExercises = GlobalScope.launch {  }

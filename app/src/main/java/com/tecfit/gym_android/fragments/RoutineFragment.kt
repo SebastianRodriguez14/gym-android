@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
+import com.tecfit.gym_android.databinding.FragmentExerciseBinding
+import com.tecfit.gym_android.databinding.FragmentRoutineBinding
 import com.tecfit.gym_android.fragments.adapter.RoutineFYAdapter
 import com.tecfit.gym_android.models.BodyPart
 import com.tecfit.gym_android.models.Routine
@@ -21,6 +24,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RoutineFragment : Fragment() {
+
+    lateinit var binding: FragmentRoutineBinding
 
     private lateinit var root: View
     private lateinit var btnFullbody: View
@@ -44,6 +49,8 @@ class RoutineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        binding = FragmentRoutineBinding.inflate(layoutInflater)
+
         ByRandom.byBodyPart = false
         root =  inflater.inflate(R.layout.fragment_routine, container, false)
         btnFullbody = root.findViewById(R.id.routine_menu_fullbody)
@@ -60,7 +67,7 @@ class RoutineFragment : Fragment() {
         btnAbdomen.setOnClickListener{toRoutine(4, "Abdomen")}
         btnBack.setOnClickListener{toRoutine(3, "Espalda")}
         apiGetRandomRoutine()
-        return root
+        return binding.root
     }
 
 
@@ -87,7 +94,12 @@ class RoutineFragment : Fragment() {
                 val listRoutines = response.body()
                 if (listRoutines != null) {
                     routineFYList = listRoutines
-                    initRecyclerView(R.id.recyclerview_routines_for_you)
+                    if(routineFYList.isEmpty()){
+                        binding.skeletonForYou.visibility = View.VISIBLE
+                    }else{
+                        binding.skeletonForYou.visibility = View.INVISIBLE
+                        initRecyclerView(R.id.recyclerview_routines_for_you)
+                    }
                 }
             }
             override fun onFailure(call: Call<List<Routine>>, t: Throwable) {
