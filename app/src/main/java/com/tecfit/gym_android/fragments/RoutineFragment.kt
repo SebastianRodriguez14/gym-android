@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,7 @@ import retrofit2.Response
 
 class RoutineFragment : Fragment() {
 
-    lateinit var binding: FragmentRoutineBinding
+
 
     private lateinit var root: View
     private lateinit var btnFullbody: View
@@ -34,6 +35,8 @@ class RoutineFragment : Fragment() {
     private lateinit var btnChess: View
     private lateinit var btnAbdomen: View
     private lateinit var btnBack: View
+
+    private lateinit var skeleton:CardView
 
     private var routinesListFragment = RoutineListFragment()
 
@@ -49,8 +52,7 @@ class RoutineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentRoutineBinding.inflate(layoutInflater)
-
+        root = inflater.inflate(R.layout.fragment_profile_user, container, false)
         ByRandom.byBodyPart = false
         root =  inflater.inflate(R.layout.fragment_routine, container, false)
         btnFullbody = root.findViewById(R.id.routine_menu_fullbody)
@@ -59,20 +61,24 @@ class RoutineFragment : Fragment() {
         btnChess = root.findViewById(R.id.routine_menu_chess)
         btnAbdomen = root.findViewById(R.id.routine_menu_abdomen)
         btnBack = root.findViewById(R.id.routine_menu_back)
+        skeleton = root.findViewById(R.id.skeleton_for_you)
 
-        btnFullbody.setOnClickListener{toRoutine(8, "Cuerpo Completo")}
+        btnFullbody.setOnClickListener{
+            println("Entrando al método")
+            toRoutine(8, "Cuerpo Completo")}
         btnArms.setOnClickListener{toRoutine(1, "Brazos")}
         btnLegs.setOnClickListener{toRoutine(2, "Piernas")}
         btnChess.setOnClickListener{toRoutine(5, "Pecho")}
         btnAbdomen.setOnClickListener{toRoutine(4, "Abdomen")}
         btnBack.setOnClickListener{toRoutine(3, "Espalda")}
         apiGetRandomRoutine()
-        return binding.root
+        return root
     }
 
 
     fun toRoutine(id_body_part:Int, name:String){
         SelectedClasses.bodyPart = BodyPart(id_body_part, name, null)
+        println("Enviando a la rutina")
         ForFragments.replaceInFragment(routinesListFragment, fragmentManager)
     }
 
@@ -95,9 +101,9 @@ class RoutineFragment : Fragment() {
                 if (listRoutines != null) {
                     routineFYList = listRoutines
                     if(routineFYList.isEmpty()){
-                        binding.skeletonForYou.visibility = View.VISIBLE
+                        skeleton.visibility = View.VISIBLE
                     }else{
-                        binding.skeletonForYou.visibility = View.INVISIBLE
+                        skeleton.visibility = View.INVISIBLE
                         initRecyclerView(R.id.recyclerview_routines_for_you)
                     }
                 }

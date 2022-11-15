@@ -10,7 +10,7 @@ import java.io.FileOutputStream
 import java.util.concurrent.RecursiveTask
 import kotlin.Exception
 
-class ForInternalStorage {
+class ForInternalStorageRoutines {
     /*
     * Formato en el que guardaremos los datos
     * id_rutina+cantidad_ejercicios:id_ejercicio01-id_ejercicio02...id_ejercicioN

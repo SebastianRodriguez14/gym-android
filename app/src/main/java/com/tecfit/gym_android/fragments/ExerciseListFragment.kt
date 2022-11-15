@@ -1,6 +1,5 @@
 package com.tecfit.gym_android.fragments
 
-import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,12 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
-import com.tecfit.gym_android.activities.utilities.ForInternalStorage
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutines
 import com.tecfit.gym_android.fragments.adapter.ExerciseAdapter
-import com.tecfit.gym_android.fragments.adapter.RoutineAdapter
-import com.tecfit.gym_android.models.BodyPart
 import com.tecfit.gym_android.models.Exercise
-import com.tecfit.gym_android.models.Routine
 import com.tecfit.gym_android.models.custom.ArraysForClass
 import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.models.custom.ByRandom
@@ -96,7 +92,7 @@ class ExerciseListFragment : Fragment() {
     }
 
     private fun deleteRoutine(){
-        val resInternalStorage = ForInternalStorage.loadRoutinesAndExercises(context)
+        val resInternalStorage = ForInternalStorageRoutines.loadRoutinesAndExercises(context)
 
         for(i in 0 until resInternalStorage.size){
             if (resInternalStorage.get(i).id_routine == SelectedClasses.routine.id_routine){
@@ -104,12 +100,12 @@ class ExerciseListFragment : Fragment() {
                 break
             }
         }
-        ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
+        ForInternalStorageRoutines.saveRoutinesAndExercises(resInternalStorage, context)
         setArrayForRecycler(tempExercises)
     }
 
     private fun checkCompleteExercises(exercises: List<Exercise>){
-        val reInternalStorage =  ForInternalStorage.loadRoutinesAndExercises(context).find{re -> re.id_routine == SelectedClasses.routine.id_routine}
+        val reInternalStorage =  ForInternalStorageRoutines.loadRoutinesAndExercises(context).find{ re -> re.id_routine == SelectedClasses.routine.id_routine}
         // true -> Completado
         // false -> faltaron algunos
 //        println("Internal storage -> $reInternalStorage")
@@ -134,7 +130,7 @@ class ExerciseListFragment : Fragment() {
 
 
     private fun setArrayForRecycler(exercises:List<Exercise>) {
-        val resInternalStorage: MutableList<RoutinesExercisesInternalStorage> = ForInternalStorage.loadRoutinesAndExercises(context)
+        val resInternalStorage: MutableList<RoutinesExercisesInternalStorage> = ForInternalStorageRoutines.loadRoutinesAndExercises(context)
         recyclerViewExercise.adapter = ExerciseAdapter(exercises, fragmentManager, context,resInternalStorage)
     }
 

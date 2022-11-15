@@ -79,7 +79,7 @@ class ProfileUserFragment : Fragment() {
 
 //        println(UserInAppCustom.membership)
         val existMembership:Boolean
-        if (UserInAppCustom.membership!!.id_membership == 0){
+        if (UserInAppCustom.membership == null){
             inputMembership.setText("Sin membresía")
             existMembership = false
         } else {
@@ -104,8 +104,6 @@ class ProfileUserFragment : Fragment() {
         }
 
         UserInAppCustom.user!!.membership = existMembership
-
-
 
     }
 

@@ -15,9 +15,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
-import com.tecfit.gym_android.activities.utilities.ForInternalStorage
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutines
 import com.tecfit.gym_android.databinding.FragmentExerciseBinding
-import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
 import com.tecfit.gym_android.models.Exercise
 import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.models.custom.SelectedClasses
@@ -314,19 +313,19 @@ class ExerciseFragment : Fragment() {
 
     private fun saveInLocalStorage(){
 
-        val resInternalStorage:MutableList<RoutinesExercisesInternalStorage> =  ForInternalStorage.loadRoutinesAndExercises(context)
+        val resInternalStorage:MutableList<RoutinesExercisesInternalStorage> =  ForInternalStorageRoutines.loadRoutinesAndExercises(context)
         val id_routine = SelectedClasses.routine.id_routine
         val id_exercise = SelectedClasses.exercise.id_exercise
         // true -> ya existe la rutina y hay que añadir el ejercicio
         if (checkRoutineInInternalStorage(id_routine, resInternalStorage)){
 //            println("[A] Esta rutina ya está avanzada")
             resInternalStorage.find { re -> re.id_routine == id_routine }?.id_exercises?.add(id_exercise)
-            ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
+            ForInternalStorageRoutines.saveRoutinesAndExercises(resInternalStorage, context)
         } else {
 //            println("[B] Primer ejercicio de la rutina")
             val reInternalStorage = RoutinesExercisesInternalStorage(id_routine, SelectedClasses.routine.exercise!!.size, mutableListOf(id_exercise))
             resInternalStorage.add(reInternalStorage)
-            ForInternalStorage.saveRoutinesAndExercises(resInternalStorage, context)
+            ForInternalStorageRoutines.saveRoutinesAndExercises(resInternalStorage, context)
         }
 //        println("Arreglo formateado -> ${resInternalStorage}")
 //        println("Escrito en el texto -> ${ForInternalStorage.formatRoutinesExercisesToText(resInternalStorage)}")
