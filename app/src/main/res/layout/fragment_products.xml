@@ -35,7 +35,7 @@
 
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:hint=""
+        android:hint=" "
         android:theme="@style/ProductsPageTheme"
         android:layout_width="match_parent"
         android:layout_height="42dp"
