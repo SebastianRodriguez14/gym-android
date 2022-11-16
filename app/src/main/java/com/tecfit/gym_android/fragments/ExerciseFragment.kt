@@ -132,7 +132,7 @@ class ExerciseFragment : Fragment() {
         breakexercise.text= "Descanso: ${exercise.break_time} seg."
         amountexercise.text = "Tiempo: ${exercise.amount} seg."
         amountRepetitions.text="${exercise.amount} repeticiones"
-        youtubeId=exercise.file.url
+        youtubeId=exercise.file.url.toString()
         time = exercise.amount
         setsExercise=exercise.sets
         break_tiempo=exercise.break_time

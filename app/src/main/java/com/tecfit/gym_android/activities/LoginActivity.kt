@@ -1,5 +1,6 @@
 package com.tecfit.gym_android.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,22 +13,27 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageUser
+import com.tecfit.gym_android.activities.utilities.ForNotifications
 import com.tecfit.gym_android.activities.utilities.login
 import com.tecfit.gym_android.databinding.ActivityLoginBinding
 import com.tecfit.gym_android.models.Membership
 import com.tecfit.gym_android.models.User
+import com.tecfit.gym_android.models.custom.NotificationMembership
 import com.tecfit.gym_android.models.custom.UserInAppCustom
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.reflect.Member
 import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private val Google_SIGN_IN = 100
     private lateinit var binding: ActivityLoginBinding;
+    private lateinit var context:Context
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
-
+        context = this
         googleLogIn()
 
         binding.loginEnter.setOnClickListener{
@@ -149,6 +155,7 @@ class LoginActivity : AppCompatActivity() {
                 println(response.body())
                 UserInAppCustom.user = response.body()!!
                 fetchMembershipByUser(UserInAppCustom.user!!.id_user)
+                ForInternalStorageUser.saveUser(UserInAppCustom.user!!, context)
 
            }
 
@@ -169,6 +176,13 @@ class LoginActivity : AppCompatActivity() {
                 if (UserInAppCustom.membership != null) {
                     UserInAppCustom.membership!!.start_date = Date(UserInAppCustom.membership!!.start_date.time + (1000 * 60 * 60 * 24))
                     UserInAppCustom.membership!!.expiration_date = Date(UserInAppCustom.membership!!.expiration_date.time + (1000 * 60 * 60 * 24))
+//                    ForInternalStorageUser.saveNotificationWithMembership(UserInAppCustom.membership, context)
+//                    val notificationMembership = ForInternalStorageUser.loadNotification(context)
+//                    if (notificationMembership != null){
+//                        ForNotifications.checkSendNotification(context, this::class.java, notificationMembership)
+//                    }
+                } else {
+                    UserInAppCustom.membership = Membership(0, Date(), Date(), 0.0)
                 }
 //                println(UserInAppCustom.membership)
             }
@@ -178,9 +192,7 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-
-
-
     }
+
 
 }

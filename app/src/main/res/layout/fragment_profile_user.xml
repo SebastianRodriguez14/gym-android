@@ -184,7 +184,7 @@
                     android:id="@+id/profile_user_switch_notification"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:checked="true"
+                    android:checked="false"
                     android:enabled="false"
                     android:theme="@style/ProfileUserPage"
                     tools:ignore="TouchTargetSizeCheck"
