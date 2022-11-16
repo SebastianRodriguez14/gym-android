@@ -156,12 +156,12 @@ class LoginActivity : AppCompatActivity() {
                 UserInAppCustom.user = response.body()!!
                 fetchMembershipByUser(UserInAppCustom.user!!.id_user)
                 ForInternalStorageUser.saveUser(UserInAppCustom.user!!, context)
-
            }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
                 println("-----------------------------------------")
                 println("Error: postUser() failure.")
+                println("Er -> ${t.printStackTrace()}")
             }
         })
     }

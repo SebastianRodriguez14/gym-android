@@ -73,8 +73,11 @@ class ProductFragment : Fragment() {
 
         switch = root.findViewById(R.id.products_switch)
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            FilterProducts.availableProduct = isChecked
-            setArrayForRecycler(true)
+            if (ArraysForClass.arrayProducts != null) {
+                FilterProducts.availableProduct = isChecked
+                setArrayForRecycler(true)
+            }
+
         }
 
         inputNameProduct = root.findViewById(R.id.product_input_name)
@@ -83,9 +86,10 @@ class ProductFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                println(s.toString())
-                FilterProducts.nameProduct = s.toString()
-                setArrayForRecycler(true)
+                if (ArraysForClass.arrayProducts != null) {
+                    FilterProducts.nameProduct = s.toString()
+                    setArrayForRecycler(true)
+                }
             }
         })
 
@@ -96,9 +100,10 @@ class ProductFragment : Fragment() {
 
 
     private fun setArrayForRecycler(filter:Boolean = false) {
-        val products = if (!filter) ArraysForClass.arrayProducts!! else FilterProducts.applyFilters(
+        var products = if (!filter) ArraysForClass.arrayProducts!! else FilterProducts.applyFilters(
             ArraysForClass.arrayProducts!!
         )
+
         recyclerView.adapter = ProductAdapter(products)
 
         listProductsLinearLayout.isVisible = products.isNotEmpty()

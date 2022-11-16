@@ -78,7 +78,7 @@ class ForInternalStorageUser {
                     user_detail.get(0).toInt(), user_detail.get(1),
                     user_detail.get(2), user_detail.get(3), user_detail.get(4),
                     user_detail.get(5), user_detail.get(6).toBoolean(),
-                    if(existFile) File(image_user_detail.get(0).toInt(), image_user_detail.get(1)) else null
+                    if(existFile) File(image_user_detail.get(1), image_user_detail.get(0).toInt()) else null
                 )
             }
 
