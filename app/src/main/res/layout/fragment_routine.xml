@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Roberta"
+                android:text="..."
                 android:fontFamily="@font/poppins"
                 android:paddingTop="3dp"
                 android:textColor="?colorOnSecondary"
