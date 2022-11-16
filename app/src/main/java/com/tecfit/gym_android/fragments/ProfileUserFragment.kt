@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageUser
 import com.tecfit.gym_android.activities.utilities.logout
 import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
 import com.tecfit.gym_android.models.custom.UserInAppCustom
@@ -52,6 +53,8 @@ class ProfileUserFragment : Fragment() {
         logOut.setOnClickListener{
             context?.logout()
             UserInAppCustom.user = null
+            ForInternalStorageUser.saveUser(null, context)
+//            ForInternalStorageUser.saveNotificationWithMembership(null, context)
         }
 
         checkUser()
@@ -77,17 +80,13 @@ class ProfileUserFragment : Fragment() {
 
     fun setInformationMembership(){
 
-//        println(UserInAppCustom.membership)
         val existMembership:Boolean
-        if (UserInAppCustom.membership == null){
+        if (UserInAppCustom.membership!!.id_membership == 0){
+            println("Seteamos membresía")
             inputMembership.setText("Sin membresía")
             existMembership = false
         } else {
             val currentDate = Date()
-//
-//            println("Start date -> ${UserInAppCustom.membership!!.start_date}" )
-//            println("Expiration date -> ${UserInAppCustom.membership!!.expiration_date}" )
-//            println("Expiration date -> $currentDate" )
 
             val time_elapsed:Long = UserInAppCustom.membership!!.expiration_date.time - currentDate.time
 
@@ -109,13 +108,15 @@ class ProfileUserFragment : Fragment() {
 
     fun formatRemainingDays(days:Long):String {
         var remainingDays = ""
-//        println(days)
+//        println( "Cantidad de días -> $days")
 //        println(days/30)
-        if (days>=30){
-            remainingDays += "${days/30} mes y "
+        if (days>30L){
+            remainingDays += "${days/30} mes y ${days%30} días"
+        } else if (days == 30L ) {
+            remainingDays += "${days/30} mes"
+        } else {
+            remainingDays += "${days%30} días"
         }
-
-        remainingDays += "${days%30} días"
 
         return remainingDays
 
@@ -136,19 +137,22 @@ class ProfileUserFragment : Fragment() {
         }
 
         val timerForCheckMembership = GlobalScope.launch(Dispatchers.Main){
+
             do {
+
                 if (UserInAppCustom.membership != null) {
 
                     setInformationMembership()
 
                     cancel()
                 }
+
                 delay(3000)
+
             } while (true)
+
         }
 
     }
-
-
 
 }

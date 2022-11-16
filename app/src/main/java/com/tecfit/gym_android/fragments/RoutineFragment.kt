@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.databinding.FragmentExerciseBinding
@@ -18,8 +21,10 @@ import com.tecfit.gym_android.models.BodyPart
 import com.tecfit.gym_android.models.Routine
 import com.tecfit.gym_android.models.custom.ByRandom
 import com.tecfit.gym_android.models.custom.SelectedClasses
+import com.tecfit.gym_android.models.custom.UserInAppCustom
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +40,8 @@ class RoutineFragment : Fragment() {
     private lateinit var btnChess: View
     private lateinit var btnAbdomen: View
     private lateinit var btnBack: View
+    private lateinit var routineUsername:TextView
+    private lateinit var routineUserPhoto:ImageView
 
     private lateinit var skeleton:CardView
 
@@ -62,10 +69,11 @@ class RoutineFragment : Fragment() {
         btnAbdomen = root.findViewById(R.id.routine_menu_abdomen)
         btnBack = root.findViewById(R.id.routine_menu_back)
         skeleton = root.findViewById(R.id.skeleton_for_you)
+        routineUsername = root.findViewById(R.id.routine_user_name)
+        routineUserPhoto = root.findViewById(R.id.routine_user_photo)
+        checkUser()
 
-        btnFullbody.setOnClickListener{
-            println("Entrando al método")
-            toRoutine(8, "Cuerpo Completo")}
+        btnFullbody.setOnClickListener{toRoutine(8, "Cuerpo Completo")}
         btnArms.setOnClickListener{toRoutine(1, "Brazos")}
         btnLegs.setOnClickListener{toRoutine(2, "Piernas")}
         btnChess.setOnClickListener{toRoutine(5, "Pecho")}
@@ -113,6 +121,25 @@ class RoutineFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun checkUser(){
+        val timerForCheckUser = GlobalScope.launch(Dispatchers.Main) {
+
+            do {
+                if (UserInAppCustom.user != null) {
+                    routineUsername.text = UserInAppCustom.user!!.name
+                    if (UserInAppCustom.user!!.image == null){
+                        routineUserPhoto.setImageResource(R.drawable.profile_user_image_default)
+                    } else {
+                        Glide.with(root.context).load(UserInAppCustom.user!!.image?.url).into(routineUserPhoto)
+                    }
+
+                    cancel()
+                }
+                delay(3000)
+            } while (true)
+        }
     }
 
 }
