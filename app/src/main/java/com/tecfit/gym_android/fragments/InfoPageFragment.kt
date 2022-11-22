@@ -93,6 +93,12 @@ class InfoPageFragment : Fragment() {
         return root
     }
 
+    private fun setArrayForRecycler(){
+
+
+
+    }
+
     private fun setBackgroundSelected (arrayTextViews: Array<TextView>, text: TextView) {
 
         for(textview in arrayTextViews){
