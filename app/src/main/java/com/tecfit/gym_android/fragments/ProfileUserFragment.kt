@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageNotification
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageUser
+import com.tecfit.gym_android.activities.utilities.ForNotifications
 import com.tecfit.gym_android.activities.utilities.logout
 import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
 import com.tecfit.gym_android.models.custom.UserInAppCustom
@@ -55,6 +57,16 @@ class ProfileUserFragment : Fragment() {
             UserInAppCustom.user = null
             ForInternalStorageUser.saveUser(null, context)
 //            ForInternalStorageUser.saveNotificationWithMembership(null, context)
+        }
+
+        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                println("Activamos switch")
+                ForInternalStorageNotification.activeNotification(context)
+                ForNotifications.checkSendNotification(context, this::class.java)
+            } else {
+                ForInternalStorageNotification.disableNotification(context)
+            }
         }
 
         checkUser()

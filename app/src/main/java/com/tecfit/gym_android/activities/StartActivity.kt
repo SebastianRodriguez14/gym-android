@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageNotification
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageUser
 import com.tecfit.gym_android.activities.utilities.ForNotifications
 import com.tecfit.gym_android.models.Membership
@@ -32,6 +33,13 @@ class StartActivity : AppCompatActivity() {
         text_start.setOnClickListener {
             checkUserLogin()
         }
+        ForNotifications.sendNotification(
+            this,
+            "Tu membresía expira hoy mismo 😨\nRenuévala en nuestro gimnasio y sigue entrenándote 💪🏻",
+            this::class.java
+        )
+
+
 
     }
 
@@ -55,20 +63,16 @@ class StartActivity : AppCompatActivity() {
                 if (UserInAppCustom.membership != null) {
                     UserInAppCustom.membership!!.start_date = Date(UserInAppCustom.membership!!.start_date.time + (1000 * 60 * 60 * 24))
                     UserInAppCustom.membership!!.expiration_date = Date(UserInAppCustom.membership!!.expiration_date.time + (1000 * 60 * 60 * 24))
-//                    ForInternalStorageUser.saveNotificationWithMembership(UserInAppCustom.membership, context)
-//                    val notificationMembership = ForInternalStorageUser.loadNotification(context)
-//                    println("Notificación -> $notificationMembership")
-//                    if (notificationMembership != null){
-//                        ForNotifications.checkSendNotification(context, this::class.java, notificationMembership)
-//                    }
+                    ForNotifications.checkSendNotification(context, this::class.java)
                 } else {
                     UserInAppCustom.membership = Membership(0, Date(), Date(), 0.0)
+                    ForInternalStorageNotification.disableNotification(context)
                 }
-//                println(UserInAppCustom.membership)
             }
 
             override fun onFailure(call: Call<Membership>, t: Throwable) {
                 println("Error: getActiveMembershipByUser() failure.")
+                fetchMembershipByUser(id_user)
             }
         })
 

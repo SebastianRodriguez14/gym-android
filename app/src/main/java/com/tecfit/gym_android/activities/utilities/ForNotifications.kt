@@ -11,11 +11,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.tecfit.gym_android.R
-import com.tecfit.gym_android.activities.StartActivity
-import com.tecfit.gym_android.models.custom.NotificationMembership
-import com.tecfit.gym_android.models.custom.UserInAppCustom
-import java.util.*
-import kotlin.reflect.KClass
 
 class ForNotifications {
     companion object {
@@ -23,34 +18,46 @@ class ForNotifications {
         private lateinit var pendingIntent: PendingIntent
         private const val CHANNEL_ID = "canal"
 
-        fun checkSendNotification(context:Context, activity: Class<*>, notificationMembership: NotificationMembership){
-            println("¿Notificación almacenada? -> $notificationMembership")
-            if (notificationMembership.date_three_day_before.time == Date().time){
-                sendNotification(context, "Tu membresía expira en 3 días \nRenuévala en nuestro gimnasio y sigue entrenándote 💪🏻", activity)
-            } else if (notificationMembership.date_same_day.time == Date().time){
-                sendNotification(context, "Tu membresía expira hoy mismo 😨\nRenuévala en nuestro gimnasio y sigue entrenándote 💪🏻", activity)
+        fun checkSendNotification(context:Context?, activity: Class<*>){
+
+            val notificationMembership = ForInternalStorageNotification.loadNotification(context)
+            println("Notificación -> $notificationMembership")
+            if (notificationMembership != null){
+
+                if (notificationMembership.notificationDisplayedSameDay){
+                    sendNotification(context!!, "Tu membresía expira hoy mismo 😨\nRenuévala en nuestro gimnasio y sigue entrenándote 💪🏻", activity)
+                } else if (notificationMembership.notificationDisplayedThreeDaysBefore){
+                    sendNotification(context!!, "Tu membresía expira en 3 días \nRenuévala en nuestro gimnasio y sigue entrenándote 💪🏻", activity)
+
+                }
+
+
             }
 
         }
 
-        private fun sendNotification(context: Context, message: String, activity: Class<*>){
+        fun sendNotification(context: Context?, message: String, activity: Class<*>){
+            println("Entramos al método de enviado")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                showNotification(context, message, activity)
+                println("Al if")
+                showNotification(context!!, message, activity)
             } else {
-                showNewNotification(context, message, activity)
+                println("Al else")
+//                showNewNotification(context!!, message, activity)
             }
         }
 
         @RequiresApi(Build.VERSION_CODES.O)
-        private fun showNotification(context: Context, message: String, activity: Class<*>){
+        private fun showNotification(context: Context?, message: String, activity: Class<*>){
             val notificationChannel = NotificationChannel(CHANNEL_ID, "NEW", NotificationManager.IMPORTANCE_DEFAULT)
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(notificationChannel)
+            println("Creamos el notification manager")
             showNewNotification(context, message, activity)
         }
 
-        private fun showNewNotification(context: Context, message: String,activity: Class<*>){
-            setPendingIntent(activity, context)
+        private fun showNewNotification(context: Context?, message: String,activity: Class<*>){
+            setPendingIntent(activity, context!!)
 
             val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.start_page_logo)
@@ -64,13 +71,15 @@ class ForNotifications {
 
         }
 
-        private fun setPendingIntent(activity: Class<*>, context:Context) {
+        private fun setPendingIntent(activity: Class<*>, context:Context?) {
 
             val intent = Intent(context,activity)
-
+            println("Creamos el intent")
             val stackBuilder = TaskStackBuilder.create(context)
+            println("Creamos el stackbuilder")
             stackBuilder.addParentStack(activity)
             stackBuilder.addNextIntent(intent)
+            println("Añadimos el parent y el intent al stack builder")
             pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT)
 
         }
