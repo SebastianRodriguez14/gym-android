@@ -61,12 +61,13 @@ class ProfileUserFragment : Fragment() {
 
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
-                println("Activamos switch")
                 ForInternalStorageNotification.activeNotification(context)
-                ForNotifications.checkSendNotification(context, this::class.java)
+                ForNotifications.sendNotification(context)
             } else {
                 ForInternalStorageNotification.disableNotification(context)
             }
+            ForInternalStorageNotification.changeStateNotification(context, isChecked)
+
         }
 
         checkUser()
@@ -111,6 +112,10 @@ class ProfileUserFragment : Fragment() {
 
             inputMembership.setText(remainingDays)
             switch.isEnabled = true
+            val activeNotification = ForInternalStorageNotification.loadStateNotification(context)
+            if (activeNotification!= null){
+                switch.isChecked = activeNotification
+            }
             existMembership = true
         }
 

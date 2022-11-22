@@ -1,10 +1,19 @@
 package com.tecfit.gym_android.activities
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageNotification
@@ -25,6 +34,7 @@ class StartActivity : AppCompatActivity() {
     val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private lateinit var context:Context
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
@@ -33,15 +43,9 @@ class StartActivity : AppCompatActivity() {
         text_start.setOnClickListener {
             checkUserLogin()
         }
-        ForNotifications.sendNotification(
-            this,
-            "Tu membresía expira hoy mismo 😨\nRenuévala en nuestro gimnasio y sigue entrenándote 💪🏻",
-            this::class.java
-        )
-
-
-
     }
+
+
 
     fun checkUserLogin(){
         UserInAppCustom.user = ForInternalStorageUser.loadUser(this)
@@ -63,10 +67,11 @@ class StartActivity : AppCompatActivity() {
                 if (UserInAppCustom.membership != null) {
                     UserInAppCustom.membership!!.start_date = Date(UserInAppCustom.membership!!.start_date.time + (1000 * 60 * 60 * 24))
                     UserInAppCustom.membership!!.expiration_date = Date(UserInAppCustom.membership!!.expiration_date.time + (1000 * 60 * 60 * 24))
-                    ForNotifications.checkSendNotification(context, this::class.java)
+                    ForNotifications.sendNotification(context)
                 } else {
                     UserInAppCustom.membership = Membership(0, Date(), Date(), 0.0)
                     ForInternalStorageNotification.disableNotification(context)
+
                 }
             }
 
@@ -77,5 +82,12 @@ class StartActivity : AppCompatActivity() {
         })
 
     }
+
+
+
+
+
+
+
 
 }

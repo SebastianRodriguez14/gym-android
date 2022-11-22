@@ -13,6 +13,7 @@ class ForInternalStorageNotification {
     companion object {
 
         private const val FILE_NOTIFICATION = "notification"
+        private const val FILE_ACTIVE_NOTIFICATION = "active_notification"
 
         private lateinit var fileOutputStream: FileOutputStream
         private lateinit var fileInputStream: FileInputStream
@@ -97,6 +98,39 @@ class ForInternalStorageNotification {
                     notification_detail.get(0).toBoolean(),
                     notification_detail.get(1).toBoolean()
                 )
+            }
+        }
+
+
+        /*
+        * Este archivo sería para guardar cuando el switch esté marcado o no
+        * Es decir, cuando el usuario haya seleccionado mantener su membresía activa
+        * Su contenido sera solo un booleano*/
+
+        fun changeStateNotification(context: Context?, active:Boolean){
+            try {
+                val text = "$active"
+                fileOutputStream = context!!.openFileOutput(FILE_ACTIVE_NOTIFICATION, 0)
+                fileOutputStream.write(text.toByteArray())
+                fileOutputStream.close()
+            } catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+
+        fun loadStateNotification(context: Context?):Boolean?{
+            return try{
+
+                fileInputStream = context!!.openFileInput(FILE_ACTIVE_NOTIFICATION)
+                val bytes = ByteArray(fileInputStream.available())
+                fileInputStream.read(bytes)
+                fileInputStream.close()
+                val message = String(bytes)
+                message.toBoolean()
+
+            } catch (e:Exception){
+                e.printStackTrace()
+                null
             }
         }
 
