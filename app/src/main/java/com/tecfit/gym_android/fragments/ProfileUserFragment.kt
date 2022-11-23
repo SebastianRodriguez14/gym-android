@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageNotification
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageUser
+import com.tecfit.gym_android.activities.utilities.ForNotifications
 import com.tecfit.gym_android.activities.utilities.logout
 import com.tecfit.gym_android.databinding.FragmentProfileUserBinding
 import com.tecfit.gym_android.models.custom.UserInAppCustom
@@ -54,7 +56,19 @@ class ProfileUserFragment : Fragment() {
             context?.logout()
             UserInAppCustom.user = null
             ForInternalStorageUser.saveUser(null, context)
-//            ForInternalStorageUser.saveNotificationWithMembership(null, context)
+            ForInternalStorageNotification.disableNotification(context)
+            ForInternalStorageNotification.changeStateNotification(context, false)
+        }
+
+        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                ForInternalStorageNotification.activeNotification(context)
+                ForNotifications.sendNotification(context)
+            } else {
+                ForInternalStorageNotification.disableNotification(context)
+            }
+            ForInternalStorageNotification.changeStateNotification(context, isChecked)
+
         }
 
         checkUser()
@@ -67,7 +81,6 @@ class ProfileUserFragment : Fragment() {
         name.text = UserInAppCustom.user!!.name + ' ' + UserInAppCustom.user!!.lastname
         phone.setText(UserInAppCustom.user!!.phone)
         membership.isVisible = UserInAppCustom.user!!.membership
-        println(UserInAppCustom.user!!.image?.url)
         if (UserInAppCustom.user!!.image?.url != null) {
             Glide.with(root.context).load(UserInAppCustom.user!!.image?.url).into(photo)
         } else {
@@ -82,7 +95,6 @@ class ProfileUserFragment : Fragment() {
 
         val existMembership:Boolean
         if (UserInAppCustom.membership!!.id_membership == 0){
-            println("Seteamos membresía")
             inputMembership.setText("Sin membresía")
             existMembership = false
         } else {
@@ -99,6 +111,10 @@ class ProfileUserFragment : Fragment() {
 
             inputMembership.setText(remainingDays)
             switch.isEnabled = true
+            val activeNotification = ForInternalStorageNotification.loadStateNotification(context)
+            if (activeNotification!= null){
+                switch.isChecked = activeNotification
+            }
             existMembership = true
         }
 
