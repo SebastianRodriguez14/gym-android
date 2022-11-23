@@ -81,7 +81,6 @@ class ProfileUserFragment : Fragment() {
         name.text = UserInAppCustom.user!!.name + ' ' + UserInAppCustom.user!!.lastname
         phone.setText(UserInAppCustom.user!!.phone)
         membership.isVisible = UserInAppCustom.user!!.membership
-        println(UserInAppCustom.user!!.image?.url)
         if (UserInAppCustom.user!!.image?.url != null) {
             Glide.with(root.context).load(UserInAppCustom.user!!.image?.url).into(photo)
         } else {
@@ -96,7 +95,6 @@ class ProfileUserFragment : Fragment() {
 
         val existMembership:Boolean
         if (UserInAppCustom.membership!!.id_membership == 0){
-            println("Seteamos membresía")
             inputMembership.setText("Sin membresía")
             existMembership = false
         } else {

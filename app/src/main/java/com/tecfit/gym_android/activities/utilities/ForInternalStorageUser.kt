@@ -26,7 +26,6 @@ class ForInternalStorageUser {
 
             try{
                 val text = if (user != null) formatUserToText(user) else ""
-
                 fileOutputStream = context!!.openFileOutput(FILE_USER, 0)
                 fileOutputStream.write(text.toByteArray())
 
@@ -40,7 +39,7 @@ class ForInternalStorageUser {
 
         fun formatUserToText(user:User):String = "${user.id_user}|${user.email}|${user.password}|${user.name}|${user.lastname}|" +
                     "${user.phone}|${user.membership}" + if (user.image == null) "null" else
-                        "|${user.image.id_file}|${user.image.url}"
+                        "|${user.image.id_file}-${user.image.url}"
 
 
 
