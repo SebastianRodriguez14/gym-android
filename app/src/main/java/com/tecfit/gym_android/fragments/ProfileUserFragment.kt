@@ -56,7 +56,8 @@ class ProfileUserFragment : Fragment() {
             context?.logout()
             UserInAppCustom.user = null
             ForInternalStorageUser.saveUser(null, context)
-//            ForInternalStorageUser.saveNotificationWithMembership(null, context)
+            ForInternalStorageNotification.disableNotification(context)
+            ForInternalStorageNotification.changeStateNotification(context, false)
         }
 
         switch.setOnCheckedChangeListener { buttonView, isChecked ->

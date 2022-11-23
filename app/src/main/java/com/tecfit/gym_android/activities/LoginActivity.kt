@@ -186,6 +186,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<Membership>, t: Throwable) {
                 println("Error: getActiveMembershipByUser() failure.")
+                fetchMembershipByUser(id_user)
             }
         })
 

@@ -13,7 +13,6 @@ class ForInternalStorageUser {
 
     companion object {
         private const val FILE_USER = "user"
-        private const val FILE_NOTIFICATION = "notification"
 
         private lateinit var fileOutputStream: FileOutputStream
         private lateinit var fileInputStream: FileInputStream
