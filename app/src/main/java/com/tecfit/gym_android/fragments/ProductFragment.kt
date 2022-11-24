@@ -27,9 +27,7 @@ class FilterProducts {
     companion object {
         var nameProduct:String = ""
         var availableProduct:Boolean = false
-
         fun applyFilters(products: List<Product>): List<Product> {
-
             val filteredProducts = products.filter { product ->
                 val checkName = if(nameProduct == "") true else product.name.lowercase().startsWith(nameProduct.lowercase())
                 val checkAvailable = if (availableProduct) product.status else true
@@ -37,7 +35,6 @@ class FilterProducts {
             }
             return filteredProducts
         }
-
     }
 }
 
@@ -121,7 +118,6 @@ class ProductFragment : Fragment() {
         resultProducts.enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 val listProducts = response.body()
-
                 if (listProducts != null) {
                     ArraysForClass.arrayProducts = listProducts
                     setArrayForRecycler()
@@ -129,6 +125,7 @@ class ProductFragment : Fragment() {
             }
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 println("Error: getProducts() failure")
+                apiGetProducts()
             }
         })
 
