@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutineMonitoring
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutines
 import com.tecfit.gym_android.fragments.adapter.ExerciseAdapter
 import com.tecfit.gym_android.models.Exercise
@@ -59,7 +60,8 @@ class ExerciseListFragment : Fragment() {
         imageBackToRoutine.setOnClickListener {
             println("----ACA ES----")
             println(ByRandom.byBodyPart)
-            if(ByRandom.byBodyPart){
+
+            if(ByRandom.byBodyPart == true){
                 ForFragments.replaceInFragment(routineListFragment, fragmentManager)
             }else{
                 val fragmentroutinelist = RoutineFragment()
@@ -72,6 +74,7 @@ class ExerciseListFragment : Fragment() {
             deleteRoutine()
         }
         buttonCompleteExercise.setOnClickListener {
+            ForInternalStorageRoutineMonitoring.completeRoutineInDay(context)
             deleteRoutine()
             buttonCompleteExercise.isVisible = false
         }

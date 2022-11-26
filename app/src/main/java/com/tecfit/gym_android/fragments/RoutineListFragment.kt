@@ -46,9 +46,8 @@ class RoutineListFragment : Fragment() {
         recyclerViewRoutine = root.findViewById(R.id.recyclerview_routines)
         recyclerViewRoutine.layoutManager = LinearLayoutManager(root.context)
 
-        val routineFragment = RoutineFragment()
         btnBackInterface.setOnClickListener{
-            ForFragments.replaceInFragment(routineFragment, fragmentManager)
+            ForFragments.replaceInFragment(RoutineFragment(), fragmentManager)
         }
 
         bodyPart = BodyPart(SelectedClasses.bodyPart.id_part, SelectedClasses.bodyPart.name, null)

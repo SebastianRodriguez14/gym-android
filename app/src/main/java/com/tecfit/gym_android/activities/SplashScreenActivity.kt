@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutineMonitoring
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -23,6 +24,10 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, StartActivity::class.java))
             finish()
         }
+
+        // Pruebitas para el monitoreo 🤙
+
+
     }
 
 }

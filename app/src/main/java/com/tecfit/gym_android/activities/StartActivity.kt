@@ -17,6 +17,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageNotification
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutineMonitoring
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageUser
 import com.tecfit.gym_android.activities.utilities.ForNotifications
 import com.tecfit.gym_android.models.Membership
@@ -40,6 +41,7 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
         context = this
         text_start = findViewById(R.id.text_start)
+        ForInternalStorageRoutineMonitoring.saveRoutineMonitoring(context)
         text_start.setOnClickListener {
             checkUserLogin()
         }

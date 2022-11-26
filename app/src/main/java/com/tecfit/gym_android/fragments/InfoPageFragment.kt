@@ -161,6 +161,7 @@ class InfoPageFragment : Fragment() {
             override fun onFailure(call:Call<List<Trainer>>, t:Throwable){
                 println("Error: getTrainers() failure")
                 println(t.message)
+                apiGetTrainers()
             }
         })
 

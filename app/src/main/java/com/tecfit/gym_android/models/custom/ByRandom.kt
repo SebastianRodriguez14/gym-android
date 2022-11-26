@@ -5,7 +5,7 @@ import kotlin.properties.Delegates
 class ByRandom {
     companion object {
 
-        var byBodyPart by Delegates.notNull<Boolean>()
+        var byBodyPart:Boolean = false
 
     }
 }

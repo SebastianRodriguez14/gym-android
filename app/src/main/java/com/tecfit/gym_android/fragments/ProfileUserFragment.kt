@@ -86,9 +86,6 @@ class ProfileUserFragment : Fragment() {
         } else {
             photo.setBackgroundResource(R.drawable.profile_user_image_default)
         }
-
-
-
     }
 
     fun setInformationMembership(){
