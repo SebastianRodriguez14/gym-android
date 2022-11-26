@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.models.Routine
 
-class RoutineFYAdapter (private val routineList:List<Routine>, val manager:FragmentManager?) : RecyclerView.Adapter<RoutineFYViewHolder>() {
+class   RoutineFYAdapter (private val routineList:List<Routine>, val manager:FragmentManager?) : RecyclerView.Adapter<RoutineFYViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineFYViewHolder {

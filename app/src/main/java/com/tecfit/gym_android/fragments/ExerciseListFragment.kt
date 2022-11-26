@@ -60,7 +60,8 @@ class ExerciseListFragment : Fragment() {
         imageBackToRoutine.setOnClickListener {
             println("----ACA ES----")
             println(ByRandom.byBodyPart)
-            if(ByRandom.byBodyPart){
+
+            if(ByRandom.byBodyPart == true){
                 ForFragments.replaceInFragment(routineListFragment, fragmentManager)
             }else{
                 val fragmentroutinelist = RoutineFragment()

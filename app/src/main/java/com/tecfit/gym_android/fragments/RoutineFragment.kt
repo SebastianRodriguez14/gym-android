@@ -1,19 +1,23 @@
 package com.tecfit.gym_android.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
+import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutineMonitoring
 import com.tecfit.gym_android.databinding.FragmentExerciseBinding
 import com.tecfit.gym_android.databinding.FragmentRoutineBinding
 import com.tecfit.gym_android.fragments.adapter.RoutineFYAdapter
@@ -25,9 +29,11 @@ import com.tecfit.gym_android.models.custom.UserInAppCustom
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
 import kotlinx.coroutines.*
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class RoutineFragment : Fragment() {
 
@@ -49,6 +55,36 @@ class RoutineFragment : Fragment() {
 
     private lateinit var routineFYList:List<Routine>
 
+    private var dayCurrentWeek:Int = -1
+
+    private lateinit var recyclerViewRandomRoutines:RecyclerView
+
+
+    private lateinit var layoutMonday:LinearLayout
+    private lateinit var layoutTuesday:LinearLayout
+    private lateinit var layoutWednesday:LinearLayout
+    private lateinit var layoutThursday:LinearLayout
+    private lateinit var layoutFriday:LinearLayout
+    private lateinit var layoutSunday:LinearLayout
+    private lateinit var layoutSaturday:LinearLayout
+
+    private lateinit var iconMonday:ImageView
+    private lateinit var iconTuesday:ImageView
+    private lateinit var iconWednesday:ImageView
+    private lateinit var iconThursday:ImageView
+    private lateinit var iconFriday:ImageView
+    private lateinit var iconSunday:ImageView
+    private lateinit var iconSaturday:ImageView
+
+    private lateinit var textMonday:TextView
+    private lateinit var textTuesday:TextView
+    private lateinit var textWednesday:TextView
+    private lateinit var textThursday:TextView
+    private lateinit var textFriday:TextView
+    private lateinit var textSunday:TextView
+    private lateinit var textSaturday:TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,10 +94,41 @@ class RoutineFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        root = inflater.inflate(R.layout.fragment_profile_user, container, false)
-        ByRandom.byBodyPart = false
         root =  inflater.inflate(R.layout.fragment_routine, container, false)
+        ByRandom.byBodyPart = false
+
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.time = Date()
+        dayCurrentWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1
+
+        layoutMonday = root.findViewById(R.id.routine_monday_layout)
+        layoutTuesday = root.findViewById(R.id.routine_tuesday_layout)
+        layoutWednesday = root.findViewById(R.id.routine_wednesday_layout)
+        layoutThursday = root.findViewById(R.id.routine_thursday_layout)
+        layoutFriday = root.findViewById(R.id.routine_friday_layout)
+        layoutSunday = root.findViewById(R.id.routine_sunday_layout)
+        layoutSaturday = root.findViewById(R.id.routine_saturday_layout)
+
+
+        iconMonday = root.findViewById(R.id.routine_monday_icon)
+        iconTuesday = root.findViewById(R.id.routine_tuesday_icon)
+        iconWednesday = root.findViewById(R.id.routine_wednesday_icon)
+        iconThursday = root.findViewById(R.id.routine_thursday_icon)
+        iconFriday = root.findViewById(R.id.routine_friday_icon)
+        iconSunday = root.findViewById(R.id.routine_sunday_icon)
+        iconSaturday = root.findViewById(R.id.routine_saturday_icon)
+
+        textMonday = root.findViewById(R.id.routine_monday_text)
+        textTuesday = root.findViewById(R.id.routine_tuesday_text)
+        textWednesday = root.findViewById(R.id.routine_wednesday_text)
+        textThursday = root.findViewById(R.id.routine_thursday_text)
+        textFriday = root.findViewById(R.id.routine_friday_text)
+        textSunday = root.findViewById(R.id.routine_sunday_text)
+        textSaturday = root.findViewById(R.id.routine_saturday_text)
+
+
+        verifyRoutinesAllDays()
+
         btnFullbody = root.findViewById(R.id.routine_menu_fullbody)
         btnArms = root.findViewById(R.id.routine_menu_arms)
         btnLegs = root.findViewById(R.id.routine_menu_legs)
@@ -71,6 +138,9 @@ class RoutineFragment : Fragment() {
         skeleton = root.findViewById(R.id.skeleton_for_you)
         routineUsername = root.findViewById(R.id.routine_user_name)
         routineUserPhoto = root.findViewById(R.id.routine_user_photo)
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewRandomRoutines=root.findViewById(R.id.recyclerview_routines_for_you)
+        recyclerViewRandomRoutines.layoutManager = layoutManager
         checkUser()
 
         btnFullbody.setOnClickListener{toRoutine(8, "Cuerpo Completo")}
@@ -90,11 +160,74 @@ class RoutineFragment : Fragment() {
         ForFragments.replaceInFragment(routinesListFragment, fragmentManager)
     }
 
-    private fun initRecyclerView(id:Int){
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val recyclerView=root.findViewById<RecyclerView>(id)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter= RoutineFYAdapter(routineFYList, fragmentManager)
+    private fun initRecyclerView(){
+        recyclerViewRandomRoutines.adapter= RoutineFYAdapter(routineFYList, fragmentManager)
+    }
+
+
+    private fun verifyRoutinesAllDays(){
+        val routineMonitoring = ForInternalStorageRoutineMonitoring.loadRoutineMonitoring(context)
+        println("Rutina del local storage -> $routineMonitoring")
+        val monday = routineMonitoring!!.doneMonday
+        val tuesday = routineMonitoring.doneTuesday
+        val wednesday = routineMonitoring.doneWednesday
+        val thursday = routineMonitoring.doneThursday
+        val friday = routineMonitoring.doneFriday
+        val saturday = routineMonitoring.doneSaturday
+        val sunday = routineMonitoring.doneSunday
+
+        println("Hecho el lunes -> $monday")
+        verifyRoutinesByDay(layoutMonday, iconMonday, textMonday, monday, 1)
+        verifyRoutinesByDay(layoutTuesday, iconTuesday, textTuesday, tuesday, 2)
+        verifyRoutinesByDay(layoutWednesday, iconWednesday, textWednesday, wednesday, 3)
+        verifyRoutinesByDay(layoutThursday, iconThursday, textThursday, thursday, 4)
+        verifyRoutinesByDay(layoutFriday, iconFriday, textFriday, friday, 5)
+        verifyRoutinesByDay(layoutSaturday, iconSaturday, textSaturday, saturday, 6)
+        verifyRoutinesByDay(layoutSunday, iconSunday, textSunday, sunday, 7)
+
+
+    }
+
+    private fun verifyRoutinesByDay(dayLayout:LinearLayout, dayIcon:ImageView, dayText:TextView,complete:Boolean?, dayWeek:Int){
+
+        /*
+        * Nombres de los layout
+        * Días incompletos -> bg_day_incomplete
+        * Días completos -> bg_day_complete
+        * Días en proceso -> bg_day_in_progress
+        *
+        * Nombres de los icon
+        * Días que sí se hizo una rutina -> icon_rut_completada
+        * Días que no se hizo una rutina -> icon_rut_incompleta
+        * En progreso -> ic_baseline_circle_24
+        * */
+
+        println("Día actual -> $dayCurrentWeek")
+        println("Día pasado por parámetro -> $dayWeek")
+        dayText.setTextColor(Color.BLACK)
+        if (dayWeek == dayCurrentWeek) {
+            dayText.setTextColor(Color.WHITE)
+            dayLayout.setBackgroundResource(R.drawable.bg_day_in_progress)
+            dayIcon.visibility = View.VISIBLE
+            dayIcon.setImageResource(R.drawable.ic_baseline_circle_24)
+            dayIcon.setPadding(10)
+        } else {
+            if (complete == null) {
+                dayLayout.setBackgroundResource(R.drawable.bg_day_incomplete)
+                dayIcon.visibility = View.INVISIBLE
+            } else {
+                dayLayout.setBackgroundResource(R.drawable.bg_day_complete)
+                dayIcon.visibility = View.VISIBLE
+                dayText.setTextColor(Color.WHITE)
+                dayIcon.setPadding(0)
+                if (complete){
+                    dayIcon.setImageResource(R.drawable.icon_rut_completada)
+                } else {
+                    dayIcon.setImageResource(R.drawable.icon_rut_incompleta)
+                }
+            }
+        }
+
     }
 
     private fun apiGetRandomRoutine() {
@@ -109,10 +242,10 @@ class RoutineFragment : Fragment() {
                 if (listRoutines != null) {
                     routineFYList = listRoutines
                     if(routineFYList.isEmpty()){
-                        skeleton.visibility = View.VISIBLE
+                        skeleton.isVisible = true
                     }else{
-                        skeleton.visibility = View.INVISIBLE
-                        initRecyclerView(R.id.recyclerview_routines_for_you)
+                        skeleton.isVisible = false
+                        initRecyclerView()
                     }
                 }
             }
