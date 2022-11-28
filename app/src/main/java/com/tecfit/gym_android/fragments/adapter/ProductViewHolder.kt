@@ -43,14 +43,18 @@ class ProductViewHolder(val view:View, val bottomSheetDialog: BottomSheetDialog)
         if (product.discount > 0){
             pr_discount.visibility = View.VISIBLE
             pr_discount.text = "Sale " + Math.round(product.discount) + "%"
-
+        }else{
+            pr_discount.visibility = View.INVISIBLE
         }
 
         if (!product.status){
             pr_status_background.setBackgroundColor(Color.parseColor("#34E10A0A"))
             pr_status.visibility = View.INVISIBLE
             pr_image.setColorFilter(Color.parseColor("#34E10A0A"))
-
+        }else{
+            pr_status_background.setBackgroundColor(Color.TRANSPARENT)
+            pr_status.visibility = View.VISIBLE
+            pr_image.setColorFilter(Color.TRANSPARENT)
         }
 
        pr_linear.setOnClickListener{
