@@ -48,6 +48,7 @@ class InfoPageFragment : Fragment() {
     private val infoPageGoogleMapsFragment = InfoPageGoogleMapsFragment()
     private val infoPageFacebookFragment=InfoPageFacebookFragment()
     private val infoPageWhatsAppFragment= InfoPageWhatsAppFragment()
+    private lateinit var recyclerView:RecyclerView
 
     private lateinit var trainersList:List<Trainer>
 
@@ -71,6 +72,9 @@ class InfoPageFragment : Fragment() {
         text_facebook = root.findViewById(R.id.text_facebook)
         text_whatsapp = root.findViewById(R.id.text_whatsapp)
         text_yape = root.findViewById(R.id.text_yape)
+
+        recyclerView=root.findViewById(R.id.recyclerview_trainers)
+        recyclerView.layoutManager=LinearLayoutManager(root.context)
 
         text_selected = text_ubication
 
@@ -139,9 +143,7 @@ class InfoPageFragment : Fragment() {
     }
 
 
-    private fun initRecyclerView(id:Int){
-        val recyclerView=root.findViewById<RecyclerView>(id)
-        recyclerView.layoutManager=LinearLayoutManager(root.context)
+    private fun initRecyclerView(){
         recyclerView.adapter= TrainerAdapter(trainersList)
     }
 
@@ -155,7 +157,7 @@ class InfoPageFragment : Fragment() {
                 val listTrainers = response.body()
                 if (listTrainers != null){
                     trainersList = listTrainers
-                    initRecyclerView(R.id.recyclerview_trainers)
+                    initRecyclerView()
                 }
             }
             override fun onFailure(call:Call<List<Trainer>>, t:Throwable){

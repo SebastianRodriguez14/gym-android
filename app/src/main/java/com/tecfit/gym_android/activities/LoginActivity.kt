@@ -163,6 +163,7 @@ class LoginActivity : AppCompatActivity() {
                 println("-----------------------------------------")
                 println("Error: postUser() failure.")
                 println("Er -> ${t.printStackTrace()}")
+                fetchUser(email)
             }
         })
     }
