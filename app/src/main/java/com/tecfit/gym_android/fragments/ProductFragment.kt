@@ -51,6 +51,7 @@ class ProductFragment : Fragment() {
     private lateinit var listProductsVoidLinearLayout: LinearLayout
 
     private lateinit var bottomSheetDialogDetailProduct: BottomSheetDialog
+    private lateinit var bottomSheetViewDetail:View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -110,7 +111,11 @@ class ProductFragment : Fragment() {
 //    }
 
     private fun createDetailDialog() {
-        TODO("Not yet implemented")
+        bottomSheetDialogDetailProduct=BottomSheetDialog(requireActivity(),R.style.BottonSheetDialog)
+       bottomSheetViewDetail=
+            layoutInflater.inflate(R.layout.bottom_sheet_dialog_detail_product,null)
+        bottomSheetDialogDetailProduct.setContentView(bottomSheetViewDetail)
+
     }
 
 
