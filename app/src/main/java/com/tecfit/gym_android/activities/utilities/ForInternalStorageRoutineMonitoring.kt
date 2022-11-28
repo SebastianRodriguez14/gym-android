@@ -43,11 +43,7 @@ class ForInternalStorageRoutineMonitoring {
             val routineMonitoringInLocalStorage = loadRoutineMonitoring(context)
 
             if (routineMonitoringInLocalStorage != null){
-
-                val calendar: Calendar = Calendar.getInstance()
-                calendar.time = Date()
-                val day_week = calendar.get(Calendar.DAY_OF_WEEK) - 1
-
+                val day_week = getCurrentDay()
                 println("Día de la semana -> $day_week")
 
                 when(day_week){
@@ -74,12 +70,19 @@ class ForInternalStorageRoutineMonitoring {
 
         }
 
+        fun getCurrentDay():Int{
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.time = Date()
+            var day_week =  calendar.get(Calendar.DAY_OF_WEEK) - 1
+            day_week = if (day_week == 0 ) 7 else day_week
+            return day_week
+        }
+
 
         // Este método retornará la fecha en la que inicia y termina la semana actual.
         fun checkCurrentWeek(routineMonitoring: RoutineMonitoring?):RoutineMonitoring{
-            val calendar: Calendar = Calendar.getInstance()
-            calendar.time = Date()
-            val day_week = calendar.get(Calendar.DAY_OF_WEEK) - 1
+            val day_week = getCurrentDay()
+
 //            println("Fecha actual -> ${Date()}")
 //            println("Día de la semana -> $day_week")
 

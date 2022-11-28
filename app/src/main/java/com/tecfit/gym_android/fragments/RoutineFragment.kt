@@ -97,9 +97,7 @@ class RoutineFragment : Fragment() {
         root =  inflater.inflate(R.layout.fragment_routine, container, false)
         ByRandom.byBodyPart = false
 
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.time = Date()
-        dayCurrentWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1
+        dayCurrentWeek = ForInternalStorageRoutineMonitoring.getCurrentDay()
 
         layoutMonday = root.findViewById(R.id.routine_monday_layout)
         layoutTuesday = root.findViewById(R.id.routine_tuesday_layout)
