@@ -41,7 +41,6 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
         context = this
         text_start = findViewById(R.id.text_start)
-        ForInternalStorageRoutineMonitoring.saveRoutineMonitoring(context)
         text_start.setOnClickListener {
             checkUserLogin()
         }
