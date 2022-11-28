@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tecfit.gym_android.R
@@ -20,6 +23,7 @@ import com.tecfit.gym_android.databinding.BottomSheetDialogDetailProductBinding
 import com.tecfit.gym_android.fragments.adapter.ProductAdapter
 import com.tecfit.gym_android.models.Product
 import com.tecfit.gym_android.models.custom.ArraysForClass
+import com.tecfit.gym_android.models.custom.SelectedClasses
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
 import retrofit2.Call
@@ -112,9 +116,19 @@ class ProductFragment : Fragment() {
 
     private fun createDetailDialog() {
         bottomSheetDialogDetailProduct=BottomSheetDialog(requireActivity(),R.style.BottonSheetDialog)
-       bottomSheetViewDetail=
-            layoutInflater.inflate(R.layout.bottom_sheet_dialog_detail_product,null)
+        bottomSheetViewDetail= layoutInflater.inflate(R.layout.bottom_sheet_dialog_detail_product,null)
         bottomSheetDialogDetailProduct.setContentView(bottomSheetViewDetail)
+        bottomSheetDialogDetailProduct.setOnShowListener {
+            if(SelectedClasses.productSelected.discount > 0){
+                bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_discount).isVisible = true
+                bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_discount).text = "Sale ${SelectedClasses.productSelected.discount.toInt()}%"
+            }else{
+                bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_discount).isVisible = false
+            }
+            Glide.with(this).load(SelectedClasses.productSelected.image.url).into(bottomSheetViewDetail.findViewById(R.id.detail_image_product))
+            bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_description).text = SelectedClasses.productSelected.name
+            bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_price).text = "S/. %.2f".format(SelectedClasses.productSelected.price)
+        }
 
     }
 
