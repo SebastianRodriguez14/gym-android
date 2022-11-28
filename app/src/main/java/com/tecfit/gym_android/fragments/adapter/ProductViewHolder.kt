@@ -8,15 +8,19 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.databinding.BottomSheetDialogDetailProductBinding
 import com.tecfit.gym_android.models.Product
+import com.tecfit.gym_android.models.custom.SelectedClasses
 
-class ProductViewHolder(val view:View) :RecyclerView.ViewHolder(view){
+class ProductViewHolder(val view:View, val bottomSheetDialog: BottomSheetDialog) :RecyclerView.ViewHolder(view){
 
     //Propiedades normales de los productos
     val pr_image = view.findViewById<ImageView>(R.id.item_product_image)
     val pr_description = view.findViewById<TextView>(R.id.item_product_description)
     val pr_price = view.findViewById<TextView>(R.id.item_product_price)
+    val pr_linear=view.findViewById<ImageView>(R.id.item_product_image)
 
 
     //El fondo rojo para productos no disponibles -> cambiar background a #34E10A0A en caso de no estar disponible
@@ -39,7 +43,6 @@ class ProductViewHolder(val view:View) :RecyclerView.ViewHolder(view){
         if (product.discount > 0){
             pr_discount.visibility = View.VISIBLE
             pr_discount.text = "Sale " + Math.round(product.discount) + "%"
-
         }else{
             pr_discount.visibility = View.INVISIBLE
         }
@@ -48,14 +51,17 @@ class ProductViewHolder(val view:View) :RecyclerView.ViewHolder(view){
             pr_status_background.setBackgroundColor(Color.parseColor("#34E10A0A"))
             pr_status.visibility = View.INVISIBLE
             pr_image.setColorFilter(Color.parseColor("#34E10A0A"))
-
         }else{
             pr_status_background.setBackgroundColor(Color.TRANSPARENT)
             pr_status.visibility = View.VISIBLE
             pr_image.setColorFilter(Color.TRANSPARENT)
         }
 
-
+       pr_linear.setOnClickListener{
+           println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIII DETAIL PRODUCT")
+           SelectedClasses.productSelected = product
+           bottomSheetDialog.show()
+       }
 
     }
 

@@ -11,9 +11,12 @@ import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tecfit.gym_android.R
+import com.tecfit.gym_android.databinding.BottomSheetDialogDetailProductBinding
 import com.tecfit.gym_android.fragments.adapter.ProductAdapter
 import com.tecfit.gym_android.models.Product
 import com.tecfit.gym_android.models.custom.ArraysForClass
@@ -47,6 +50,8 @@ class ProductFragment : Fragment() {
     private lateinit var listProductsLinearLayout: LinearLayout
     private lateinit var listProductsVoidLinearLayout: LinearLayout
 
+    private lateinit var bottomSheetDialogDetailProduct: BottomSheetDialog
+    private lateinit var bottomSheetViewDetail:View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +60,7 @@ class ProductFragment : Fragment() {
     ): View {
         root = inflater.inflate(R.layout.fragment_products, container, false)
         recyclerView = root.findViewById(R.id.recyclerview_products)
+        createDetailDialog()
         val gridLayoutManager = GridLayoutManager(root.context, 2)
         gridLayoutManager.widthMode
         recyclerView.layoutManager = gridLayoutManager
@@ -73,7 +79,10 @@ class ProductFragment : Fragment() {
             if (ArraysForClass.arrayProducts != null) {
                 FilterProducts.availableProduct = isChecked
                 setArrayForRecycler(true)
-            }
+          }
+            //            else{
+//                initRecyclerView(R.id.recyclerview_products)
+//            }
 
         }
 
@@ -95,13 +104,27 @@ class ProductFragment : Fragment() {
         return root
     }
 
+//    private fun initRecyclerView(id: Int) {
+//        val recyclerView=root.findViewById<RecyclerView>(id)
+//        recyclerView.layoutManager=LinearLayoutManager(root.context)
+//        recyclerView.adapter= ArraysForClass.arrayProducts?.let { ProductAdapter(it, bottomSheetDialogDetailProductBinding) }
+//    }
+
+    private fun createDetailDialog() {
+        bottomSheetDialogDetailProduct=BottomSheetDialog(requireActivity(),R.style.BottonSheetDialog)
+       bottomSheetViewDetail=
+            layoutInflater.inflate(R.layout.bottom_sheet_dialog_detail_product,null)
+        bottomSheetDialogDetailProduct.setContentView(bottomSheetViewDetail)
+
+    }
+
 
     private fun setArrayForRecycler(filter:Boolean = false) {
         var products = if (!filter) ArraysForClass.arrayProducts!! else FilterProducts.applyFilters(
             ArraysForClass.arrayProducts!!
         )
 
-        recyclerView.adapter = ProductAdapter(products)
+        recyclerView.adapter = ProductAdapter(products,bottomSheetDialogDetailProduct)
 
         listProductsLinearLayout.isVisible = products.isNotEmpty()
         listProductsVoidLinearLayout.isVisible = products.isEmpty()

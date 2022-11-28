@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shape_bottom_sheet">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical"
+        android:paddingVertical="30dp"
+        android:layout_margin="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/detail_image_product"
+                android:layout_width="280dp"
+                android:layout_height="180dp"
+                android:src="@drawable/creabolic" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/detail_product_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/discount_bg"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="4dp"
+                android:textSize="18sp"
+                android:text="Sale 40%"
+                android:visibility="visible"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/detail_product_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/michroma"
+                android:layout_marginStart="5dp"
+                android:textColor="?colorOnSecondary"
+                android:paddingHorizontal="4dp"
+                android:textSize="20dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Creabolic (creatina) de 500grs"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:gravity="end"
+            >
+            <TextView
+                android:id="@+id/detail_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="5dp"
+                android:textColor="?colorTertiary"
+                android:paddingHorizontal="4dp"
+                android:textSize="25dp"
+                android:text="S/. 90.00"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
