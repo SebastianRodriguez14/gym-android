@@ -84,11 +84,7 @@
                             android:backgroundTint="#363535"
                             android:layout_gravity="center"
                             />
-
                     </LinearLayout>
-
-
-
                 </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
