@@ -9,20 +9,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
+        android:paddingHorizontal="35dp"
         android:orientation="vertical"
         android:paddingVertical="30dp"
         android:layout_margin="2dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            >
 
             <ImageView
                 android:id="@+id/detail_image_product"
                 android:layout_width="280dp"
                 android:layout_height="180dp"
-                android:src="@drawable/creabolic" />
+                android:src="@drawable/creabolic"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,6 +37,7 @@
                 android:background="@drawable/discount_bg"
                 android:fontFamily="@font/poppins"
                 android:layout_marginStart="5dp"
+                android:paddingTop="3dp"
                 android:textColor="@color/white"
                 android:paddingHorizontal="4dp"
                 android:textSize="18sp"
