@@ -1,5 +1,6 @@
 package com.tecfit.gym_android.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -124,6 +125,11 @@ class ProductFragment : Fragment() {
                 bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_discount).text = "Sale ${SelectedClasses.productSelected.discount.toInt()}%"
             }else{
                 bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_discount).isVisible = false
+            }
+            if(!SelectedClasses.productSelected.status){
+                bottomSheetViewDetail.findViewById<ImageView>(R.id.detail_image_product).setColorFilter(Color.parseColor("#34E10A0A"))
+            }else{
+                bottomSheetViewDetail.findViewById<ImageView>(R.id.detail_image_product).setColorFilter(Color.TRANSPARENT)
             }
             Glide.with(this).load(SelectedClasses.productSelected.image.url).into(bottomSheetViewDetail.findViewById(R.id.detail_image_product))
             bottomSheetViewDetail.findViewById<TextView>(R.id.detail_product_description).text = SelectedClasses.productSelected.name
