@@ -1,5 +1,6 @@
 package com.tecfit.gym_android.fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageNotification
@@ -24,6 +26,8 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class ProfileUserFragment : Fragment() {
+
+    lateinit var binding: FragmentProfileUserBinding
     private lateinit var logOut: TextView
     private lateinit var photo: ImageView
     private lateinit var name: TextView
@@ -32,6 +36,10 @@ class ProfileUserFragment : Fragment() {
     private lateinit var root:View
     private lateinit var switch:SwitchMaterial
     private lateinit var inputMembership: EditText
+
+    private lateinit var bottomSheetDialogUpdate: BottomSheetDialog
+    private lateinit var bottomSheetViewUpdate: View
+    private var uriImageUpdate: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +50,9 @@ class ProfileUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         root = inflater.inflate(R.layout.fragment_profile_user, container, false)
-        var binding : FragmentProfileUserBinding
+        binding = FragmentProfileUserBinding.inflate(layoutInflater)
 
+        createUpdateDialog()
         name = root.findViewById(R.id.profile_user_name)
         membership = root.findViewById(R.id.profile_user_active_membership)
         membership.isVisible = false
@@ -71,9 +80,27 @@ class ProfileUserFragment : Fragment() {
 
         }
 
+        binding.btnSaveUser.setOnClickListener{
+            bottomSheetDialogUpdate.show()
+        }
         checkUser()
-        return root
+        return binding.root
 
+    }
+
+    fun createUpdateDialog(){
+        bottomSheetDialogUpdate = BottomSheetDialog(
+            requireActivity(), R.style.BottonSheetDialog
+        )
+
+        bottomSheetViewUpdate =
+            layoutInflater.inflate(R.layout.bottom_sheet_dialog_edit_user, null)
+
+        bottomSheetDialogUpdate.setContentView(bottomSheetViewUpdate)
+
+        bottomSheetViewUpdate.findViewById<TextView>(R.id.edit_user_cancel).setOnClickListener{
+            bottomSheetDialogUpdate.dismiss()
+        }
     }
 
     fun setInformationUser(){

@@ -47,6 +47,7 @@
 
     <string name="profile_user_title">Perfil</string>
     <string name="profile_user_edit_link"><u>Editar</u></string>
+    <string name="profile_user_save_link"><u>Guardar</u></string>
     <string name="profile_user_active_membership">Membresía Activa</string>
     <string name="profile_user_phone_title">Teléfono</string>
     <string name="profile_user_time_membership">Tiempo restante de membresía</string>
