@@ -61,7 +61,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/delete_product_delete"
+                    android:id="@+id/edit_user_update"
                     android:layout_width="135dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
