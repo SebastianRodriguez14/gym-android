@@ -35,6 +35,10 @@ interface ApiService {
     fun getRandomRoutines():Call<List<Routine>>
 
     @Multipart
+    @POST("file/post")
+    fun postFile(@Part multipartFile:MultipartBody.Part):Call<File>
+
+    @Multipart
     @PUT("file/put")
     fun updateFile(@Part multipartFile: MultipartBody.Part, @Part("idFile") idFile: RequestBody):Call<File>
 

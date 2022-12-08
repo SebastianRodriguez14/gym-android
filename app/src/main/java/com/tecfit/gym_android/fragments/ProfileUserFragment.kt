@@ -72,6 +72,8 @@ class ProfileUserFragment : Fragment() {
     private lateinit var bottomSheetViewUpdate: View
     private var uriImageUpdate: Uri? = null
 
+    private var uriImagePost: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -151,7 +153,11 @@ class ProfileUserFragment : Fragment() {
         }
 
         btnCamera.setOnClickListener{
-            checkPermissionsForGalery(1)
+            if(UserInAppCustom.user?.image == null){
+                checkPermissionsForGalery(2)
+            }else{
+                checkPermissionsForGalery(1)
+            }
         }
 
 
@@ -176,11 +182,14 @@ class ProfileUserFragment : Fragment() {
         }
 
         bottomSheetViewUpdate.findViewById<TextView>(R.id.edit_user_update).setOnClickListener(){
-            putUserData(UserInAppCustom.user?.email!!)
-            if (uriImageUpdate == null) {
-                putUserData(UserInAppCustom.user?.email!!)
-            } else {
-                putUserDataImage(UserInAppCustom.user?.email!!)
+            if(UserInAppCustom.user?.image == null){
+                putUserDataPostImage(UserInAppCustom.user?.email!!)
+            }else{
+                if (uriImageUpdate == null) {
+                    putUserData(UserInAppCustom.user?.email!!)
+                } else {
+                    putUserDataImage(UserInAppCustom.user?.email!!)
+                }
             }
             bottomSheetDialogUpdate.findViewById<View>(R.id.edit_user_update)!!.background.alpha = 60
             bottomSheetDialogUpdate.findViewById<View>(R.id.edit_user_update)!!.isEnabled = false
@@ -192,6 +201,9 @@ class ProfileUserFragment : Fragment() {
             btnCamera.visibility = View.INVISIBLE
             btnSaveUser.visibility = View.INVISIBLE
             btnEditUser.visibility = View.VISIBLE
+
+            println("-------------------------------")
+            println(UserInAppCustom.user.toString())
 
         }
     }
@@ -325,6 +337,11 @@ class ProfileUserFragment : Fragment() {
 
             uriImageUpdate = data?.data!!
             photo.setImageURI(uriImageUpdate)
+        }else if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_POST_GALERY) {
+
+            uriImagePost = data?.data!!
+            photo.setImageURI(uriImagePost)
+
         }
     }
 
@@ -373,6 +390,7 @@ class ProfileUserFragment : Fragment() {
 
 
     private fun putUserDataImage(email: String){
+        if(uriImageUpdate == null) return
         val apiService: ApiService = RetrofitClient.getRetrofit().create(ApiService::class.java)
         val requestIdFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), UserInAppCustom.user?.image?.id_file.toString())
         val resultFile: Call<File> = apiService.updateFile(processImage(uriImageUpdate), requestIdFile)
@@ -383,6 +401,25 @@ class ProfileUserFragment : Fragment() {
                     UserInAppCustom.user?.image = response.body()!!
                     putUserData(email)
                     uriImageUpdate = null
+                }
+            }
+            override fun onFailure(call:Call<File>, t:Throwable){
+                println("Error: updateFile() failure")
+                println(t.message)
+            }
+        })
+    }
+
+    private fun putUserDataPostImage(email: String){
+        if (uriImagePost== null)return
+        val apiService:ApiService = RetrofitClient.getRetrofit().create(ApiService::class.java)
+        val resultFile: Call<File> = apiService.postFile(processImage(uriImagePost))
+        resultFile.enqueue(object : Callback<File> {
+            override fun onResponse(call: Call<File>, response: Response<File>){
+                if (response.isSuccessful){
+                    uriImagePost = null
+                    UserInAppCustom.user?.image = response.body()!!
+                    putUserData(email)
                 }
             }
             override fun onFailure(call:Call<File>, t:Throwable){
