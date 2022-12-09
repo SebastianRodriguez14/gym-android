@@ -50,16 +50,17 @@ class ExerciseListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.fragment_exercise_list, container, false)
-
+        bottomSheetDialogComment = BottomSheetDialog(requireActivity(), R.style.BottonSheetDialog)
+        bottomSheetViewDialog = layoutInflater.inflate(R.layout.bottom_sheet_dialog_comment, null)
         buttonRestartExercises = root.findViewById(R.id.exercise_list_restart)
         buttonCompleteExercise = root.findViewById(R.id.exercise_list_button_complete)
         imageRoutine = root.findViewById(R.id.exercise_list_image_routine)
         imageBackToRoutine = root.findViewById(R.id.exercise_list_body_part_back)
         iconcommet= root.findViewById(R.id.icon_comment)
+
         val routineListFragment = RoutineListFragment()
         recyclerViewExercise = root.findViewById(R.id.recyclerview_exercises)
         recyclerViewExercise.layoutManager = LinearLayoutManager(root.context)
-
 
         Glide.with(root.context).load(SelectedClasses.routine.image.url).into(imageRoutine)
         imageBackToRoutine.setOnClickListener {
@@ -85,7 +86,9 @@ class ExerciseListFragment : Fragment() {
         }
 
         iconcommet.setOnClickListener {
-            commentDialog()
+            //
+            bottomSheetDialogComment.setContentView(bottomSheetViewDialog)
+           // commentDialog()
         }
         val exercises:List<Exercise>? = searchExercisesForRoutine()
 
