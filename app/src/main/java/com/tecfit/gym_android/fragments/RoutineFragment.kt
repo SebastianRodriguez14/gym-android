@@ -18,8 +18,6 @@ import com.bumptech.glide.Glide
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutineMonitoring
-import com.tecfit.gym_android.databinding.FragmentExerciseBinding
-import com.tecfit.gym_android.databinding.FragmentRoutineBinding
 import com.tecfit.gym_android.fragments.adapter.RoutineFYAdapter
 import com.tecfit.gym_android.models.BodyPart
 import com.tecfit.gym_android.models.Routine
@@ -29,11 +27,9 @@ import com.tecfit.gym_android.models.custom.UserInAppCustom
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
 import kotlinx.coroutines.*
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 class RoutineFragment : Fragment() {
 

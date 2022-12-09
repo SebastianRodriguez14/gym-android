@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="25dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_exercises"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            tools:listitem="@layout/item_commet_user" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30sp"
+        android:layout_marginVertical="15sp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <EditText
+            android:id="@+id/profile_user_input_membership"
+            android:layout_width="300dp"
+            android:layout_height="45sp"
+            android:background="@drawable/shape_comment_input"
+            android:enabled="false"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Comentar"
+            android:paddingHorizontal="3dp"
+            android:paddingStart="10dp"
+            android:text=""
+            android:textColor="?colorOnSecondary"
+            android:textSize="18sp"
+            android:tooltipText="Comentar" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitEnd"
+            android:src="@drawable/enviar" />
+    </LinearLayout>
+
+</LinearLayout>

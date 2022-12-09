@@ -1,11 +1,11 @@
 package com.tecfit.gym_android.fragments.adapter
 
 import android.content.Context
-import android.media.Image
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.fragments.ExerciseFragment
@@ -13,13 +13,12 @@ import com.tecfit.gym_android.models.Exercise
 import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
 import com.tecfit.gym_android.models.custom.SelectedClasses
 
-class ExerciseViewHolder(val view:View, val manager:FragmentManager?):RecyclerView.ViewHolder(view) {
+class ExerciseViewHolder(val view:View, val manager: FragmentManager?, private val bottomSheetDialogComment: BottomSheetDialog):RecyclerView.ViewHolder(view) {
     val ex_linear= view.findViewById<LinearLayout>(R.id.layout_item_exercise)
     val ex_name = view.findViewById<TextView>(R.id.item_exercise_name)
     val ex_sets = view.findViewById<TextView>(R.id.item_exercise_sets)
     val ex_image = view.findViewById<ImageView>(R.id.item_exercise_image_complete)
     val ex_timeOrRepetitions = view.findViewById<TextView>(R.id.item_exercise_timeOrRepetitions)
-
 
     fun render(exercise: Exercise, context: Context?,resInternalStorage: MutableList<RoutinesExercisesInternalStorage>){
         ex_name.text = exercise.name

@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutineMonitoring
@@ -31,12 +32,15 @@ class ExerciseListFragment : Fragment() {
 
     private lateinit var imageRoutine:ImageView
     private lateinit var imageBackToRoutine:ImageView
+    private lateinit var iconcommet:ImageView
     private lateinit var buttonRestartExercises:LinearLayout
     private lateinit var buttonCompleteExercise:LinearLayout
     private lateinit var recyclerViewExercise:RecyclerView
     private lateinit var root:View
     private var tempExercises= listOf<Exercise>()
 
+    private lateinit var bottomSheetDialogComment: BottomSheetDialog
+    private lateinit var bottomSheetViewDialog: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -51,6 +55,7 @@ class ExerciseListFragment : Fragment() {
         buttonCompleteExercise = root.findViewById(R.id.exercise_list_button_complete)
         imageRoutine = root.findViewById(R.id.exercise_list_image_routine)
         imageBackToRoutine = root.findViewById(R.id.exercise_list_body_part_back)
+        iconcommet= root.findViewById(R.id.icon_comment)
         val routineListFragment = RoutineListFragment()
         recyclerViewExercise = root.findViewById(R.id.recyclerview_exercises)
         recyclerViewExercise.layoutManager = LinearLayoutManager(root.context)
@@ -79,7 +84,9 @@ class ExerciseListFragment : Fragment() {
             buttonCompleteExercise.isVisible = false
         }
 
-
+        iconcommet.setOnClickListener {
+            commentDialog()
+        }
         val exercises:List<Exercise>? = searchExercisesForRoutine()
 
         if (exercises == null) {
@@ -92,6 +99,13 @@ class ExerciseListFragment : Fragment() {
             setArrayForRecycler(exercises)
         }
         return root
+    }
+
+    private fun commentDialog() {
+        println("Llego al dialog de comentario")
+        bottomSheetDialogComment = BottomSheetDialog(requireActivity(), R.style.BottonSheetDialog)
+        bottomSheetViewDialog = layoutInflater.inflate(R.layout.bottom_sheet_dialog_comment, null)
+        bottomSheetDialogComment.setContentView(bottomSheetViewDialog)
     }
 
     private fun deleteRoutine(){
@@ -134,7 +148,7 @@ class ExerciseListFragment : Fragment() {
 
     private fun setArrayForRecycler(exercises:List<Exercise>) {
         val resInternalStorage: MutableList<RoutinesExercisesInternalStorage> = ForInternalStorageRoutines.loadRoutinesAndExercises(context)
-        recyclerViewExercise.adapter = ExerciseAdapter(exercises, fragmentManager, context,resInternalStorage)
+        recyclerViewExercise.adapter = ExerciseAdapter(exercises, fragmentManager, context, bottomSheetDialogComment,resInternalStorage)
     }
 
     private fun updateExercisesForRoutine(exercises: List<Exercise>){
