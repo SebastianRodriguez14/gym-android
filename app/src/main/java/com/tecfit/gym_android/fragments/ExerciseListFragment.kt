@@ -1,5 +1,6 @@
 package com.tecfit.gym_android.fragments
 
+import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +22,9 @@ import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutines
 import com.tecfit.gym_android.fragments.adapter.CommentAdapter
 import com.tecfit.gym_android.fragments.adapter.ExerciseAdapter
 import com.tecfit.gym_android.models.Comment
+import com.tecfit.gym_android.models.CommentRegisterCustom
 import com.tecfit.gym_android.models.Exercise
-import com.tecfit.gym_android.models.custom.ArraysForClass
-import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
-import com.tecfit.gym_android.models.custom.ByRandom
-import com.tecfit.gym_android.models.custom.SelectedClasses
+import com.tecfit.gym_android.models.custom.*
 import com.tecfit.gym_android.retrofit.ApiService
 import com.tecfit.gym_android.retrofit.RetrofitClient
 import retrofit2.Call
@@ -41,6 +42,7 @@ class ExerciseListFragment : Fragment() {
     private lateinit var recyclerViewComments:RecyclerView
     private lateinit var root:View
     private var tempExercises= listOf<Exercise>()
+    private var listComments = mutableListOf<Comment>()
 
     private lateinit var bottomSheetDialogComment: BottomSheetDialog
     private lateinit var bottomSheetViewDialog: View
@@ -113,6 +115,14 @@ class ExerciseListFragment : Fragment() {
         bottomSheetDialogComment.setContentView(bottomSheetViewDialog)
 
         bottomSheetDialogComment.findViewById<RecyclerView>(R.id.recyclerview_comments)!!.layoutManager = LinearLayoutManager(requireContext())
+
+        bottomSheetDialogComment.findViewById<ImageView>(R.id.comment_button_icon)!!.setOnClickListener {
+            val content = bottomSheetViewDialog.findViewById<TextView>(R.id.comment_input_content).text.toString()
+            bottomSheetViewDialog.findViewById<TextView>(R.id.comment_input_content).setText("")
+            bottomSheetViewDialog.findViewById<ImageView>(R.id.comment_button_icon).isEnabled = false
+            postCommentInRoutine(content)
+        }
+
         println("Layout manager colocado")
         apiGetCommentsByRoutine()
         bottomSheetDialogComment.show()
@@ -211,10 +221,8 @@ class ExerciseListFragment : Fragment() {
         println("Llamando a los comentarios")
         resultComments.enqueue(object:Callback<List<Comment>>{
             override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
-                val listComments = response.body()
-                if (listComments != null){
-                    bottomSheetDialogComment.findViewById<RecyclerView>(R.id.recyclerview_comments)!!.adapter = CommentAdapter(listComments)
-                }
+                listComments = response.body() as MutableList<Comment>
+                bottomSheetDialogComment.findViewById<RecyclerView>(R.id.recyclerview_comments)!!.adapter = CommentAdapter(listComments)
             }
 
             override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
@@ -223,4 +231,32 @@ class ExerciseListFragment : Fragment() {
             }
         })
     }
+
+    private fun postCommentInRoutine(content:String){
+        val apiService: ApiService = RetrofitClient.getRetrofit().create(ApiService::class.java)
+        if (UserInAppCustom.user != null){
+            val commentRegisterCustom = CommentRegisterCustom(content, UserInAppCustom.user!!, SelectedClasses.routine)
+            val resultCommentPost:Call<Void> = apiService.postComment(commentRegisterCustom)
+
+            resultCommentPost.enqueue(object :Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Toast.makeText(bottomSheetDialogComment.context, "Comentario enviado 😊", Toast.LENGTH_SHORT).show()
+                    val comment = Comment(0, content, UserInAppCustom.user!!)
+                    listComments.add(comment)
+                    bottomSheetDialogComment.findViewById<RecyclerView>(R.id.recyclerview_comments)!!.adapter = CommentAdapter(listComments)
+                    bottomSheetViewDialog.findViewById<ImageView>(R.id.comment_button_icon).isEnabled = true
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    println("Error: postCommentInRoutine() failure")
+
+                }
+            })
+
+
+        }
+
+
+    }
+
 }

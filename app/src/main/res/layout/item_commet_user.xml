@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:radius="50dp"
     android:layout_marginHorizontal="30sp"
-    android:layout_marginVertical="15sp"
+    android:layout_marginVertical="10sp"
     android:layout_marginBottom="20dp"
     android:background="@drawable/shape_comment_input">
     <LinearLayout
