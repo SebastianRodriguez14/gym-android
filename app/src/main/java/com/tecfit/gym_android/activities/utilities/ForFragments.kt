@@ -13,7 +13,7 @@ class ForFragments {
             fragmentTransaction.commit()
         }
 
-        fun replaceInFragment(fragment: Fragment, fragmentManager:FragmentManager?) {
+        fun replaceInFragment(fragment: Fragment, fragmentManager: FragmentManager?) {
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.frame_container, fragment)?.commit()
         }
