@@ -45,4 +45,10 @@ interface ApiService {
     @PUT("user/update/{email}")
     fun putUser(@Body user:UserCustom, @Path("email") email:String):Call<User>
 
+    @GET("comment/search/{id_routine}")
+    fun getCommentsByRoutine(@Path("id_routine") id_routine: Int):Call<List<Comment>>
+
+    @POST("comment/post")
+    fun postComment(@Body comment:CommentRegisterCustom) : Call<Void>
+
 }

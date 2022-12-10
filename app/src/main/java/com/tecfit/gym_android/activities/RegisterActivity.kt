@@ -89,8 +89,6 @@ class RegisterActivity : AppCompatActivity() {
                                     binding.registerInputLastname.text.toString(),
                                     binding.registerInputPhone.text.toString(),
                                     false, null)
-
-
         println(user)
         val resultUser: Call<User> = apiService.postUser(user)
 
