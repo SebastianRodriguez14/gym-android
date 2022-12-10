@@ -16,7 +16,9 @@ import com.tecfit.gym_android.R
 import com.tecfit.gym_android.activities.utilities.ForFragments
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutineMonitoring
 import com.tecfit.gym_android.activities.utilities.ForInternalStorageRoutines
+import com.tecfit.gym_android.fragments.adapter.CommentAdapter
 import com.tecfit.gym_android.fragments.adapter.ExerciseAdapter
+import com.tecfit.gym_android.models.Comment
 import com.tecfit.gym_android.models.Exercise
 import com.tecfit.gym_android.models.custom.ArraysForClass
 import com.tecfit.gym_android.models.custom.RoutinesExercisesInternalStorage
@@ -36,6 +38,7 @@ class ExerciseListFragment : Fragment() {
     private lateinit var buttonRestartExercises:LinearLayout
     private lateinit var buttonCompleteExercise:LinearLayout
     private lateinit var recyclerViewExercise:RecyclerView
+    private lateinit var recyclerViewComments:RecyclerView
     private lateinit var root:View
     private var tempExercises= listOf<Exercise>()
 
@@ -87,8 +90,7 @@ class ExerciseListFragment : Fragment() {
 
         iconcommet.setOnClickListener {
             //
-            bottomSheetDialogComment.setContentView(bottomSheetViewDialog)
-           // commentDialog()
+            commentDialog()
         }
         val exercises:List<Exercise>? = searchExercisesForRoutine()
 
@@ -109,6 +111,11 @@ class ExerciseListFragment : Fragment() {
         bottomSheetDialogComment = BottomSheetDialog(requireActivity(), R.style.BottonSheetDialog)
         bottomSheetViewDialog = layoutInflater.inflate(R.layout.bottom_sheet_dialog_comment, null)
         bottomSheetDialogComment.setContentView(bottomSheetViewDialog)
+
+        bottomSheetDialogComment.findViewById<RecyclerView>(R.id.recyclerview_comments)!!.layoutManager = LinearLayoutManager(requireContext())
+        println("Layout manager colocado")
+        apiGetCommentsByRoutine()
+        bottomSheetDialogComment.show()
     }
 
     private fun deleteRoutine(){
@@ -197,4 +204,23 @@ class ExerciseListFragment : Fragment() {
         })
     }
 
+    private fun apiGetCommentsByRoutine(){
+        val apiService: ApiService = RetrofitClient.getRetrofit().create(ApiService::class.java)
+
+        val resultComments:Call<List<Comment>> = apiService.getCommentsByRoutine(SelectedClasses.routine.id_routine)
+        println("Llamando a los comentarios")
+        resultComments.enqueue(object:Callback<List<Comment>>{
+            override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
+                val listComments = response.body()
+                if (listComments != null){
+                    bottomSheetDialogComment.findViewById<RecyclerView>(R.id.recyclerview_comments)!!.adapter = CommentAdapter(listComments)
+                }
+            }
+
+            override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
+                println("Error: apiGetCommentsByRoutine() failure")
+                apiGetCommentsByRoutine()
+            }
+        })
+    }
 }
